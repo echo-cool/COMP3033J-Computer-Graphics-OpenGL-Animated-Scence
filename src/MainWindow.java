@@ -397,71 +397,34 @@ public class MainWindow {
         float thetaDeg = delta * 360;
         float posn_x = (float) Math.cos(theta); // same as your circle code in your notes
         float posn_y = (float) Math.sin(theta);
-//        System.out.println(posn_x);
-        OrthoNumber = (int) (1240 + posn_x * 200); //letting the OrthoNumber change when the scene change
 
-//        GL11.glLoadIdentity();
-//        System.out.println(-posn_x * 5.0f);
+//        OrthoNumber = (int) (1240 + posn_x * 200); //letting the OrthoNumber change when the scene change
 
-
-
-//        GLU.gluLookAt(0f, -1f, 0f, 0f, 0f, 0f, 1f, 0f, 0f);
         if (!BadAnimation) {
 //            secMouseX = 600;
 //            secMouseY = 100;
-            Vector4f v = new Vector4f(-posn_x, -0.5f, -posn_y, 0f);
             GL11.glTranslatef(secMouseX, secMouseY, 0);
+            GLU.gluLookAt(2f, -1f, -1f, 0f, 0f, 0f, 0f, 1f, 0f);
 
-            Vector4f v1 = new Vector4f(posn_x, 0f, posn_y,0f);
-            Vector4f v2 = new Vector4f(0f, 1f, 0f,0f);
-            Vector4f v3 = v1.cross(v2);
-            v3 = new Vector4f(v3.x, v3.y + 0.3f, v3.z, 0f).Normal();
-//            GLU.gluLookAt(v.Normal().x, v.Normal().y, v.Normal().z, 0f, 0f, 0f, 0f, 1f, 0f);
-            GLU.gluLookAt(-v3.x, -v3.y, -v3.z, 0f, 0f, 0f, 0f, 1f, 0f); //change the look at position
+//            Vector4f v = new Vector4f(-posn_x, -0.5f, -posn_y, 0f);
+//            GL11.glTranslatef(secMouseX, secMouseY, 0);
+//
+//            Vector4f v1 = new Vector4f(posn_x, 0f, posn_y,0f);
+//            Vector4f v2 = new Vector4f(0f, 1f, 0f,0f);
+//            Vector4f v3 = v1.cross(v2);
+//            v3 = new Vector4f(v3.x, v3.y + 0.3f, v3.z, 0f).Normal();
+//
+//            GLU.gluLookAt(-v3.x, -v3.y, -v3.z, 0f, 0f, 0f, 0f, 1f, 0f); //change the look at position
         } else {
-//            secMouseX = 600;
-//            secMouseY = 0;
+
             GL11.glTranslatef(secMouseX, secMouseY, 0);
             GLU.gluLookAt(2f, -1f, -1f, 0f, 0f, 0f, 0f, 1f, 0f);
         }
 
-//        GL11.glPushMatrix();
-//        TexCube MyGrid1 = new TexCube();
-////        GL11.glTranslatef(secMouseX,secMouseY,0);
-////        GL11.glTranslatef(600, 270, 0);
-//        GL11.glScalef(200f, 200f, 200f);
-//        GL11.glTexParameteri(
-//                GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T,
-//                GL11.GL_REPEAT);
-//        GL11.glTexParameteri(
-//                GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S,
-//                GL11.GL_REPEAT);
-//        Color.white.bind();
-//        textures.get("default_dirt").bind();
-//        GL11.glEnable(GL11.GL_TEXTURE_2D);
-//        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-//        MyGrid1.DrawTexCube(30f);
-//        GL11.glDisable(GL11.GL_TEXTURE_2D);
-//        GL11.glPopMatrix();
-        /*
-         * This code draws a grid to help you view the human models movement
-         *  You may change this code to move the grid around and change its starting angle as you please
-         */
-        if (DRAWGRID) {
-            GL11.glPushMatrix();
-            Grid MyGrid = new Grid();
-//			GL11.glTranslatef(secMouseX,secMouseY,0);
-            GL11.glTranslatef(600, 300, 0);
-            GL11.glScalef(200f, 200f, 200f);
-            MyGrid.DrawGrid();
-            GL11.glPopMatrix();
-        }
 
         //Draw a big plain
         GL11.glPushMatrix();
         TexCube MyGrid = new TexCube();
-//        GL11.glTranslatef(secMouseX,secMouseY,0);
-        GL11.glTranslatef(600, 270, 0);
         GL11.glScalef(8000f, 1f, 8000f);
         GL11.glTexParameteri(
                 GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T,
@@ -482,7 +445,7 @@ public class MainWindow {
         //human obj
         Human MyHuman = new Human(textures); //init human with textures
 //		GL11.glTranslatef(secMouseX,secMouseY,0);
-        GL11.glTranslatef(300, 400, 0);
+        GL11.glTranslatef(0, 130, 0);
         GL11.glScalef(90f, 90f, 90f);
 
 
@@ -511,7 +474,7 @@ public class MainWindow {
         GL11.glPushMatrix();
         TexCube cube1 = new TexCube();
 //        GL11.glTranslatef(secMouseX,secMouseY,0);
-        GL11.glTranslatef(300, 320, 0);
+        GL11.glTranslatef(0, 50f, 0);
         GL11.glScalef(50f, 50f, 50f);
         Color.white.bind();
         textures.get("tnt_side").bind();
@@ -602,7 +565,7 @@ public class MainWindow {
         GL11.glPushMatrix();
         TexCube cube2 = new TexCube();
 //        GL11.glTranslatef(secMouseX,secMouseY,0);
-        GL11.glTranslatef(300, 320, 0);
+        GL11.glTranslatef(0, 50f, 0);
 //        GL11.glTranslatef(0, -2f, 0);
         GL11.glScalef(50f, 50f, 50f);
         Color.white.bind();
