@@ -106,8 +106,8 @@ j  org.lwjgl.opengl.Display.makeCurrentAndSetSwapInterval()V+0
 j  org.lwjgl.opengl.Display.create(Lorg/lwjgl/opengl/PixelFormat;Lorg/lwjgl/opengl/Drawable;Lorg/lwjgl/opengl/ContextAttribs;)V+108
 j  org.lwjgl.opengl.Display.create(Lorg/lwjgl/opengl/PixelFormat;)V+12
 j  org.lwjgl.opengl.Display.create()V+7
-j  MainWindow.start()V+24
-j  MainWindow.main([Ljava/lang/String;)V+9
+j  main.MainWindow.start()V+24
+j  main.MainWindow.main([Ljava/lang/String;)V+9
 v  ~StubRoutines::call_stub
 V  [libjvm.dylib+0x2d4795]  JavaCalls::call_helper(JavaValue*, methodHandle*, JavaCallArguments*, Thread*)+0x771
 V  [libjvm.dylib+0x30582b]  jni_invoke_static(JNIEnv_*, JavaValue*, _jobject*, JNICallType, _jmethodID*, JNI_ArgumentPusher*, Thread*)+0x279
@@ -127,8 +127,8 @@ j  org.lwjgl.opengl.Display.makeCurrentAndSetSwapInterval()V+0
 j  org.lwjgl.opengl.Display.create(Lorg/lwjgl/opengl/PixelFormat;Lorg/lwjgl/opengl/Drawable;Lorg/lwjgl/opengl/ContextAttribs;)V+108
 j  org.lwjgl.opengl.Display.create(Lorg/lwjgl/opengl/PixelFormat;)V+12
 j  org.lwjgl.opengl.Display.create()V+7
-j  MainWindow.start()V+24
-j  MainWindow.main([Ljava/lang/String;)V+9
+j  main.MainWindow.start()V+24
+j  main.MainWindow.main([Ljava/lang/String;)V+9
 v  ~StubRoutines::call_stub
 
 ---------------  P R O C E S S  ---------------
@@ -567,7 +567,7 @@ Dynamic libraries:
 
 VM Arguments:
 jvm_args: -javaagent:/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=62805:/Applications/IntelliJ IDEA.app/Contents/bin -Dfile.encoding=UTF-8 
-java_command: MainWindow
+java_command: main.MainWindow
 java_class_path (initial): /Users/yuyangwang/Desktop/Programs_In_BDIC/Stage 3 Semester 1/Computer Graphic/Assignment3/bin:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/deploy.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/ext/cldrdata.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/ext/dnsns.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/ext/jaccess.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/ext/jfxrt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/ext/localedata.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/ext/nashorn.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/ext/sunec.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/ext/sunjce_provider.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/ext/sunpkcs11.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/ext/zipfs.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/javaws.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/jfxswt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/management-agent.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/plugin.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_271.jdk/Co
 Launcher Type: SUN_STANDARD
 
