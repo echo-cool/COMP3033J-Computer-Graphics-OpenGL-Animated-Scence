@@ -9,7 +9,6 @@ import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;
-import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
 
 import java.io.IOException;
@@ -85,6 +84,7 @@ public class Engine {
 
     public void init() {
         Display.setVSyncEnabled(true);
+        glEnable(GL_DEPTH_TEST);
         loadTexture();
 
     }
@@ -117,7 +117,7 @@ public class Engine {
         // position
         // of the
         // light
-//         GL11.glEnable(GL11.GL_LIGHT0); // switch light #0 on // I've setup specific materials so in real light it will look abit strange
+         GL11.glEnable(GL11.GL_LIGHT0); // switch light #0 on // I've setup specific materials so in real light it will look abit strange
 
         GL11.glLight(GL11.GL_LIGHT1, GL11.GL_POSITION, lightPos); // specify the
         // position
@@ -181,17 +181,17 @@ public class Engine {
     }
 
     public void setOrtho(int OrthoNumber) {
-        if (600 + OrthoNumber > 0 && 700 + OrthoNumber * 0.66 > 0) {
+//        if (600 + OrthoNumber > 0 && 700 + OrthoNumber * 0.66 > 0) {
             GL11.glMatrixMode(GL11.GL_PROJECTION);
             GL11.glLoadIdentity();
             //Placing 0,0 at the center of the screen
 //        GL11.glOrtho(1200 / 2 - OrthoNumber, OrthoNumber / 2, (800 / 2 - (OrthoNumber * 0.66f)), (OrthoNumber / 2 * 0.66f), 100000, -100000);
 //        GL11.glOrtho(1200 - OrthoNumber, OrthoNumber, (800 - (OrthoNumber * 0.66f)), (OrthoNumber * 0.66f), 100000, -100000);F
-            gluPerspective((float) 60, Display.getWidth() / Display.getHeight(), 100f, 10000);
+            gluPerspective((float) 60, Display.getWidth() / Display.getHeight(), 100f, 17000);
 
 //            GL11.glOrtho(-600 - OrthoNumber, 600 + OrthoNumber, -100 - OrthoNumber * 0.66, 700 + OrthoNumber * 0.66, 100000, -100000);
             enterModelView();
-        }
+//        }
 
     }
 
@@ -207,24 +207,7 @@ public class Engine {
     }
 
     private void loadTexture() {
-        //LOAD textures
-        try {
-            textures.put("awesomeface", TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/awesomeface.png")));
-
-            textures.put("default_dirt", TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/default_dirt.png")));
-            textures.put("earthspace", TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/earthspace.png")));
-            textures.put("tnt_side", TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/tnt_side.png")));
-            textures.put("farming_wheat_8", TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/farming_wheat_8.png")));
-            textures.put("wool_pink", TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/wool_pink.png")));
-            textures.put("default_lava", TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/default_lava.png")));
-            textures.put("default_stone", TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/default_stone.png")));
-            textures.put("default_cobble", TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/default_cobble.png")));
-//        textures.put("awesomeface",TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/awesomeface.png")));
-//        textures.put("awesomeface",TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/awesomeface.png")));
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        TextureLoader.loadTexture(textures);
         System.out.println("Texture loaded okay ");
     }
 

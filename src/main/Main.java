@@ -4,11 +4,17 @@ import Scene.Scene;
 import Scene.base.SceneManager;
 import base.GraphicsObjects.Vector4f;
 import base.RenderProgramStatement;
+import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
 
-import static org.lwjgl.opengl.GL11.glPopMatrix;
-import static org.lwjgl.opengl.GL11.glPushMatrix;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.glLoadIdentity;
+import static org.lwjgl.util.glu.GLU.gluPerspective;
 
 /**
  * @Author: WangYuyang
@@ -18,9 +24,10 @@ import static org.lwjgl.opengl.GL11.glPushMatrix;
  * @Description:
  **/
 public class Main {
-    public static final int WIDTH = 1200;
+    public static final int WIDTH = 1600;
     public static final int HEIGHT = 800;
     private static final boolean DEBUG = false;
+    private static final boolean resizable = true;
     public static Engine engine;
     private static SceneManager sceneManager = new SceneManager();
     private static Camera camera = new Camera();
@@ -30,7 +37,9 @@ public class Main {
         engine = new Engine(WIDTH, HEIGHT);
         engine.init();
         engine.setOrtho(Camera.OrthoNumber);
-        engine.setLight();
+
+
+
         engine.enterModelView();
         engine.initTimer();
 
@@ -48,6 +57,7 @@ public class Main {
                 @Override
                 public void render(int delta) {
                     camera.update();
+                    engine.setLight();
                     Scene.drawAll(sceneManager, delta);
 
                 }
@@ -70,6 +80,35 @@ public class Main {
                         0, -300, -600, 0
                 ));
             }
+
+            if (Keyboard.isKeyDown(Keyboard.KEY_EQUALS)) {
+                System.out.println("KEY_EQUALS");
+                try {
+                    Display.setFullscreen(!Display.isFullscreen());
+                    if (!Display.isFullscreen()) {
+                        Display.setResizable(resizable);
+                        Display.setDisplayMode(new DisplayMode(800, 600));
+                        glViewport(0, 0, Display.getWidth(), Display.getHeight());
+                        glMatrixMode(GL_PROJECTION);
+                        glLoadIdentity();
+                        gluPerspective((float) 60, Display.getWidth() / Display.getHeight(), 100f, 17000);
+                        glMatrixMode(GL_MODELVIEW);
+                        glLoadIdentity();
+                    } else {
+                        glViewport(0, 0, Display.getWidth(), Display.getHeight());
+                        glMatrixMode(GL_PROJECTION);
+                        glLoadIdentity();
+                        gluPerspective((float) 60, Display.getWidth() / Display.getHeight(), 100f, 17000);
+                        glMatrixMode(GL_MODELVIEW);
+                        glLoadIdentity();
+                    }
+                } catch (LWJGLException ex) {
+                    Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                    System.out.println("ERROR");
+                    engine.close();
+                }
+            }
+
         }
 
         engine.close();

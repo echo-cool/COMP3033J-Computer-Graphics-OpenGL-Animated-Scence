@@ -1,5 +1,6 @@
 package main;
 
+import Scene.Objects.Human;
 import base.GraphicsObjects.Vector4f;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -141,12 +142,15 @@ public class Camera {
                 rotation.x = maxLookUp;
             }
         }
-
+        if(!Mouse.isButtonDown(0))
+            Human.angle_target = 180 -  (int) rotation.y;
 
         glRotatef(rotation.x, 1, 0, 0);
         glRotatef(rotation.y, 0, 1, 0);
         glRotatef(-rotation.z, 0, 0, 1);
         glTranslatef(position.x, position.y, position.z);
+
+
 
         Main.engine.setOrtho(Camera.OrthoNumber);
 

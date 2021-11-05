@@ -22,6 +22,7 @@ public abstract class SceneObject implements IDrawable, IMovable, IScalable {
     private Vector4f rotation = new Vector4f();
     private HashMap<String, Texture> textures = new LinkedHashMap<>();
 
+
     public SceneObject(Point4f origin, Point4f position, Vector4f scale) {
         this.origin = new Point4f(origin.x, origin.y, origin.z, 0);
         this.position = new Point4f(position.x, position.y, position.z, 0);
