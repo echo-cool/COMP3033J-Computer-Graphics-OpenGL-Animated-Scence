@@ -62,7 +62,7 @@ public class Main {
             }
             if(FPS_MODE){
                 camera.setCamera(new Vector4f(
-                        0, -500, 0, 0
+                        0, -300, 0, 0
                 ));
             }
             else{

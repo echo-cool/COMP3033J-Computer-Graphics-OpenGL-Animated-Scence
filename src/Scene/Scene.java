@@ -104,7 +104,7 @@ public class Scene {
                         float new_z = (float) (tmp.length() * Math.cos(Math.toRadians(angle)));
                         tmp.x = -new_x;
                         tmp.z = new_z;
-                        System.out.println(tmp);
+//                        System.out.println(tmp);
                         move = tmp.PlusVector(move);
                         human.setAngle(-angle);
                     }

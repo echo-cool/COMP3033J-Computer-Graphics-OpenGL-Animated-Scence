@@ -35,6 +35,7 @@ public class Camera {
 
     public void setCamera(Vector4f v) {
         inital_camera_position = v;
+
 //        glRotatef(rotationX, 1, 0, 0);
 //        glRotatef(rotationY, 0, 1, 0);
 //        glRotatef(rotationZ, 0, 0, 1);

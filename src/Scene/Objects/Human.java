@@ -46,6 +46,8 @@ public class Human extends SceneObject {
     private int stopCount = 0;
     private float angle;
 
+    private Boolean isJumping = false;
+
     public Human(Point4f origin, Point4f position, Vector4f scale) {
         super(origin, position, scale);
     }
@@ -73,6 +75,10 @@ public class Human extends SceneObject {
         if (isWalking) {
             this.delta = (Engine.getTimePassed() - walkStartTime)/10000f;
         }
+    }
+
+    public void jump(){
+
     }
 
     public void stop() {
