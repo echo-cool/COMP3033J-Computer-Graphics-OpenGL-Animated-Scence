@@ -133,7 +133,7 @@ public class Scene {
                         tmp.z = -new_z;
 //                        System.out.println(tmp);
                         move = tmp.PlusVector(move);
-                        human.setAngle(-angle);
+                        human.setAngle(-angle - 180);
                     }
                     if (KEY_A) {
                         Vector4f tmp = new Vector4f();
@@ -147,8 +147,11 @@ public class Scene {
                         move = tmp.PlusVector(move);
                         human.setAngle(angle);
                     }
-                    if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
+                    if (Keyboard.isKeyDown(Keyboard.KEY_RETURN)) {
                         move = move.PlusVector(new Vector4f(0, speedY, 0, 0));
+                    }
+                    if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
+                        human.jump(500);
                     }
                     if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
                         move = move.PlusVector(new Vector4f(0, -speedY, 0, 0));

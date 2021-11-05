@@ -44,9 +44,11 @@ public class Human extends SceneObject {
     private Boolean isWalking = false;
     private long walkStartTime;
     private int stopCount = 0;
-    private float angle;
+    private float angle = 0;
+    private float angle_target = 0;
 
     private Boolean isJumping = false;
+    private float jump_height = 0f;
 
     public Human(Point4f origin, Point4f position, Vector4f scale) {
         super(origin, position, scale);
@@ -54,6 +56,23 @@ public class Human extends SceneObject {
 
     public Human(Point4f origin, Point4f position, Vector4f scale, HashMap<String, Texture> textures) {
         super(origin, position, scale, textures);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    if (angle > angle_target) {
+                        angle -= 1f;
+                    } else if (angle < angle_target) {
+                        angle += 1f;
+                    }
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
     }
 
 
@@ -73,31 +92,63 @@ public class Human extends SceneObject {
 //            System.out.println(walkStartTime);
         }
         if (isWalking) {
-            this.delta = (Engine.getTimePassed() - walkStartTime)/10000f;
+            this.delta = (Engine.getTimePassed() - walkStartTime) / 10000f;
         }
     }
 
-    public void jump(){
+    public void jump(int speed) {
+        float g = 9.8f;
+        if (!isJumping) {
+            isJumping = true;
+            long start_time = System.currentTimeMillis();
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    double h = 0;
+                    long t = 0;
+                    while (h >= 0) {
+                        long start = System.currentTimeMillis();
+                        long current_time = System.currentTimeMillis();
+                        t = (current_time - start_time) / 10;
+                        h = (speed * t - 0.5 * g * t * t) / 10000;
+                        jump_height = (float) h;
+                        long end = System.currentTimeMillis();
+                        while (end - start < 16) {
+                            try {
+                                Thread.sleep(1);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            end = System.currentTimeMillis();
+                        }
+                    }
+                    jump_height = 0;
+                    isJumping = false;
+
+                }
+            });
+            thread.start();
+        }
 
     }
 
     public void stop() {
-        if(stopCount > 5) {
+        if (stopCount > 5) {
             isWalking = false;
             this.delta = 0;
             stopCount = 0;
         }
         stopCount++;
     }
-    
+
     public void setAngle(float angle) {
-        this.angle = angle;
+        this.angle_target = angle;
     }
 
     @Override
     public void draw() {
 
-
+        GL11.glTranslatef(0, jump_height, 0);
         Boolean GoodAnimation = true;
         float theta_face = (float) (delta * 2 * Math.PI);
 //        float angle = -(float) (180 * (theta_face) / Math.PI);
