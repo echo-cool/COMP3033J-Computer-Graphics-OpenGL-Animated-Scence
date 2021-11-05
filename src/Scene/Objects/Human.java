@@ -44,8 +44,8 @@ public class Human extends SceneObject {
     private Boolean isWalking = false;
     private long walkStartTime;
     private int stopCount = 0;
-    private float angle = 0;
-    private float angle_target = 0;
+    private int angle = 0;
+    private int angle_target = 0;
 
     private Boolean isJumping = false;
     private float jump_height = 0f;
@@ -142,7 +142,7 @@ public class Human extends SceneObject {
     }
 
     public void setAngle(float angle) {
-        this.angle_target = angle;
+        this.angle_target = (int)angle;
     }
 
     @Override
