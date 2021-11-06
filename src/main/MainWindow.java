@@ -512,7 +512,7 @@ public class MainWindow {
 //
 //            Color.white.bind();
 //            texture.bind();
-//            GL11.glEnable(GL11.GL_TEXTURE_2D);
+//            ;
 //            GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 //            GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 //

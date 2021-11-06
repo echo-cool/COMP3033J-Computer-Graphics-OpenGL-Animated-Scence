@@ -44,7 +44,7 @@ public class Skybox extends SceneObject {
     @Override
     public void draw() {
 
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
+//        ;
         GL11.glTexParameteri(
                 GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T,
                 GL11.GL_REPEAT);
@@ -128,6 +128,6 @@ public class Skybox extends SceneObject {
         GL11.glEnd();
 
 
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        ;
     }
 }

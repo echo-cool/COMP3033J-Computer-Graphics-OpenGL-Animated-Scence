@@ -32,7 +32,7 @@ public class LAVA_Door extends SceneObject {
 
         Color.white.bind();
         getTextures().get("default_lava").bind();
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        ;
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
         GL11.glTranslatef(-2f, 0f, 0);
         cube.DrawTexCube();
@@ -108,6 +108,6 @@ public class LAVA_Door extends SceneObject {
 
         }
         GL11.glPopMatrix();
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        ;
     }
 }

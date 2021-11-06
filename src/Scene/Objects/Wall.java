@@ -44,11 +44,11 @@ public class Wall extends SceneObject {
                 GL11.GL_REPEAT);
         Color.white.bind();
         //bind texture
-        getTextures().get("default_dirt").bind();
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
+//        getTextures().get("default_dirt").bind();
+        ;
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
         MyGrid.DrawTexCube(10f);
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        ;
 
     }
 }

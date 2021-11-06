@@ -50,13 +50,14 @@ public class Scene {
 //                textures
 //        ));
 
+
+
         sceneManager.addSceneObject(new TNT_Door(
                 new Point4f(0, 50f, 200, 0),
                 new Point4f(0, 0, 0, 0),
                 new Vector4f(50f, 50f, 50f, 0),
                 textures
         ));
-
         sceneManager.addSceneObject(new LAVA_Door(
                 new Point4f(0, 50f, 200, 0),
                 new Point4f(0, 0, 0, 0),
@@ -64,9 +65,8 @@ public class Scene {
                 textures
         ));
 
-
-//        sceneManager.addSceneObject(new Cube(
-//                new Point4f(300, 200, 600, 0),
+//        sceneManager.addSceneObject(new TestObj(
+//                new Point4f(300, 200, -600, 0),
 //                new Point4f(0, 0, 0, 0),
 //                new Vector4f(50, 50, 50, 0),
 //                textures

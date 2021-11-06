@@ -69,10 +69,10 @@ public abstract class SceneObject implements IDrawable, IMovable, IScalable {
     public void draw(IDrawListener listener) {
         //move object to correct position
         listener.beforeEachDraw(this);
-//        glDisable(GL_TEXTURE_GEN_S);
-//        glDisable(GL_TEXTURE_GEN_T);
-//        glDisable(GL_TEXTURE_GEN_R);
-//        glDisable(GL_TEXTURE_GEN_Q);
+        glDisable(GL_TEXTURE_GEN_S);
+        glDisable(GL_TEXTURE_GEN_T);
+        glDisable(GL_TEXTURE_GEN_R);
+        glDisable(GL_TEXTURE_GEN_Q);
 
         GL11.glTranslatef(origin.x, origin.y, origin.z);
         GL11.glRotatef(rotation.a, rotation.x, rotation.y, rotation.z);
@@ -81,10 +81,10 @@ public abstract class SceneObject implements IDrawable, IMovable, IScalable {
         this.draw();
         listener.afterEachDraw(this);
 
-//        glEnable(GL_TEXTURE_GEN_S);
-//        glEnable(GL_TEXTURE_GEN_T);
-//        glEnable(GL_TEXTURE_GEN_R);
-//        glEnable(GL_TEXTURE_GEN_Q);
+        glEnable(GL_TEXTURE_GEN_S);
+        glEnable(GL_TEXTURE_GEN_T);
+        glEnable(GL_TEXTURE_GEN_R);
+        glEnable(GL_TEXTURE_GEN_Q);
 
     }
 
@@ -132,5 +132,9 @@ public abstract class SceneObject implements IDrawable, IMovable, IScalable {
 
     public Vector4f getScale() {
         return scale;
+    }
+
+    public Vector4f getRotation() {
+        return rotation;
     }
 }

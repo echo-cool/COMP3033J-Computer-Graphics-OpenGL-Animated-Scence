@@ -229,7 +229,7 @@ public class Engine {
          * be no object farther away than 50 units from [0, 0, 0] in any direction.
          * If an object exceeds the radius, the object may cast shadows wrongly.
          */
-        float sceneBoundingRadius = 800;
+        float sceneBoundingRadius = 1500;
         /**
          * The distance from the light to the scene, assuming that the scene is located
          * at [0, 0, 0]. Using the Pythagorean theorem, the distance is calculated by taking the square-root of the
@@ -304,6 +304,7 @@ public class Engine {
              *  int border -> 0
              */
             glCopyTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, 0, 0, shadowMapWidth, shadowMapHeight, 0);
+
             // Restore the previous model-view matrix.
             glPopMatrix();
             glMatrixMode(GL_PROJECTION);
@@ -439,15 +440,17 @@ public class Engine {
 
         updateFPS();
         checkInput();
-        glPushAttrib(GL_ALL_ATTRIB_BITS);
-        {
-            generateTextureCoordinates();
-            renderProgram.renderBackground(delta);
-            renderProgram.renderScene(delta);
-            drawShadowMap(renderProgram);
+        renderProgram.renderScene(delta);
+        renderProgram.renderBackground(delta);
 
-        }
-        glPopAttrib();
+//        glPushAttrib(GL_ALL_ATTRIB_BITS);
+//        {
+//            generateTextureCoordinates();
+//            drawShadowMap(renderProgram);
+//
+//        }
+//        glPopAttrib();
+
 
         Display.update();
         Display.sync(FPS);

@@ -193,12 +193,12 @@ public class Human extends SceneObject {
 
             getTextures().get("wool_pink").bind();
             //Enable TEXTURE
-            GL11.glEnable(GL11.GL_TEXTURE_2D);
+
             //set texture Parameters
             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
             texSphere.DrawTexSphere(0.5f, 32, 32, getTextures().get("wool_pink"));
             //Draw finish Disable TEXTURE
-            GL11.glDisable(GL11.GL_TEXTURE_2D);
+
 
 
 //            sphere.DrawSphere(0.5f, 32, 32); // pelvis sphere
@@ -216,10 +216,10 @@ public class Human extends SceneObject {
                 //bind texture
                 getTextures().get("tnt_side").bind(); //set texture
                 //Enable TEXTURE
-                GL11.glEnable(GL11.GL_TEXTURE_2D);
+                ;
                 GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
                 texSphere.DrawTexSphere(0.5f, 32, 32, getTextures().get("tnt_side"));
-                GL11.glDisable(GL11.GL_TEXTURE_2D); //disable texture
+                ; //disable texture
 
 
 //                sphere.DrawSphere(0.5f, 32, 32);// chest sphere
@@ -249,10 +249,10 @@ public class Human extends SceneObject {
                                 GL11.GL_REPEAT);
                         Color.white.bind();
                         getTextures().get("awesomeface").bind(); //set texture
-                        GL11.glEnable(GL11.GL_TEXTURE_2D);
+                        ;
                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
                         texSphere.DrawTexSphere(0.5f, 32, 32, getTextures().get("awesomeface"));
-                        GL11.glDisable(GL11.GL_TEXTURE_2D);
+                        ;
 
 
 //                        sphere.DrawSphere(0.5f, 32, 32);
@@ -275,10 +275,10 @@ public class Human extends SceneObject {
                                 GL11.GL_REPEAT);
                         Color.white.bind();
                         getTextures().get("default_stone").bind();  //set texture
-                        GL11.glEnable(GL11.GL_TEXTURE_2D);
+                        ;
                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
                         texSphere.DrawTexSphere(0.25f, 32, 32, getTextures().get("default_stone"));
-                        GL11.glDisable(GL11.GL_TEXTURE_2D);
+                        ;
 //                        sphere.DrawSphere(0.25f, 32, 32);
 
 
@@ -309,10 +309,10 @@ public class Human extends SceneObject {
                                         GL11.GL_REPEAT);
                                 Color.white.bind();
                                 getTextures().get("default_stone").bind();
-                                GL11.glEnable(GL11.GL_TEXTURE_2D);
+                                ;
                                 GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
                                 texSphere.DrawTexSphere(0.2f, 32, 32, getTextures().get("default_stone"));
-                                GL11.glDisable(GL11.GL_TEXTURE_2D);
+                                ;
 //                                sphere.DrawSphere(0.2f, 32, 32);
 
                                 //left forearm
@@ -336,10 +336,10 @@ public class Human extends SceneObject {
                                                 GL11.GL_REPEAT);
                                         Color.white.bind();
                                         getTextures().get("default_stone").bind();
-                                        GL11.glEnable(GL11.GL_TEXTURE_2D);
+                                        ;
                                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
                                         texSphere.DrawTexSphere(0.2f, 32, 32, getTextures().get("default_stone"));
-                                        GL11.glDisable(GL11.GL_TEXTURE_2D);
+                                        ;
 //                                        sphere.DrawSphere(0.2f, 32, 32);
 
 
@@ -368,10 +368,10 @@ public class Human extends SceneObject {
                                 GL11.GL_REPEAT);
                         Color.white.bind();
                         getTextures().get("default_stone").bind();
-                        GL11.glEnable(GL11.GL_TEXTURE_2D);
+                        ;
                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
                         texSphere.DrawTexSphere(0.25f, 32, 32, getTextures().get("default_stone"));
-                        GL11.glDisable(GL11.GL_TEXTURE_2D);
+                        ;
 //                        sphere.DrawSphere(0.25f, 32, 32);
 
 
@@ -402,10 +402,10 @@ public class Human extends SceneObject {
                                         GL11.GL_REPEAT);
                                 Color.white.bind();
                                 getTextures().get("default_stone").bind();
-                                GL11.glEnable(GL11.GL_TEXTURE_2D);
+                                ;
                                 GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
                                 texSphere.DrawTexSphere(0.2f, 32, 32, getTextures().get("default_stone"));
-                                GL11.glDisable(GL11.GL_TEXTURE_2D);
+                                ;
 //                                sphere.DrawSphere(0.2f, 32, 32);
 
                                 //right forearm
@@ -429,10 +429,10 @@ public class Human extends SceneObject {
                                                 GL11.GL_REPEAT);
                                         Color.white.bind();
                                         getTextures().get("default_stone").bind();
-                                        GL11.glEnable(GL11.GL_TEXTURE_2D);
+                                        ;
                                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
                                         texSphere.DrawTexSphere(0.2f, 32, 32, getTextures().get("default_stone"));
-                                        GL11.glDisable(GL11.GL_TEXTURE_2D);
+                                        ;
 //                                        sphere.DrawSphere(0.2f, 32, 32);
 
 
@@ -468,10 +468,10 @@ public class Human extends SceneObject {
                             GL11.GL_REPEAT);
                     Color.white.bind();
                     getTextures().get("default_cobble").bind();
-                    GL11.glEnable(GL11.GL_TEXTURE_2D);
+                    ;
                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
                     texSphere.DrawTexSphere(0.25f, 32, 32, getTextures().get("default_cobble"));
-                    GL11.glDisable(GL11.GL_TEXTURE_2D);
+                    ;
 //                    sphere.DrawSphere(0.25f, 32, 32);
 
 
@@ -501,10 +501,10 @@ public class Human extends SceneObject {
                                     GL11.GL_REPEAT);
                             Color.white.bind();
                             getTextures().get("default_cobble").bind();
-                            GL11.glEnable(GL11.GL_TEXTURE_2D);
+                            ;
                             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
                             texSphere.DrawTexSphere(0.25f, 32, 32, getTextures().get("default_cobble"));
-                            GL11.glDisable(GL11.GL_TEXTURE_2D);
+                            ;
 //                            sphere.DrawSphere(0.25f, 32, 32);
 
                             //left low leg
@@ -528,10 +528,10 @@ public class Human extends SceneObject {
                                             GL11.GL_REPEAT);
                                     Color.white.bind();
                                     getTextures().get("default_cobble").bind();
-                                    GL11.glEnable(GL11.GL_TEXTURE_2D);
+                                    ;
                                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
                                     texSphere.DrawTexSphere(0.3f, 32, 32, getTextures().get("default_cobble"));
-                                    GL11.glDisable(GL11.GL_TEXTURE_2D);
+                                    ;
 
 //                                    sphere.DrawSphere(0.3f, 32, 32);
 
@@ -558,10 +558,10 @@ public class Human extends SceneObject {
                             GL11.GL_REPEAT);
                     Color.white.bind();
                     getTextures().get("default_cobble").bind();
-                    GL11.glEnable(GL11.GL_TEXTURE_2D);
+                    ;
                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
                     texSphere.DrawTexSphere(0.25f, 32, 32, getTextures().get("default_cobble"));
-                    GL11.glDisable(GL11.GL_TEXTURE_2D);
+                    ;
 
 //                    sphere.DrawSphere(0.25f, 32, 32);
 
@@ -592,10 +592,10 @@ public class Human extends SceneObject {
                                     GL11.GL_REPEAT);
                             Color.white.bind();
                             getTextures().get("default_cobble").bind();
-                            GL11.glEnable(GL11.GL_TEXTURE_2D);
+                            ;
                             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
                             texSphere.DrawTexSphere(0.25f, 32, 32, getTextures().get("default_cobble"));
-                            GL11.glDisable(GL11.GL_TEXTURE_2D);
+                            ;
 //                            sphere.DrawSphere(0.25f, 32, 32);
 
                             //right low leg
@@ -619,10 +619,10 @@ public class Human extends SceneObject {
                                             GL11.GL_REPEAT);
                                     Color.white.bind();
                                     getTextures().get("default_cobble").bind();
-                                    GL11.glEnable(GL11.GL_TEXTURE_2D);
+                                    ;
                                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
                                     texSphere.DrawTexSphere(0.3f, 32, 32, getTextures().get("default_cobble"));
-                                    GL11.glDisable(GL11.GL_TEXTURE_2D);
+                                    ;
 //                                    sphere.DrawSphere(0.3f, 32, 32);
 
                                 }

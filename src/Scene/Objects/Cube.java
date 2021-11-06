@@ -43,10 +43,10 @@ public class Cube extends SceneObject {
         Color.white.bind();
         //bind texture
         getTextures().get("default_dirt").bind();
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        ;
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
         cube.DrawTexCube(1f);
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        ;
 
     }
 }

@@ -4,6 +4,7 @@ import Scene.base.SceneObject;
 import base.GraphicsObjects.Point4f;
 import base.GraphicsObjects.Vector4f;
 import base.objects3D.BunnyObjTest;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
 
 import java.util.HashMap;
@@ -35,6 +36,7 @@ public class BunnyTestObject extends SceneObject {
     @Override
     public void draw() {
 //        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+        Color.red.bind();
         glCallList(bunnyObjTest.getBunnyDisplayList());
     }
 }

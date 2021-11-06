@@ -31,7 +31,7 @@ public class TNT_Door extends SceneObject {
 
     @Override
     public void draw() {
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        ;
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
         Color.white.bind();
         getTextures().get("tnt_side").bind();
@@ -112,7 +112,7 @@ public class TNT_Door extends SceneObject {
         }
         GL11.glPopMatrix();
         GL11.glPopMatrix();
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        ;
 
     }
 }

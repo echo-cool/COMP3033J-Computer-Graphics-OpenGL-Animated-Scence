@@ -1,5 +1,6 @@
 package Scene.Objects;
 
+import Scene.base.IDrawListener;
 import base.GraphicsObjects.Point4f;
 import base.GraphicsObjects.Vector4f;
 import Scene.base.SceneObject;
@@ -9,6 +10,8 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
 
 import java.util.HashMap;
+
+import static org.lwjgl.opengl.GL11.glColor3f;
 
 /**
  * @Author: WangYuyang
@@ -35,19 +38,21 @@ public class Ground extends SceneObject {
 
     @Override
     public void draw() {
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        ;
         GL11.glTexParameteri(
                 GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T,
                 GL11.GL_REPEAT);
         GL11.glTexParameteri(
                 GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S,
                 GL11.GL_REPEAT);
-        Color.white.bind();
         //bind texture
+        Color.white.bind();
         getTextures().get("default_dirt").bind();
+
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+
         cube.DrawTexCube(10f);
-        GL11.glDisable(GL11.GL_TEXTURE_2D);
+        ;
 
     }
 }
