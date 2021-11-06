@@ -154,8 +154,6 @@ public class Human extends SceneObject {
     @Override
     public void draw() {
 
-        checkInput();
-
         GL11.glTranslatef(0, jump_height, 0);
         Boolean GoodAnimation = true;
         float theta_face = (float) (delta * 2 * Math.PI);
@@ -644,7 +642,7 @@ public class Human extends SceneObject {
         }
     }
 
-    private void checkInput() {
+    public void checkInput() {
         Boolean KEY_W = Keyboard.isKeyDown(Keyboard.KEY_W);
         Boolean KEY_A = Keyboard.isKeyDown(Keyboard.KEY_A);
         Boolean KEY_S = Keyboard.isKeyDown(Keyboard.KEY_S);

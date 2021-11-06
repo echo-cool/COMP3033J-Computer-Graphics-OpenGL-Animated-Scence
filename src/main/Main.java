@@ -30,6 +30,7 @@ public class Main {
     private static final boolean resizable = true;
     public static Engine engine;
     private static SceneManager sceneManager = new SceneManager();
+    private static SceneManager backgroundManager = new SceneManager();
     private static Camera camera = new Camera();
     private static Boolean FPS_MODE = false;
 
@@ -37,9 +38,6 @@ public class Main {
         engine = new Engine(WIDTH, HEIGHT);
         engine.init();
         engine.setOrtho(Camera.OrthoNumber);
-
-
-
         engine.enterModelView();
         engine.initTimer();
 
@@ -48,21 +46,24 @@ public class Main {
                 0, -300, -600, 0
         ));
 
-
         Scene.initScene(sceneManager, Engine.getTextures());
+        Scene.initBackground(backgroundManager, Engine.getTextures());
 
         while (!Display.isCloseRequested()) {
-            glPushMatrix();
+            glLoadIdentity();
+            camera.update();
+            engine.setLight();
             engine.render(new RenderProgramStatement() {
                 @Override
-                public void render(int delta) {
-                    camera.update();
-                    engine.setLight();
-                    Scene.drawAll(sceneManager, delta);
+                public void renderScene(int delta) {
+                    Scene.drawScene(sceneManager, delta);
+                }
 
+                @Override
+                public void renderBackground(int delta) {
+                    Scene.drawBackground(backgroundManager, delta);
                 }
             });
-            glPopMatrix();
 
             if (Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
                 break;

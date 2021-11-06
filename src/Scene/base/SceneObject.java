@@ -8,6 +8,8 @@ import org.newdawn.slick.opengl.Texture;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+import static org.lwjgl.opengl.GL11.*;
+
 /**
  * @Author: WangYuyang
  * @Date: 2021/11/2-15:07
@@ -67,12 +69,22 @@ public abstract class SceneObject implements IDrawable, IMovable, IScalable {
     public void draw(IDrawListener listener) {
         //move object to correct position
         listener.beforeEachDraw(this);
+//        glDisable(GL_TEXTURE_GEN_S);
+//        glDisable(GL_TEXTURE_GEN_T);
+//        glDisable(GL_TEXTURE_GEN_R);
+//        glDisable(GL_TEXTURE_GEN_Q);
+
         GL11.glTranslatef(origin.x, origin.y, origin.z);
         GL11.glRotatef(rotation.a, rotation.x, rotation.y, rotation.z);
         GL11.glScalef(scale.x, scale.y, scale.z);
         GL11.glTranslatef(position.x, position.y, position.z);
         this.draw();
         listener.afterEachDraw(this);
+
+//        glEnable(GL_TEXTURE_GEN_S);
+//        glEnable(GL_TEXTURE_GEN_T);
+//        glEnable(GL_TEXTURE_GEN_R);
+//        glEnable(GL_TEXTURE_GEN_Q);
 
     }
 

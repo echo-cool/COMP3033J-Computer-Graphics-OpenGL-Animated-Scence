@@ -44,6 +44,7 @@ public class Skybox extends SceneObject {
     @Override
     public void draw() {
 
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
         GL11.glTexParameteri(
                 GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T,
                 GL11.GL_REPEAT);
@@ -53,11 +54,6 @@ public class Skybox extends SceneObject {
         Color.white.bind();
         //bind texture
 
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, GL12.GL_CLAMP_TO_EDGE);
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, GL12.GL_CLAMP_TO_EDGE);
         getTextures().get("skybox/down").bind();
         GL11.glBegin(GL11.GL_QUADS);
         GL11.glTexCoord2f(1, 1);
@@ -70,8 +66,6 @@ public class Skybox extends SceneObject {
         GL11.glVertex3f(0.5f, -0.5f, -0.5f);
         GL11.glEnd();
 
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, GL12.GL_CLAMP_TO_EDGE);
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, GL12.GL_CLAMP_TO_EDGE);
         getTextures().get("skybox/front").bind();
         GL11.glBegin(GL11.GL_QUADS);
         GL11.glTexCoord2f(1, 1);
@@ -84,8 +78,6 @@ public class Skybox extends SceneObject {
         GL11.glVertex3f(0.5f, 0.5f, -0.5f);
         GL11.glEnd();
 
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, GL12.GL_CLAMP_TO_EDGE);
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, GL12.GL_CLAMP_TO_EDGE);
         getTextures().get("skybox/right").bind();
         GL11.glBegin(GL11.GL_QUADS);
         GL11.glTexCoord2f(1, 1);
@@ -98,8 +90,6 @@ public class Skybox extends SceneObject {
         GL11.glVertex3f(-0.5f, 0.5f, -0.5f);
         GL11.glEnd();
 
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, GL12.GL_CLAMP_TO_EDGE);
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, GL12.GL_CLAMP_TO_EDGE);
         getTextures().get("skybox/left").bind();
         GL11.glBegin(GL11.GL_QUADS);
         GL11.glTexCoord2f(1, 1);
@@ -112,8 +102,7 @@ public class Skybox extends SceneObject {
         GL11.glVertex3f(0.5f, 0.5f, 0.5f);
         GL11.glEnd();
 
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, GL12.GL_CLAMP_TO_EDGE);
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, GL12.GL_CLAMP_TO_EDGE);
+
         getTextures().get("skybox/back").bind();
         GL11.glBegin(GL11.GL_QUADS);
         GL11.glTexCoord2f(1, 1);
@@ -126,8 +115,6 @@ public class Skybox extends SceneObject {
         GL11.glVertex3f(-0.5f, 0.5f, 0.5f);
         GL11.glEnd();
 
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, GL12.GL_CLAMP_TO_EDGE);
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, GL12.GL_CLAMP_TO_EDGE);
         getTextures().get("skybox/up").bind();
         GL11.glBegin(GL11.GL_QUADS);
         GL11.glTexCoord2f(1, 1);

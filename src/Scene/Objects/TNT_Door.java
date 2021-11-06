@@ -31,11 +31,10 @@ public class TNT_Door extends SceneObject {
 
     @Override
     public void draw() {
-
-        Color.white.bind();
-        getTextures().get("tnt_side").bind();
         GL11.glEnable(GL11.GL_TEXTURE_2D);
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+        Color.white.bind();
+        getTextures().get("tnt_side").bind();
         cube1.DrawTexCube();
         //TNT
         GL11.glPushMatrix();
