@@ -3,7 +3,8 @@ package Scene.skybox;
 import Scene.base.SceneObject;
 import base.GraphicsObjects.Point4f;
 import base.GraphicsObjects.Vector4f;
-import base.objects3D.TexCube;
+import base.objects3D.DisplayListTexCube;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 import org.newdawn.slick.Color;
@@ -21,7 +22,7 @@ import static org.lwjgl.opengl.GL11.*;
  * @Description:
  **/
 public class Skybox extends SceneObject {
-    private TexCube cube = new TexCube();
+    private DisplayListTexCube cube = new DisplayListTexCube();
     int face1 = glGenLists(1);
     int face2 = glGenLists(1);
     int face3 = glGenLists(1);

@@ -198,12 +198,12 @@ public class Player extends SceneObject {
             LimbRotation = 0;
         }
 
-        //a sphere for drawing
-        Sphere sphere = new Sphere();
-        //a sphere with texture
-        TexSphere texSphere = new TexSphere();
-        //a cylinder for drawing
-        Cylinder cylinder = new Cylinder();
+//        //a sphere for drawing
+//        Sphere sphere = new Sphere();
+//        //a sphere with texture
+//        TexSphere texSphere = new TexSphere();
+//        //a cylinder for drawing
+//        Cylinder cylinder = new Cylinder();
 
         //Start to draw
         GL11.glPushMatrix();

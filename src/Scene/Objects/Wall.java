@@ -3,6 +3,7 @@ package Scene.Objects;
 import Scene.base.SceneObject;
 import base.GraphicsObjects.Point4f;
 import base.GraphicsObjects.Vector4f;
+import base.objects3D.DisplayListTexCube;
 import base.objects3D.TexCube;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
@@ -18,7 +19,7 @@ import java.util.HashMap;
  * @Description:
  **/
 public class Wall extends SceneObject {
-    private TexCube MyGrid = new TexCube();
+    private DisplayListTexCube MyGrid = new DisplayListTexCube();
 
     public Wall(Point4f origin, Point4f position, Vector4f scale) {
         super(origin, position, scale);
@@ -47,7 +48,7 @@ public class Wall extends SceneObject {
 //        getTextures().get("default_dirt").bind();
         ;
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-        MyGrid.DrawTexCube(10f);
+        MyGrid.DrawTexCube();
         ;
 
     }

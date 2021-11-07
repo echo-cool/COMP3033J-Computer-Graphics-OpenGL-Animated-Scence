@@ -3,7 +3,7 @@ package Scene.Objects;
 import Scene.base.SceneObject;
 import base.GraphicsObjects.Point4f;
 import base.GraphicsObjects.Vector4f;
-import base.objects3D.TexCube;
+import base.objects3D.DisplayListTexCube;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
@@ -18,7 +18,7 @@ import java.util.HashMap;
  * @Description:
  **/
 public class Copyleft extends SceneObject {
-    private TexCube cube = new TexCube();
+    private DisplayListTexCube cube = new DisplayListTexCube();
 
     public Copyleft(Point4f origin, Point4f position, Vector4f scale) {
         super(origin, position, scale);
@@ -46,7 +46,7 @@ public class Copyleft extends SceneObject {
         ;
 //        GL11.glDisable(GL11.GL_LIGHTING); // switch lighting off
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-        cube.DrawTexCube(1f);
+        cube.DrawTexCube();
 //        GL11.glEnable(GL11.GL_LIGHTING); // switch lighting off
         ;
 
