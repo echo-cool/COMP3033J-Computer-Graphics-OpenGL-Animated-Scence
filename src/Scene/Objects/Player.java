@@ -4,9 +4,7 @@ import Scene.base.SceneObject;
 import base.GraphicsObjects.Point4f;
 import base.GraphicsObjects.Utils;
 import base.GraphicsObjects.Vector4f;
-import base.objects3D.Cylinder;
-import base.objects3D.Sphere;
-import base.objects3D.TexSphere;
+import base.objects3D.*;
 import main.Camera;
 import main.Engine;
 import org.lwjgl.input.Keyboard;
@@ -16,7 +14,7 @@ import org.newdawn.slick.opengl.Texture;
 
 import java.util.HashMap;
 
-public class Human extends SceneObject {
+public class Player extends SceneObject {
 
 
     // basic colours
@@ -47,16 +45,43 @@ public class Human extends SceneObject {
     private long walkStartTime;
     private int stopCount = 0;
     private int angle = 0;
-    public static int angle_target = 0;
+    public static volatile int angle_target = 0;
 
     private Boolean isJumping = false;
     private float jump_height = 0f;
 
-    public Human(Point4f origin, Point4f position, Vector4f scale) {
+
+    DisplayListTexSphere s1 = new DisplayListTexSphere(0.5f, 32, 32, getTextures().get("wool_pink"));
+    DisplayListTexSphere s2 = new DisplayListTexSphere(0.5f, 32, 32, getTextures().get("tnt_side"));
+    DisplayListTexSphere s3 = new DisplayListTexSphere(0.25f, 32, 32, getTextures().get("default_stone"));
+    DisplayListTexSphere s4 = new DisplayListTexSphere(0.2f, 32, 32, getTextures().get("default_stone"));
+    DisplayListTexSphere s5 = new DisplayListTexSphere(0.2f, 32, 32, getTextures().get("default_stone"));
+    DisplayListTexSphere s6 = new DisplayListTexSphere(0.25f, 32, 32, getTextures().get("default_stone"));
+    DisplayListTexSphere s7 = new DisplayListTexSphere(0.2f, 32, 32, getTextures().get("default_stone"));
+    DisplayListTexSphere s8 = new DisplayListTexSphere(0.2f, 32, 32, getTextures().get("default_stone"));
+    DisplayListTexSphere s9 = new DisplayListTexSphere(0.25f, 32, 32, getTextures().get("default_cobble"));
+    DisplayListTexSphere s10 = new DisplayListTexSphere(0.25f, 32, 32, getTextures().get("default_cobble"));
+    DisplayListTexSphere s11 = new DisplayListTexSphere(0.3f, 32, 32, getTextures().get("default_cobble"));
+    DisplayListTexSphere s12 = new DisplayListTexSphere(0.25f, 32, 32, getTextures().get("default_cobble"));
+    DisplayListTexSphere s13 = new DisplayListTexSphere(0.25f, 32, 32, getTextures().get("default_cobble"));
+    DisplayListTexSphere s14 = new DisplayListTexSphere(0.3f, 32, 32, getTextures().get("default_cobble"));
+    DisplayListTexSphere s15 = new DisplayListTexSphere(0.5f, 32, 32, getTextures().get("awesomeface"));
+    DisplayListCylinder c1 = new DisplayListCylinder(0.15f, 0.7f, 32);
+    DisplayListCylinder c2 = new DisplayListCylinder(0.15f, 0.7f, 32);
+    DisplayListCylinder c3 = new DisplayListCylinder(0.1f, 0.7f, 32);
+    DisplayListCylinder c4 = new DisplayListCylinder(0.15f, 0.7f, 32);
+    DisplayListCylinder c5 = new DisplayListCylinder(0.1f, 0.7f, 32);
+    DisplayListCylinder c6 = new DisplayListCylinder(0.15f, 0.7f, 32);
+    DisplayListCylinder c7 = new DisplayListCylinder(0.15f, 0.7f, 32);
+    DisplayListCylinder c8 = new DisplayListCylinder(0.15f, 0.7f, 32);
+    DisplayListCylinder c9 = new DisplayListCylinder(0.15f, 0.7f, 32);
+
+
+    public Player(Point4f origin, Point4f position, Vector4f scale) {
         super(origin, position, scale);
     }
 
-    public Human(Point4f origin, Point4f position, Vector4f scale, HashMap<String, Texture> textures) {
+    public Player(Point4f origin, Point4f position, Vector4f scale, HashMap<String, Texture> textures) {
         super(origin, position, scale, textures);
         new Thread(new Runnable() {
             @Override
@@ -65,7 +90,6 @@ public class Human extends SceneObject {
                     if(Math.abs(angle - angle_target) > 200){
                         angle = angle_target;
                     }
-
                     if (angle > angle_target) {
                         angle -= 1f;
                     } else if (angle < angle_target) {
@@ -148,7 +172,8 @@ public class Human extends SceneObject {
     }
 
     public void setAngle(float angle) {
-        this.angle_target = (int)angle;
+
+        this.angle = (int)angle;
     }
 
     @Override
@@ -196,9 +221,9 @@ public class Human extends SceneObject {
 
             //set texture Parameters
             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-            texSphere.DrawTexSphere(0.5f, 32, 32, getTextures().get("wool_pink"));
-            //Draw finish Disable TEXTURE
 
+            s1.DrawTexSphere();
+            //Draw finish Disable TEXTURE
 
 
 //            sphere.DrawSphere(0.5f, 32, 32); // pelvis sphere
@@ -218,7 +243,8 @@ public class Human extends SceneObject {
                 //Enable TEXTURE
                 ;
                 GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-                texSphere.DrawTexSphere(0.5f, 32, 32, getTextures().get("tnt_side"));
+
+                s2.DrawTexSphere();
                 ; //disable texture
 
 
@@ -234,7 +260,8 @@ public class Human extends SceneObject {
                     GL11.glTranslatef(0.0f, 0.0f, 0.0f);
                     GL11.glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
                     //                    GL11.glRotatef(45.0f,0.0f,1.0f,0.0f);
-                    cylinder.DrawCylinder(0.15f, 0.7f, 32);
+
+                    c1.DrawCylinder();
 
 
                     // head
@@ -251,7 +278,8 @@ public class Human extends SceneObject {
                         getTextures().get("awesomeface").bind(); //set texture
                         ;
                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-                        texSphere.DrawTexSphere(0.5f, 32, 32, getTextures().get("awesomeface"));
+
+                        s15.DrawTexSphere();
                         ;
 
 
@@ -277,8 +305,8 @@ public class Human extends SceneObject {
                         getTextures().get("default_stone").bind();  //set texture
                         ;
                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-                        texSphere.DrawTexSphere(0.25f, 32, 32, getTextures().get("default_stone"));
-                        ;
+
+                        s3.DrawTexSphere();
 //                        sphere.DrawSphere(0.25f, 32, 32);
 
 
@@ -294,7 +322,8 @@ public class Human extends SceneObject {
 
                             GL11.glRotatef(LimbRotation, 1.0f, 0.0f, 0.0f);
                             //   GL11.glRotatef(27.5f,0.0f,1.0f,0.0f);
-                            cylinder.DrawCylinder(0.15f, 0.7f, 32);
+
+                            c2.DrawCylinder();
 
 
                             // left elbow
@@ -311,7 +340,8 @@ public class Human extends SceneObject {
                                 getTextures().get("default_stone").bind();
                                 ;
                                 GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-                                texSphere.DrawTexSphere(0.2f, 32, 32, getTextures().get("default_stone"));
+
+                                s4.DrawTexSphere();
                                 ;
 //                                sphere.DrawSphere(0.2f, 32, 32);
 
@@ -323,7 +353,8 @@ public class Human extends SceneObject {
                                     GL11.glTranslatef(0.0f, 0.0f, 0.0f);
                                     GL11.glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
                                     //   GL11.glRotatef(90.0f,0.0f,1.0f,0.0f);
-                                    cylinder.DrawCylinder(0.1f, 0.7f, 32);
+
+                                    c3.DrawCylinder();
 
                                     // left hand
                                     GL11.glColor3f(blue[0], blue[1], blue[2]);
@@ -338,7 +369,8 @@ public class Human extends SceneObject {
                                         getTextures().get("default_stone").bind();
                                         ;
                                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-                                        texSphere.DrawTexSphere(0.2f, 32, 32, getTextures().get("default_stone"));
+
+                                        s5.DrawTexSphere();
                                         ;
 //                                        sphere.DrawSphere(0.2f, 32, 32);
 
@@ -370,7 +402,8 @@ public class Human extends SceneObject {
                         getTextures().get("default_stone").bind();
                         ;
                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-                        texSphere.DrawTexSphere(0.25f, 32, 32, getTextures().get("default_stone"));
+
+                        s6.DrawTexSphere();
                         ;
 //                        sphere.DrawSphere(0.25f, 32, 32);
 
@@ -387,7 +420,8 @@ public class Human extends SceneObject {
 
                             GL11.glRotatef(-LimbRotation, 1.0f, 0.0f, 0.0f);
                             //   GL11.glRotatef(27.5f,0.0f,1.0f,0.0f);
-                            cylinder.DrawCylinder(0.15f, 0.7f, 32);
+
+                            c4.DrawCylinder();
 
 
                             // right elbow
@@ -404,7 +438,8 @@ public class Human extends SceneObject {
                                 getTextures().get("default_stone").bind();
                                 ;
                                 GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-                                texSphere.DrawTexSphere(0.2f, 32, 32, getTextures().get("default_stone"));
+
+                                s7.DrawTexSphere();
                                 ;
 //                                sphere.DrawSphere(0.2f, 32, 32);
 
@@ -416,7 +451,8 @@ public class Human extends SceneObject {
                                     GL11.glTranslatef(0.0f, 0.0f, 0.0f);
                                     GL11.glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
                                     //   GL11.glRotatef(90.0f,0.0f,1.0f,0.0f);
-                                    cylinder.DrawCylinder(0.1f, 0.7f, 32);
+
+                                    c5.DrawCylinder();
 
                                     // right hand
                                     GL11.glColor3f(blue[0], blue[1], blue[2]);
@@ -431,7 +467,8 @@ public class Human extends SceneObject {
                                         getTextures().get("default_stone").bind();
                                         ;
                                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-                                        texSphere.DrawTexSphere(0.2f, 32, 32, getTextures().get("default_stone"));
+
+                                        s8.DrawTexSphere();
                                         ;
 //                                        sphere.DrawSphere(0.2f, 32, 32);
 
@@ -470,7 +507,8 @@ public class Human extends SceneObject {
                     getTextures().get("default_cobble").bind();
                     ;
                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-                    texSphere.DrawTexSphere(0.25f, 32, 32, getTextures().get("default_cobble"));
+
+                    s9.DrawTexSphere();
                     ;
 //                    sphere.DrawSphere(0.25f, 32, 32);
 
@@ -486,7 +524,8 @@ public class Human extends SceneObject {
 
                         GL11.glRotatef((-LimbRotation / 2) + 90, 1.0f, 0.0f, 0.0f);
                         //   GL11.glRotatef(90.0f,1.0f,0.0f,0.0f);
-                        cylinder.DrawCylinder(0.15f, 0.7f, 32);
+
+                        c6.DrawCylinder();
 
 
                         // left knee
@@ -503,7 +542,8 @@ public class Human extends SceneObject {
                             getTextures().get("default_cobble").bind();
                             ;
                             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-                            texSphere.DrawTexSphere(0.25f, 32, 32, getTextures().get("default_cobble"));
+
+                            s10.DrawTexSphere();
                             ;
 //                            sphere.DrawSphere(0.25f, 32, 32);
 
@@ -515,7 +555,8 @@ public class Human extends SceneObject {
                                 GL11.glTranslatef(0.0f, 0.0f, 0.0f);
                                 // GL11.glRotatef(120.0f,1.0f,0.0f,0.0f);
                                 //  GL11.glRotatef(0.0f,0.0f,0.0f,0.0f);
-                                cylinder.DrawCylinder(0.15f, 0.7f, 32);
+
+                                c7.DrawCylinder();
 
                                 // left foot
                                 GL11.glColor3f(blue[0], blue[1], blue[2]);
@@ -530,7 +571,8 @@ public class Human extends SceneObject {
                                     getTextures().get("default_cobble").bind();
                                     ;
                                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-                                    texSphere.DrawTexSphere(0.3f, 32, 32, getTextures().get("default_cobble"));
+
+                                    s11.DrawTexSphere();
                                     ;
 
 //                                    sphere.DrawSphere(0.3f, 32, 32);
@@ -560,7 +602,8 @@ public class Human extends SceneObject {
                     getTextures().get("default_cobble").bind();
                     ;
                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-                    texSphere.DrawTexSphere(0.25f, 32, 32, getTextures().get("default_cobble"));
+
+                    s12.DrawTexSphere();
                     ;
 
 //                    sphere.DrawSphere(0.25f, 32, 32);
@@ -577,7 +620,8 @@ public class Human extends SceneObject {
 
                         GL11.glRotatef((LimbRotation / 2) + 90, 1.0f, 0.0f, 0.0f);
                         //   GL11.glRotatef(90.0f,1.0f,0.0f,0.0f);
-                        cylinder.DrawCylinder(0.15f, 0.7f, 32);
+
+                        c8.DrawCylinder();
 
 
                         // right knee
@@ -594,7 +638,8 @@ public class Human extends SceneObject {
                             getTextures().get("default_cobble").bind();
                             ;
                             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-                            texSphere.DrawTexSphere(0.25f, 32, 32, getTextures().get("default_cobble"));
+
+                            s13.DrawTexSphere();
                             ;
 //                            sphere.DrawSphere(0.25f, 32, 32);
 
@@ -606,7 +651,8 @@ public class Human extends SceneObject {
                                 GL11.glTranslatef(0.0f, 0.0f, 0.0f);
                                 // GL11.glRotatef(120.0f,1.0f,0.0f,0.0f);
                                 //  GL11.glRotatef(0.0f,0.0f,0.0f,0.0f);
-                                cylinder.DrawCylinder(0.15f, 0.7f, 32);
+
+                                c9.DrawCylinder();
 
                                 // left foot
                                 GL11.glColor3f(blue[0], blue[1], blue[2]);
@@ -621,7 +667,8 @@ public class Human extends SceneObject {
                                     getTextures().get("default_cobble").bind();
                                     ;
                                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-                                    texSphere.DrawTexSphere(0.3f, 32, 32, getTextures().get("default_cobble"));
+
+                                    s14.DrawTexSphere();
                                     ;
 //                                    sphere.DrawSphere(0.3f, 32, 32);
 
@@ -642,17 +689,17 @@ public class Human extends SceneObject {
         }
     }
 
-    public void checkInput() {
+    public Vector4f checkInput() {
         Boolean KEY_W = Keyboard.isKeyDown(Keyboard.KEY_W);
         Boolean KEY_A = Keyboard.isKeyDown(Keyboard.KEY_A);
         Boolean KEY_S = Keyboard.isKeyDown(Keyboard.KEY_S);
         Boolean KEY_D = Keyboard.isKeyDown(Keyboard.KEY_D);
 
-        Human human = (Human) this;
+        Player player = (Player) this;
         Integer speed = 10;
-        float speedX = speed / human.getScale().x;
-        float speedY = speed / human.getScale().y;
-        float speedZ = speed / human.getScale().z;
+        float speedX = speed / player.getScale().x;
+        float speedY = speed / player.getScale().y;
+        float speedZ = speed / player.getScale().z;
         Boolean hasKeyDown = false;
         Vector4f move = new Vector4f();
         if (KEY_W) {
@@ -666,7 +713,7 @@ public class Human extends SceneObject {
             tmp.z = new_z;
 //                        System.out.println(tmp);
             move = tmp.PlusVector(move);
-            human.setAngle(-angle);
+            player.setAngle(-angle);
         }
         if (KEY_D) {
             Vector4f tmp = new Vector4f();
@@ -680,7 +727,7 @@ public class Human extends SceneObject {
             tmp.z = new_z;
 //                        System.out.println(tmp);
             move = tmp.PlusVector(move);
-            human.setAngle(angle);
+            player.setAngle(angle);
         }
         if (KEY_S) {
             Vector4f tmp = new Vector4f();
@@ -693,7 +740,7 @@ public class Human extends SceneObject {
             tmp.z = -new_z;
 //                        System.out.println(tmp);
             move = tmp.PlusVector(move);
-            human.setAngle(-angle - 180);
+            player.setAngle(-angle - 180);
         }
         if (KEY_A) {
             Vector4f tmp = new Vector4f();
@@ -705,26 +752,28 @@ public class Human extends SceneObject {
             tmp.x = new_x;
             tmp.z = new_z;
             move = tmp.PlusVector(move);
-            human.setAngle(angle);
+            player.setAngle(angle);
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_RETURN)) {
             move = move.PlusVector(new Vector4f(0, speedY, 0, 0));
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
-            human.jump(500);
+            player.jump(500);
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
             move = move.PlusVector(new Vector4f(0, -speedY, 0, 0));
         }
-        human.move(move);
+        player.move(move);
 //                    human.setPosition(new Point4f(posn_x * 3.0f, 0.0f, posn_y * 3.0f, 0));
         if (hasKeyDown) {
-            human.walk();
+            player.walk();
 
         }
         {
-            human.stop();
+            player.stop();
         }
+
+        return move;
     }
 
 

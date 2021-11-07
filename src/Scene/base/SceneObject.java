@@ -17,18 +17,18 @@ import static org.lwjgl.opengl.GL11.*;
  * @Package: Scene
  * @Description:
  **/
-public abstract class SceneObject implements IDrawable, IMovable, IScalable {
+public abstract class SceneObject implements IDrawable, IMovable, IScalable, IHittable {
     private Point4f origin = new Point4f();
     private Point4f position = new Point4f();
     private Vector4f scale = new Vector4f();
     private Vector4f rotation = new Vector4f();
     private HashMap<String, Texture> textures = new LinkedHashMap<>();
 
-
     public SceneObject(Point4f origin, Point4f position, Vector4f scale) {
         this.origin = new Point4f(origin.x, origin.y, origin.z, 0);
         this.position = new Point4f(position.x, position.y, position.z, 0);
         this.scale = new Vector4f(scale.x, scale.y, scale.z, 0);
+
     }
 
     public SceneObject(Point4f origin, Point4f position, Vector4f scale, HashMap<String, Texture> textures) {
@@ -47,13 +47,13 @@ public abstract class SceneObject implements IDrawable, IMovable, IScalable {
     }
 
     @Override
-    public void setScale(Vector4f scale) {
-        scale = new Vector4f(
-                scale.x,
-                scale.y,
-                scale.z,
-                0
-        );
+    public Boolean isHit(SceneObject other) {
+        Point4f o1 = getWorldPosition();
+        Point4f o2 = other.getWorldPosition();
+        if (o1.MinusPoint(o2).length() - this.scale.x - other.scale.x < 0)
+            return true;
+        else
+            return false;
     }
 
     @Override
@@ -80,7 +80,7 @@ public abstract class SceneObject implements IDrawable, IMovable, IScalable {
         GL11.glTranslatef(position.x, position.y, position.z);
         this.draw();
         listener.afterEachDraw(this);
-
+//
         glEnable(GL_TEXTURE_GEN_S);
         glEnable(GL_TEXTURE_GEN_T);
         glEnable(GL_TEXTURE_GEN_R);
@@ -88,7 +88,7 @@ public abstract class SceneObject implements IDrawable, IMovable, IScalable {
 
     }
 
-    public Point4f getWorldPosition(){
+    public Point4f getWorldPosition() {
         Point4f point4f = new Point4f();
         point4f.x = getOrigin().x + position.x * scale.x;
         point4f.y = getOrigin().y + position.y * scale.y;
@@ -132,6 +132,16 @@ public abstract class SceneObject implements IDrawable, IMovable, IScalable {
 
     public Vector4f getScale() {
         return scale;
+    }
+
+    @Override
+    public void setScale(Vector4f scale) {
+        scale = new Vector4f(
+                scale.x,
+                scale.y,
+                scale.z,
+                0
+        );
     }
 
     public Vector4f getRotation() {

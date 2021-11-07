@@ -3,6 +3,7 @@ package Scene.Objects;
 import base.GraphicsObjects.Point4f;
 import base.GraphicsObjects.Vector4f;
 import Scene.base.SceneObject;
+import base.objects3D.DisplayListTexCube;
 import base.objects3D.TexCube;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
@@ -18,7 +19,7 @@ import java.util.HashMap;
  * @Description:
  **/
 public class LAVA_Door extends SceneObject {
-    TexCube cube = new TexCube();
+    DisplayListTexCube cube = new DisplayListTexCube();
     public LAVA_Door(Point4f origin, Point4f position, Vector4f scale) {
         super(origin, position, scale);
     }

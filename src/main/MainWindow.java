@@ -6,7 +6,7 @@ import base.GraphicsObjects.Utils;
 import base.GraphicsObjects.Vector4f;
 import Scene.base.IDrawListener;
 import Scene.Objects.Ground;
-import Scene.Objects.Human;
+import Scene.Objects.Player;
 import Scene.Objects.LAVA_Door;
 import Scene.Objects.TNT_Door;
 import Scene.base.SceneManager;
@@ -106,7 +106,7 @@ public class MainWindow {
     private Boolean secMousePressed = false;
     private SceneManager sceneManager = new SceneManager();
 
-    private Human human;
+    private Player player;
 
 
     public static void main(String[] argv) {
@@ -464,26 +464,26 @@ public class MainWindow {
             @Override
             public void beforeEachDraw(SceneObject object) {
                 GL11.glPushMatrix();
-                if (object instanceof Human) {
-                    Human human = (Human) object;
+                if (object instanceof Player) {
+                    Player player = (Player) object;
                     Integer speed = 10;
-                    float speedX = speed/human.getScale().x;
-                    float speedY = speed/human.getScale().y;
-                    float speedZ = speed/human.getScale().z;
+                    float speedX = speed/ player.getScale().x;
+                    float speedY = speed/ player.getScale().y;
+                    float speedZ = speed/ player.getScale().z;
                     if((Keyboard.isKeyDown(Keyboard.KEY_W))){
-                        human.move(new Vector4f(0,0,speedZ,0));
+                        player.move(new Vector4f(0,0,speedZ,0));
                     }
                     if((Keyboard.isKeyDown(Keyboard.KEY_A))){
-                        human.move(new Vector4f(-speedX,0,0,0));
+                        player.move(new Vector4f(-speedX,0,0,0));
                     }
                     if((Keyboard.isKeyDown(Keyboard.KEY_S))){
-                        human.move(new Vector4f(0,0,-speedZ,0));
+                        player.move(new Vector4f(0,0,-speedZ,0));
                     }
                     if((Keyboard.isKeyDown(Keyboard.KEY_D))){
-                        human.move(new Vector4f(speedX,0,0,0));
+                        player.move(new Vector4f(speedX,0,0,0));
                     }
 //                    human.setPosition(new Point4f(posn_x * 3.0f, 0.0f, posn_y * 3.0f, 0));
-                    human.setDelta(delta);
+                    player.setDelta(delta);
                 }
             }
 
@@ -524,13 +524,13 @@ public class MainWindow {
     }
 
     private void initScene() {
-        human = new Human(
+        player = new Player(
                 new Point4f(0, 130, 0, 0),
                 new Point4f(0, 0, 0, 0),
                 new Vector4f(90, 90, 90, 0),
                 textures
         );
-        sceneManager.addSceneObject(human);
+        sceneManager.addSceneObject(player);
         sceneManager.addSceneObject(new Ground(
                 new Point4f(0, 0, 0, 0),
                 new Point4f(0, 0, 0, 0),

@@ -155,7 +155,7 @@ public class OBJLoader {
             } else if (prefix.equals("f")) {
                 m.getFaces().add(parseFace(m.hasNormals(), line));
             } else {
-                throw new RuntimeException("OBJ file contains line which cannot be parsed correctly: " + line);
+//                throw new RuntimeException("OBJ file contains line which cannot be parsed correctly: " + line);
             }
         }
         reader.close();

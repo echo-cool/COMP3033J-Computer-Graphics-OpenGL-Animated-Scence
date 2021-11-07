@@ -11,6 +11,8 @@ import org.newdawn.slick.opengl.Texture;
 
 import java.util.HashMap;
 
+import static org.lwjgl.opengl.GL11.*;
+
 /**
  * @Author: WangYuyang
  * @Date: 2021/11/5-22:43
@@ -20,6 +22,13 @@ import java.util.HashMap;
  **/
 public class Skybox extends SceneObject {
     private TexCube cube = new TexCube();
+    int face1 = glGenLists(1);
+    int face2 = glGenLists(1);
+    int face3 = glGenLists(1);
+    int face4 = glGenLists(1);
+    int face5 = glGenLists(1);
+    int face6 = glGenLists(1);
+
 
     public Skybox(Point4f origin, Point4f position, Vector4f scale) {
         super(origin, position, scale);
@@ -37,6 +46,83 @@ public class Skybox extends SceneObject {
     }
 
     private void init() {
+        glNewList(face1, GL11.GL_COMPILE);
+        GL11.glBegin(GL11.GL_QUADS);
+        GL11.glTexCoord2f(1, 1);
+        GL11.glVertex3f(-0.5f, -0.5f, -0.5f);
+        GL11.glTexCoord2f(1, 0);
+        GL11.glVertex3f(-0.5f, -0.5f, 0.5f);
+        GL11.glTexCoord2f(0, 0);
+        GL11.glVertex3f(0.5f, -0.5f, 0.5f);
+        GL11.glTexCoord2f(0, 1);
+        GL11.glVertex3f(0.5f, -0.5f, -0.5f);
+        GL11.glEnd();
+        glEndList();
+
+        glNewList(face2, GL11.GL_COMPILE);
+        GL11.glBegin(GL11.GL_QUADS);
+        GL11.glTexCoord2f(1, 1);
+        GL11.glVertex3f(0.5f, -0.5f, -0.5f);
+        GL11.glTexCoord2f(0, 1);
+        GL11.glVertex3f(-0.5f, -0.5f, -0.5f);
+        GL11.glTexCoord2f(0, 0);
+        GL11.glVertex3f(-0.5f, 0.5f, -0.5f);
+        GL11.glTexCoord2f(1, 0);
+        GL11.glVertex3f(0.5f, 0.5f, -0.5f);
+        GL11.glEnd();
+        glEndList();
+
+        glNewList(face3, GL11.GL_COMPILE);
+        GL11.glBegin(GL11.GL_QUADS);
+        GL11.glTexCoord2f(1, 1);
+        GL11.glVertex3f(-0.5f, -0.5f, -0.5f);
+        GL11.glTexCoord2f(0, 1);
+        GL11.glVertex3f(-0.5f, -0.5f, 0.5f);
+        GL11.glTexCoord2f(0, 0);
+        GL11.glVertex3f(-0.5f, 0.5f, 0.5f);
+        GL11.glTexCoord2f(1, 0);
+        GL11.glVertex3f(-0.5f, 0.5f, -0.5f);
+        GL11.glEnd();
+        glEndList();
+
+        glNewList(face4, GL11.GL_COMPILE);
+        GL11.glBegin(GL11.GL_QUADS);
+        GL11.glTexCoord2f(1, 1);
+        GL11.glVertex3f(0.5f, -0.5f, 0.5f);
+        GL11.glTexCoord2f(0, 1);
+        GL11.glVertex3f(0.5f, -0.5f, -0.5f);
+        GL11.glTexCoord2f(0, 0);
+        GL11.glVertex3f(0.5f, 0.5f, -0.5f);
+        GL11.glTexCoord2f(1, 0);
+        GL11.glVertex3f(0.5f, 0.5f, 0.5f);
+        GL11.glEnd();
+        glEndList();
+
+        glNewList(face5, GL11.GL_COMPILE);
+        GL11.glBegin(GL11.GL_QUADS);
+        GL11.glTexCoord2f(1, 1);
+        GL11.glVertex3f(-0.5f, -0.5f, 0.5f);
+        GL11.glTexCoord2f(0, 1);
+        GL11.glVertex3f(0.5f, -0.5f, 0.5f);
+        GL11.glTexCoord2f(0, 0);
+        GL11.glVertex3f(0.5f, 0.5f, 0.5f);
+        GL11.glTexCoord2f(1, 0);
+        GL11.glVertex3f(-0.5f, 0.5f, 0.5f);
+        GL11.glEnd();
+        glEndList();
+
+        glNewList(face6, GL11.GL_COMPILE);
+        GL11.glBegin(GL11.GL_QUADS);
+        GL11.glTexCoord2f(1, 1);
+        GL11.glVertex3f(-0.5f, 0.5f, -0.5f);
+        GL11.glTexCoord2f(0, 1);
+        GL11.glVertex3f(-0.5f, 0.5f, 0.5f);
+        GL11.glTexCoord2f(0, 0);
+        GL11.glVertex3f(0.5f, 0.5f, 0.5f);
+        GL11.glTexCoord2f(1, 0);
+        GL11.glVertex3f(0.5f, 0.5f, -0.5f);
+        GL11.glEnd();
+        glEndList();
 
     }
 
@@ -55,77 +141,22 @@ public class Skybox extends SceneObject {
         //bind texture
 
         getTextures().get("skybox/down").bind();
-        GL11.glBegin(GL11.GL_QUADS);
-        GL11.glTexCoord2f(1, 1);
-        GL11.glVertex3f(-0.5f, -0.5f, -0.5f);
-        GL11.glTexCoord2f(1, 0);
-        GL11.glVertex3f(-0.5f, -0.5f, 0.5f);
-        GL11.glTexCoord2f(0, 0);
-        GL11.glVertex3f(0.5f, -0.5f, 0.5f);
-        GL11.glTexCoord2f(0, 1);
-        GL11.glVertex3f(0.5f, -0.5f, -0.5f);
-        GL11.glEnd();
+        glCallList(face1);
 
         getTextures().get("skybox/front").bind();
-        GL11.glBegin(GL11.GL_QUADS);
-        GL11.glTexCoord2f(1, 1);
-        GL11.glVertex3f(0.5f, -0.5f, -0.5f);
-        GL11.glTexCoord2f(0, 1);
-        GL11.glVertex3f(-0.5f, -0.5f, -0.5f);
-        GL11.glTexCoord2f(0, 0);
-        GL11.glVertex3f(-0.5f, 0.5f, -0.5f);
-        GL11.glTexCoord2f(1, 0);
-        GL11.glVertex3f(0.5f, 0.5f, -0.5f);
-        GL11.glEnd();
+        glCallList(face2);
 
         getTextures().get("skybox/right").bind();
-        GL11.glBegin(GL11.GL_QUADS);
-        GL11.glTexCoord2f(1, 1);
-        GL11.glVertex3f(-0.5f, -0.5f, -0.5f);
-        GL11.glTexCoord2f(0, 1);
-        GL11.glVertex3f(-0.5f, -0.5f, 0.5f);
-        GL11.glTexCoord2f(0, 0);
-        GL11.glVertex3f(-0.5f, 0.5f, 0.5f);
-        GL11.glTexCoord2f(1, 0);
-        GL11.glVertex3f(-0.5f, 0.5f, -0.5f);
-        GL11.glEnd();
+        glCallList(face3);
 
         getTextures().get("skybox/left").bind();
-        GL11.glBegin(GL11.GL_QUADS);
-        GL11.glTexCoord2f(1, 1);
-        GL11.glVertex3f(0.5f, -0.5f, 0.5f);
-        GL11.glTexCoord2f(0, 1);
-        GL11.glVertex3f(0.5f, -0.5f, -0.5f);
-        GL11.glTexCoord2f(0, 0);
-        GL11.glVertex3f(0.5f, 0.5f, -0.5f);
-        GL11.glTexCoord2f(1, 0);
-        GL11.glVertex3f(0.5f, 0.5f, 0.5f);
-        GL11.glEnd();
-
+        glCallList(face4);
 
         getTextures().get("skybox/back").bind();
-        GL11.glBegin(GL11.GL_QUADS);
-        GL11.glTexCoord2f(1, 1);
-        GL11.glVertex3f(-0.5f, -0.5f, 0.5f);
-        GL11.glTexCoord2f(0, 1);
-        GL11.glVertex3f(0.5f, -0.5f, 0.5f);
-        GL11.glTexCoord2f(0, 0);
-        GL11.glVertex3f(0.5f, 0.5f, 0.5f);
-        GL11.glTexCoord2f(1, 0);
-        GL11.glVertex3f(-0.5f, 0.5f, 0.5f);
-        GL11.glEnd();
+        glCallList(face5);
 
         getTextures().get("skybox/up").bind();
-        GL11.glBegin(GL11.GL_QUADS);
-        GL11.glTexCoord2f(1, 1);
-        GL11.glVertex3f(-0.5f, 0.5f, -0.5f);
-        GL11.glTexCoord2f(0, 1);
-        GL11.glVertex3f(-0.5f, 0.5f, 0.5f);
-        GL11.glTexCoord2f(0, 0);
-        GL11.glVertex3f(0.5f, 0.5f, 0.5f);
-        GL11.glTexCoord2f(1, 0);
-        GL11.glVertex3f(0.5f, 0.5f, -0.5f);
-        GL11.glEnd();
+        glCallList(face6);
 
 
         ;

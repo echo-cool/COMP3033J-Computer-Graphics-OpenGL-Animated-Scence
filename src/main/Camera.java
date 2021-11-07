@@ -1,6 +1,6 @@
 package main;
 
-import Scene.Objects.Human;
+import Scene.Objects.Player;
 import base.GraphicsObjects.Vector4f;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
@@ -17,14 +17,14 @@ import static org.lwjgl.opengl.GL11.glTranslatef;
  * @Description:
  **/
 public class Camera {
-    private static final int maxLookUp = 30;
-    private static final int maxLookDown = -20;
+    public static int maxLookUp = 30;
+    public static int maxLookDown = -20;
     public static int OrthoNumber = 0; // using this for screen size, making a window of 1200 x 800 so aspect ratio 3:2
     public static Vector3f rotation = new Vector3f(10, 180, 0);
+    public static Vector4f position = new Vector4f(0, 0, 0, 0);
     private static int mouseSpeed = 1;
     private static Vector4f inital_camera_position = new Vector4f();
-    private Vector4f position = new Vector4f(0, 0, 0, 0);
-    private float rotationX = -20;
+    public static float rotationX = -20;
     private float rotationY = 0;
     private float rotationZ = 0;
     private boolean MouseOnepressed = true;
@@ -42,7 +42,18 @@ public class Camera {
 //        glRotatef(rotationZ, 0, 0, 1);
     }
 
+    public void updatePosition(){
+        glTranslatef(inital_camera_position.x, inital_camera_position.y, inital_camera_position.z);
+        glRotatef(rotation.x, 1, 0, 0);
+        glRotatef(rotation.y, 0, 1, 0);
+        glRotatef(-rotation.z, 0, 0, 1);
+        glTranslatef(position.x, position.y, position.z);
+
+        Main.engine.setOrtho(Camera.OrthoNumber);
+    }
+
     public void update() {
+
         int WheelPosition = Mouse.getDWheel();
         int MouseX = Mouse.getX();
         int MouseY = Mouse.getY();
@@ -51,7 +62,8 @@ public class Camera {
         boolean MouseButtonPressed = Mouse.isButtonDown(0);
         boolean isGrabbed = Mouse.isGrabbed();
 
-        glTranslatef(inital_camera_position.x, inital_camera_position.y, inital_camera_position.z);
+
+
         if (WheelPosition > 0) {
             OrthoNumber += 10;
         }
@@ -142,17 +154,10 @@ public class Camera {
                 rotation.x = maxLookUp;
             }
         }
-        if(!Mouse.isButtonDown(0))
-            Human.angle_target = 180 -  (int) rotation.y;
-
-        glRotatef(rotation.x, 1, 0, 0);
-        glRotatef(rotation.y, 0, 1, 0);
-        glRotatef(-rotation.z, 0, 0, 1);
-        glTranslatef(position.x, position.y, position.z);
+        if (!Mouse.isButtonDown(0))
+            Player.angle_target = 180 - (int) rotation.y;
 
 
-
-        Main.engine.setOrtho(Camera.OrthoNumber);
 
 
 //        GL11.glMatrixMode(GL11.GL_MODELVIEW);
@@ -161,5 +166,9 @@ public class Camera {
 //        MyArcball.getMatrix(CurrentMatrix);
 //        GL11.glMultMatrix(CurrentMatrix);
 
+    }
+
+    public static void setPosition(Vector4f position) {
+        Camera.position = position;
     }
 }

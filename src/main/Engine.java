@@ -1,6 +1,9 @@
 package main;
 
+import Scene.Objects.Player;
 import Scene.Scene;
+import Scene.base.SceneObject;
+import base.GraphicsObjects.Vector4f;
 import base.RenderProgramStatement;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.LWJGLException;
@@ -12,18 +15,24 @@ import org.lwjgl.opengl.PixelFormat;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 import org.newdawn.slick.Color;
+import org.newdawn.slick.opengl.PNGDecoder;
 import org.newdawn.slick.opengl.Texture;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+import static main.Main.camera;
 import static org.lwjgl.opengl.ARBFramebufferObject.*;
 import static org.lwjgl.opengl.ARBShadowAmbient.GL_TEXTURE_COMPARE_FAIL_VALUE_ARB;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL12.GL_CLAMP_TO_EDGE;
 import static org.lwjgl.opengl.GL14.*;
 import static org.lwjgl.util.glu.GLU.*;
+import static org.newdawn.slick.opengl.PNGDecoder.RGBA;
 
 /**
  * @Author: WangYuyang
@@ -59,7 +68,7 @@ public class Engine {
     static float brown[] = {0.5f, 0.25f, 0.0f, 1.0f, 1.0f};
     static float dkgreen[] = {0.0f, 0.5f, 0.0f, 1.0f, 1.0f};
     static float pink[] = {1.0f, 0.6f, 0.6f, 1.0f, 1.0f};
-    private static FloatBuffer lightPosition;
+    public static FloatBuffer lightPosition;
     /**
      * The width of the depth texture that is known as the shadow map. The higher the width, the more detailed the
      * shadows.
@@ -75,6 +84,7 @@ public class Engine {
     private static long lastFrameTime;
     private static long startTime;
     private static long timePassed;
+    public static int delta;
     private static float zNear = 100f;
     /**
      * The distance where fog starts appearing.
@@ -94,6 +104,8 @@ public class Engine {
      */
     long lastFPS;
 
+    public static int shadowTexture;
+
 
     public Engine(int WIDTH, int HEIGHT) {
 
@@ -103,7 +115,7 @@ public class Engine {
                     new PixelFormat()
             );
             System.out.println("Your OpenGL version is " + GL11.glGetString(GL11.GL_VERSION));
-            Display.setTitle("CG Project 1");
+            Display.setTitle("CG Project 1 Loading.......");
         } catch (LWJGLException e) {
             e.printStackTrace();
         }
@@ -303,7 +315,11 @@ public class Engine {
              *  int width, height -> shadowMapWidth, shadowMapHeight
              *  int border -> 0
              */
+
+            glBindTexture(GL_TEXTURE_2D, shadowTexture);
             glCopyTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT, 0, 0, shadowMapWidth, shadowMapHeight, 0);
+            glBindTexture(GL_TEXTURE_2D, 0);
+
 
             // Restore the previous model-view matrix.
             glPopMatrix();
@@ -333,6 +349,12 @@ public class Engine {
 
     public void init() {
         Display.setVSyncEnabled(true);
+//        Display.setResizable(true);
+        glClear(GL_COLOR_BUFFER_BIT);
+        shadowTexture = glGenTextures();
+
+
+
 //        glEnable(GL_FOG);
 //        {
 //            FloatBuffer fogColours = BufferUtils.createFloatBuffer(4);
@@ -369,6 +391,9 @@ public class Engine {
         glTexGeni(GL_R, GL_TEXTURE_GEN_MODE, GL_EYE_LINEAR);
         glTexGeni(GL_Q, GL_TEXTURE_GEN_MODE, GL_EYE_LINEAR);
 
+        lightPosition = BufferUtils.createFloatBuffer(4);
+        lightPosition.put(10000f).put(10000f).put(5000).put(0).flip();
+
     }
 
     public void enterModelView() {
@@ -383,8 +408,7 @@ public class Engine {
 
     public void setLight() {
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
-        lightPosition = BufferUtils.createFloatBuffer(4);
-        lightPosition.put(10000f).put(10000f).put(5000).put(0).flip();
+
 
 //        FloatBuffer lightPos2 = BufferUtils.createFloatBuffer(4);
 //        lightPos2.put(0f).put(1000f).put(0).put(-1000f).flip();
@@ -435,18 +459,21 @@ public class Engine {
         GL11.glClearColor(1.0f, 1.0f, 1.0f, 1.0f);
         GL11.glColor3f(0.5f, 0.5f, 1.0f);
 
-        int delta = getDelta();
+        delta = getDelta();
         timePassed = getTime() - startTime;
 
         updateFPS();
         checkInput();
+
         renderProgram.renderScene(delta);
         renderProgram.renderBackground(delta);
-
 //        glPushAttrib(GL_ALL_ATTRIB_BITS);
 //        {
 //            generateTextureCoordinates();
+//
 //            drawShadowMap(renderProgram);
+//
+//
 //
 //        }
 //        glPopAttrib();
@@ -457,7 +484,19 @@ public class Engine {
     }
 
     private void checkInput() {
-        Scene.human.checkInput();
+        Vector4f v = Scene.player.checkInput();
+        Boolean ishit = false;
+        for (SceneObject o : Main.sceneManager.getSceneObjects()) {
+            if (!(o instanceof Player)) {
+                if (o.isHit(Scene.player)) {
+                    ishit = true;
+                    Scene.player.move(v.NegateVector());
+                }
+            }
+        }
+        if (!ishit)
+            camera.update();
+
     }
 
 
@@ -476,11 +515,11 @@ public class Engine {
 
     }
 
-    private long getTime() {
+    private static long getTime() {
         return (Sys.getTime() * 1000) / Sys.getTimerResolution();
     }
 
-    private int getDelta() {
+    public static int getDelta() {
         long currentTime = getTime();
         int delta = (int) (currentTime - lastFrameTime);
         lastFrameTime = getTime();

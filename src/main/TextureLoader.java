@@ -30,6 +30,13 @@ public class TextureLoader {
             loadTexture("default_stone.png");
             loadTexture("default_cobble.png");
 
+            loadTexture("bookshelf.png");
+            loadTexture("enchanted_book.png");
+            loadTexture("warped_door_bottom.png");
+            loadTexture("enchanting_table_side.png");
+            loadTexture("enchanting_table_top.png");
+            loadTexture("copyright.png");
+
             //sky box
             loadTexture("skybox/back.png");
             loadTexture("skybox/down.png");

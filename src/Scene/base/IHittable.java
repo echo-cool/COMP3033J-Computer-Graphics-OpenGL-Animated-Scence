@@ -8,5 +8,6 @@ package Scene.base;
  * @Description:
  **/
 public interface IHittable {
+    Boolean isHit(SceneObject other);
 
 }

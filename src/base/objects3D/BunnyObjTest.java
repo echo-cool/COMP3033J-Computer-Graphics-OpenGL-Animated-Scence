@@ -23,11 +23,7 @@ public class BunnyObjTest {
 
     private static final String MODEL_LOCATION = "res/models/bunny.obj";
 
-    public BunnyObjTest() {
-        drawObj();
-    }
-
-    public void drawObj(){
+    static {
         bunnyDisplayList = glGenLists(1);
         glNewList(bunnyDisplayList, GL_COMPILE);
         Model m = null;
