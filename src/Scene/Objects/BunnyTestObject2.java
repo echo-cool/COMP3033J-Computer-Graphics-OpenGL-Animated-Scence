@@ -70,7 +70,7 @@ public class BunnyTestObject2 extends SceneObject {
     }
 
     @Override
-    public void draw() {
+    public void draw(Integer frame_delta) {
         GL11.glDisable(GL_TEXTURE_2D);
         timePassed = Engine.getTimePassed()/10000.0f;
         float speed = 0.1f;

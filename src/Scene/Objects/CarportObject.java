@@ -39,7 +39,7 @@ public class CarportObject extends SceneObject {
 
 
     @Override
-    public void draw() {
+    public void draw(Integer frame_delta) {
         Color.white.bind();
         glCallList(base.objects3D.CarportObject.getHouseDisplayList());
         Color.white.bind();

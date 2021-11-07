@@ -29,7 +29,7 @@ public class LAVA_Door extends SceneObject {
     }
 
     @Override
-    public void draw() {
+    public void draw(Integer frame_delta) {
 
         Color.white.bind();
         getTextures().get("default_lava").bind();

@@ -128,7 +128,7 @@ public class Skybox extends SceneObject {
 
 
     @Override
-    public void draw() {
+    public void draw(Integer delta) {
 
 //        ;
         GL11.glTexParameteri(

@@ -314,7 +314,7 @@ public class OBJLoader {
                 boolean enableSmoothShading = !line.contains("off");
                 m.setSmoothShadingEnabled(enableSmoothShading);
             } else {
-                System.err.println("[OBJ] Unknown Line: " + line);
+//                System.err.println("[OBJ] Unknown Line: " + line);
             }
         }
         reader.close();

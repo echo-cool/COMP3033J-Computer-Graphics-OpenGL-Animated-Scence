@@ -76,9 +76,9 @@ public class BunnyTestObject extends SceneObject {
     }
 
     @Override
-    public void draw() {
+    public void draw(Integer frame_delta) {
         timePassed = Engine.getTimePassed()/10000.0f;
-        float speed = 0.1f;
+        float speed = frame_delta/160f;
         if((int) (timePassed % 4) == 0){
             move(new Vector4f(speed,0,0,0));
             angle_target = 90;

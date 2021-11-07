@@ -32,7 +32,7 @@ public class TestObj extends SceneObject {
     }
 
     @Override
-    public void draw() {
+    public void draw(Integer frame_delta) {
         Color.black.bind();
         oval.DrawOval(1, 32);
     }

@@ -57,7 +57,7 @@ public class Book extends SceneObject {
 
 
     @Override
-    public void draw() {
+    public void draw(Integer frame_delta) {
         Color.white.bind();
         glRotatef(yRotation, 0, 1, 0);
         getTextures().get("warped_door_bottom").bind();

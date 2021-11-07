@@ -8,6 +8,6 @@ package Scene.base;
  * @Description:
  **/
 public interface IDrawable {
-    void draw(IDrawListener listener);
-    void draw();
+    void draw(IDrawListener listener, Integer delta);
+    void draw(Integer delta);
 }

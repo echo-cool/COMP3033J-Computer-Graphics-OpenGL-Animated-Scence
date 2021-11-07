@@ -90,7 +90,7 @@ public class Engine {
      * The distance where fog starts appearing.
      */
     private static final float fogNear = zNear;
-    private static float zFar = 30000f;
+    private static float zFar = 50000f;
     /**
      * The distance where the fog stops appearing (fully black here)
      */
@@ -494,6 +494,7 @@ public class Engine {
                 }
             }
         }
+        camera.update_mouse();
         if (!ishit)
             camera.update();
 

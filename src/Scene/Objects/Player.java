@@ -49,6 +49,7 @@ public class Player extends SceneObject {
 
     private Boolean isJumping = false;
     private float jump_height = 0f;
+    public static Integer frame_delta = 0;
 
 
     DisplayListTexSphere s1 = new DisplayListTexSphere(0.5f, 32, 32, getTextures().get("wool_pink"));
@@ -177,8 +178,8 @@ public class Player extends SceneObject {
     }
 
     @Override
-    public void draw() {
-
+    public void draw(Integer frame_delta) {
+        Player.frame_delta = frame_delta;
         GL11.glTranslatef(0, jump_height, 0);
         Boolean GoodAnimation = true;
         float theta_face = (float) (delta * 2 * Math.PI);
@@ -696,7 +697,7 @@ public class Player extends SceneObject {
         Boolean KEY_D = Keyboard.isKeyDown(Keyboard.KEY_D);
 
         Player player = (Player) this;
-        Integer speed = 10;
+        float speed = Player.frame_delta/1.6f;
         float speedX = speed / player.getScale().x;
         float speedY = speed / player.getScale().y;
         float speedZ = speed / player.getScale().z;

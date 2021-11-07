@@ -31,7 +31,7 @@ public class TNT_Door extends SceneObject {
 
 
     @Override
-    public void draw() {
+    public void draw(Integer frame_delta) {
         ;
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
         Color.white.bind();

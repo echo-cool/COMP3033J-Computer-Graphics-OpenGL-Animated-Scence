@@ -33,7 +33,7 @@ public class BookShelf extends SceneObject {
     }
 
     @Override
-    public void draw() {
+    public void draw(Integer frame_delta) {
         Color.white.bind();
         getTextures().get("bookshelf").bind();
         GL11.glTexParameteri(

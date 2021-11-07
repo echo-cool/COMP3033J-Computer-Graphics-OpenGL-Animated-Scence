@@ -34,7 +34,7 @@ public class Wall extends SceneObject {
 
 
     @Override
-    public void draw() {
+    public void draw(Integer frame_delta) {
 
         GL11.glTexParameteri(
                 GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T,

@@ -53,6 +53,79 @@ public class Camera {
     }
 
     public void update() {
+        float speed = Player.frame_delta/1.6f;
+        if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
+            Vector4f move = new Vector4f();
+            move = move.PlusVector(new Vector4f(0, 0, -speed, 0));
+//            position.z -= 10f;
+            float angle = rotation.y - 180;
+            float new_x = (float) (move.length() * Math.sin(Math.toRadians(angle)));
+            float new_z = (float) (move.length() * Math.cos(Math.toRadians(angle)));
+            move.x = new_x;
+            move.z = -new_z;
+            position = position.PlusVector(move);
+        }
+        if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
+//            move = move.PlusVector(new Vector4f(10, 0, 0, 0));
+//            position.x += 10f;
+            Vector4f move = new Vector4f();
+            move = move.PlusVector(new Vector4f(speed, 0, 0, 0));
+//            position.z -= 10f;
+            float angle = 180 - rotation.y + 90;
+            float new_x = (float) (move.length() * Math.sin(Math.toRadians(angle)));
+            float new_z = (float) (move.length() * Math.cos(Math.toRadians(angle)));
+            move.x = new_x;
+            move.z = new_z;
+            position = position.PlusVector(move);
+        }
+        if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
+            Vector4f move = new Vector4f();
+            move = move.PlusVector(new Vector4f(0, 0, speed, 0));
+//            position.z += 10f;
+            float angle = rotation.y - 180;
+            float new_x = (float) (move.length() * Math.sin(Math.toRadians(angle)));
+            float new_z = (float) (move.length() * Math.cos(Math.toRadians(angle)));
+            move.x = -new_x;
+            move.z = new_z;
+            position = position.PlusVector(move);
+        }
+        if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
+//            move = move.PlusVector(new Vector4f(-10, 0, 0, 0));
+            Vector4f move = new Vector4f();
+            move = move.PlusVector(new Vector4f(-speed, 0, 0, 0));
+//            position.z -= 10f;
+            float angle = 180 - rotation.y - 90;
+            float new_x = (float) (move.length() * Math.sin(Math.toRadians(angle)));
+            float new_z = (float) (move.length() * Math.cos(Math.toRadians(angle)));
+            move.x = new_x;
+            move.z = new_z;
+            position = position.PlusVector(move);
+        }
+
+
+        if (Keyboard.isKeyDown(Keyboard.KEY_RETURN)) {
+            position.y -= speed;
+        }
+        if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
+            position.y += speed;
+        }
+
+
+
+
+//        GL11.glMatrixMode(GL11.GL_MODELVIEW);
+//        FloatBuffer CurrentMatrix = BufferUtils.createFloatBuffer(16);
+//        GL11.glGetFloat(GL11.GL_MODELVIEW_MATRIX, CurrentMatrix);
+//        MyArcball.getMatrix(CurrentMatrix);
+//        GL11.glMultMatrix(CurrentMatrix);
+
+    }
+
+    public static void setPosition(Vector4f position) {
+        Camera.position = position;
+    }
+
+    public void update_mouse() {
 
         int WheelPosition = Mouse.getDWheel();
         int MouseX = Mouse.getX();
@@ -69,62 +142,6 @@ public class Camera {
         }
         if (WheelPosition < 0) {
             OrthoNumber -= 10;
-        }
-
-        if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
-            Vector4f move = new Vector4f();
-            move = move.PlusVector(new Vector4f(0, 0, -10, 0));
-//            position.z -= 10f;
-            float angle = rotation.y - 180;
-            float new_x = (float) (move.length() * Math.sin(Math.toRadians(angle)));
-            float new_z = (float) (move.length() * Math.cos(Math.toRadians(angle)));
-            move.x = new_x;
-            move.z = -new_z;
-            position = position.PlusVector(move);
-        }
-        if (Keyboard.isKeyDown(Keyboard.KEY_D)) {
-//            move = move.PlusVector(new Vector4f(10, 0, 0, 0));
-//            position.x += 10f;
-            Vector4f move = new Vector4f();
-            move = move.PlusVector(new Vector4f(10, 0, 0, 0));
-//            position.z -= 10f;
-            float angle = 180 - rotation.y + 90;
-            float new_x = (float) (move.length() * Math.sin(Math.toRadians(angle)));
-            float new_z = (float) (move.length() * Math.cos(Math.toRadians(angle)));
-            move.x = new_x;
-            move.z = new_z;
-            position = position.PlusVector(move);
-        }
-        if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
-            Vector4f move = new Vector4f();
-            move = move.PlusVector(new Vector4f(0, 0, 10, 0));
-//            position.z += 10f;
-            float angle = rotation.y - 180;
-            float new_x = (float) (move.length() * Math.sin(Math.toRadians(angle)));
-            float new_z = (float) (move.length() * Math.cos(Math.toRadians(angle)));
-            move.x = -new_x;
-            move.z = new_z;
-            position = position.PlusVector(move);
-        }
-        if (Keyboard.isKeyDown(Keyboard.KEY_A)) {
-//            move = move.PlusVector(new Vector4f(-10, 0, 0, 0));
-            Vector4f move = new Vector4f();
-            move = move.PlusVector(new Vector4f(-10, 0, 0, 0));
-//            position.z -= 10f;
-            float angle = 180 - rotation.y - 90;
-            float new_x = (float) (move.length() * Math.sin(Math.toRadians(angle)));
-            float new_z = (float) (move.length() * Math.cos(Math.toRadians(angle)));
-            move.x = new_x;
-            move.z = new_z;
-            position = position.PlusVector(move);
-        }
-
-
-        if (Keyboard.isKeyDown(Keyboard.KEY_RETURN)) {
-            position.y -= 10f;
-        }
-        if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
-            position.y += 10f;
         }
 
         while (Mouse.next()) {
@@ -158,17 +175,5 @@ public class Camera {
             Player.angle_target = 180 - (int) rotation.y;
 
 
-
-
-//        GL11.glMatrixMode(GL11.GL_MODELVIEW);
-//        FloatBuffer CurrentMatrix = BufferUtils.createFloatBuffer(16);
-//        GL11.glGetFloat(GL11.GL_MODELVIEW_MATRIX, CurrentMatrix);
-//        MyArcball.getMatrix(CurrentMatrix);
-//        GL11.glMultMatrix(CurrentMatrix);
-
-    }
-
-    public static void setPosition(Vector4f position) {
-        Camera.position = position;
     }
 }

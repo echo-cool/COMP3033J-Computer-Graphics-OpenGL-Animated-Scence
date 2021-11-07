@@ -17,23 +17,23 @@ import java.util.HashMap;
  * @Package: Scene.Objects
  * @Description:
  **/
-public class Copyright extends SceneObject {
+public class Copyleft extends SceneObject {
     private TexCube cube = new TexCube();
 
-    public Copyright(Point4f origin, Point4f position, Vector4f scale) {
+    public Copyleft(Point4f origin, Point4f position, Vector4f scale) {
         super(origin, position, scale);
     }
 
-    public Copyright(Point4f origin, Point4f position, Vector4f scale, HashMap<String, Texture> textures) {
+    public Copyleft(Point4f origin, Point4f position, Vector4f scale, HashMap<String, Texture> textures) {
         super(origin, position, scale, textures);
     }
 
-    public Copyright(Point4f origin, Point4f position, Vector4f scale, Vector4f rotation, HashMap<String, Texture> textures) {
+    public Copyleft(Point4f origin, Point4f position, Vector4f scale, Vector4f rotation, HashMap<String, Texture> textures) {
         super(origin, position, scale, rotation, textures);
     }
 
     @Override
-    public void draw() {
+    public void draw(Integer frame_delta) {
         GL11.glTexParameteri(
                 GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T,
                 GL11.GL_REPEAT);
@@ -42,7 +42,7 @@ public class Copyright extends SceneObject {
                 GL11.GL_REPEAT);
         Color.white.bind();
         //bind texture
-        getTextures().get("copyright").bind();
+        getTextures().get("copyleft").bind();
         ;
 //        GL11.glDisable(GL11.GL_LIGHTING); // switch lighting off
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);

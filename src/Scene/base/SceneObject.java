@@ -66,7 +66,7 @@ public abstract class SceneObject implements IDrawable, IMovable, IScalable, IHi
     }
 
     @Override
-    public void draw(IDrawListener listener) {
+    public void draw(IDrawListener listener, Integer delta) {
         //move object to correct position
         listener.beforeEachDraw(this);
         glDisable(GL_TEXTURE_GEN_S);
@@ -78,7 +78,7 @@ public abstract class SceneObject implements IDrawable, IMovable, IScalable, IHi
         GL11.glRotatef(rotation.a, rotation.x, rotation.y, rotation.z);
         GL11.glScalef(scale.x, scale.y, scale.z);
         GL11.glTranslatef(position.x, position.y, position.z);
-        this.draw();
+        this.draw(delta);
         listener.afterEachDraw(this);
 //
         glEnable(GL_TEXTURE_GEN_S);

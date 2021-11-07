@@ -35,7 +35,7 @@ public class TextureLoader {
             loadTexture("warped_door_bottom.png");
             loadTexture("enchanting_table_side.png");
             loadTexture("enchanting_table_top.png");
-            loadTexture("copyright.png");
+            loadTexture("copyleft.png");
 
             //sky box
             loadTexture("skybox/back.png");

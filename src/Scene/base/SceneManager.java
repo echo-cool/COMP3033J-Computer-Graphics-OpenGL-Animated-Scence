@@ -12,9 +12,9 @@ import java.util.ArrayList;
 public class SceneManager {
     private ArrayList<SceneObject> sceneObjects = new ArrayList<>();
 
-    public void drawAll(IDrawListener listener){
+    public void drawAll(IDrawListener listener, Integer delta){
         for(int i = 0; i < sceneObjects.size(); i++){
-            sceneObjects.get(i).draw(listener);
+            sceneObjects.get(i).draw(listener, delta);
         }
     }
 

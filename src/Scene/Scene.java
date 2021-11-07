@@ -61,14 +61,14 @@ public class Scene {
 //            .setParticleLifeTime(300)
 //            .createParticleEmitter();
 //
-//    private static ParticleEmitter backParticleEmitter = new ParticleEmitterBuilder()
-//            .setLocation(new Vector3f(0,12900,-2.5f))
-//            .setEnable3D(true)
-//            .setInitialVelocity(new Vector3f(0, 0, 0))
-//            .setGravity(new Vector3f(0, -0.4f, 0))
-//            .setSpawningRate(20)
-//            .setParticleLifeTime(300)
-//            .createParticleEmitter();
+    private static ParticleEmitter backParticleEmitter = new ParticleEmitterBuilder()
+            .setLocation(new Vector3f(0,12900,-2.5f))
+            .setEnable3D(true)
+            .setInitialVelocity(new Vector3f(0, 0, 0))
+            .setGravity(new Vector3f(0, -0.4f, 0))
+            .setSpawningRate(10)
+            .setParticleLifeTime(200)
+            .createParticleEmitter();
 
 
     public static void initScene(SceneManager sceneManager, HashMap textures) {
@@ -393,14 +393,14 @@ public class Scene {
                 textures
         ));
 
-        sceneManager.addSceneObject(new Copyright(
+        sceneManager.addSceneObject(new Copyleft(
                 new Point4f(-5000, 3500, 0, 0),
                 new Point4f(0, 0, 0, 0),
                 new Vector4f(100, 2000, 3000, 0),
                 new Vector4f(1, 0, 0, 180),
                 textures
         ));
-        sceneManager.addSceneObject(new Copyright(
+        sceneManager.addSceneObject(new Copyleft(
                 new Point4f(5000, 3500, 0, 0),
                 new Point4f(0, 0, 0, 0),
                 new Vector4f(100, 2000, 3000, 0),
@@ -439,10 +439,10 @@ public class Scene {
                 bookParticleEmitter.draw();
 //                rightParticleEmitter.draw();
 //                leftParticleEmitter.draw();
-//                backParticleEmitter.draw();
+                backParticleEmitter.draw();
                 GL11.glPopMatrix();
             }
-        });
+        }, delta);
 
         frontParticleEmitter.update();
         bookParticleEmitter.update();
@@ -450,7 +450,7 @@ public class Scene {
         bookParticleEmitter.colorVec = new Vector3f(random.nextFloat() + 0.5f, random.nextFloat() + 0.5f, random.nextFloat() + 0.5f);
 //        rightParticleEmitter.update();
 //        leftParticleEmitter.update();
-//        backParticleEmitter.update();
+        backParticleEmitter.update();
     }
 
     public static void drawScene(SceneManager sceneManager, Integer delta) {
@@ -464,7 +464,7 @@ public class Scene {
             public void afterEachDraw(SceneObject object) {
                 GL11.glPopMatrix();
             }
-        });
+        }, delta);
     }
 
 }

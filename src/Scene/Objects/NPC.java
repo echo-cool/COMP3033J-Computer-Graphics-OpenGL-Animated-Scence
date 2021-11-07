@@ -172,9 +172,9 @@ public class NPC extends SceneObject {
     }
 
     @Override
-    public void draw() {
+    public void draw(Integer frame_delta) {
         timePassed = Engine.getTimePassed()/10000.0f;
-        float speed = 0.1f;
+        float speed = frame_delta/160f;
 //        System.out.println(speed);
         walk();
         if((int) (timePassed % 4) == 0){

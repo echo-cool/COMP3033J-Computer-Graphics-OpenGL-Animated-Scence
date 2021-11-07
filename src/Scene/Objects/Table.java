@@ -32,7 +32,7 @@ public class Table extends SceneObject {
     }
 
     @Override
-    public void draw() {
+    public void draw(Integer frame_delta) {
         Color.white.bind();
         getTextures().get("enchanting_table_top").bind();
         GL11.glTexParameteri(

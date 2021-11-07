@@ -459,40 +459,40 @@ public class MainWindow {
 //            GLU.gluLookAt(2f, -1f, -1f, 0f, 0f, 0f, 0f, 1f, 0f);
 //        }
 
-
-        sceneManager.drawAll(new IDrawListener() {
-            @Override
-            public void beforeEachDraw(SceneObject object) {
-                GL11.glPushMatrix();
-                if (object instanceof Player) {
-                    Player player = (Player) object;
-                    Integer speed = 10;
-                    float speedX = speed/ player.getScale().x;
-                    float speedY = speed/ player.getScale().y;
-                    float speedZ = speed/ player.getScale().z;
-                    if((Keyboard.isKeyDown(Keyboard.KEY_W))){
-                        player.move(new Vector4f(0,0,speedZ,0));
-                    }
-                    if((Keyboard.isKeyDown(Keyboard.KEY_A))){
-                        player.move(new Vector4f(-speedX,0,0,0));
-                    }
-                    if((Keyboard.isKeyDown(Keyboard.KEY_S))){
-                        player.move(new Vector4f(0,0,-speedZ,0));
-                    }
-                    if((Keyboard.isKeyDown(Keyboard.KEY_D))){
-                        player.move(new Vector4f(speedX,0,0,0));
-                    }
-//                    human.setPosition(new Point4f(posn_x * 3.0f, 0.0f, posn_y * 3.0f, 0));
-                    player.setDelta(delta);
-                }
-            }
-
-            @Override
-            public void afterEachDraw(SceneObject object) {
-                GL11.glPopMatrix();
-            }
-        });
-
+//
+//        sceneManager.drawAll(new IDrawListener() {
+//            @Override
+//            public void beforeEachDraw(SceneObject object) {
+//                GL11.glPushMatrix();
+//                if (object instanceof Player) {
+//                    Player player = (Player) object;
+//                    Integer speed = 10;
+//                    float speedX = speed/ player.getScale().x;
+//                    float speedY = speed/ player.getScale().y;
+//                    float speedZ = speed/ player.getScale().z;
+//                    if((Keyboard.isKeyDown(Keyboard.KEY_W))){
+//                        player.move(new Vector4f(0,0,speedZ,0));
+//                    }
+//                    if((Keyboard.isKeyDown(Keyboard.KEY_A))){
+//                        player.move(new Vector4f(-speedX,0,0,0));
+//                    }
+//                    if((Keyboard.isKeyDown(Keyboard.KEY_S))){
+//                        player.move(new Vector4f(0,0,-speedZ,0));
+//                    }
+//                    if((Keyboard.isKeyDown(Keyboard.KEY_D))){
+//                        player.move(new Vector4f(speedX,0,0,0));
+//                    }
+////                    human.setPosition(new Point4f(posn_x * 3.0f, 0.0f, posn_y * 3.0f, 0));
+//                    player.setDelta(delta);
+//                }
+//            }
+//
+//            @Override
+//            public void afterEachDraw(SceneObject object) {
+//                GL11.glPopMatrix();
+//            }
+//        });
+//
 
 
         /*
