@@ -116,4 +116,8 @@ public class TNT_Door extends SceneObject {
         ;
 
     }
+    @Override
+    public void drawShadow() {
+
+    }
 }

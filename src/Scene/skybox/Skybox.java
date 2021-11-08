@@ -162,4 +162,9 @@ public class Skybox extends SceneObject {
 
         ;
     }
+
+    @Override
+    public void drawShadow() {
+
+    }
 }

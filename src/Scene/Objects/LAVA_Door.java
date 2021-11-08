@@ -111,4 +111,8 @@ public class LAVA_Door extends SceneObject {
         GL11.glPopMatrix();
         ;
     }
+    @Override
+    public void drawShadow() {
+
+    }
 }

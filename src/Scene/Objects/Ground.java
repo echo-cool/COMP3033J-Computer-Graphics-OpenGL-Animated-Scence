@@ -56,4 +56,8 @@ public class Ground extends SceneObject {
         ;
 
     }
+    @Override
+    public void drawShadow() {
+
+    }
 }

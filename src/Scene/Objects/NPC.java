@@ -12,6 +12,8 @@ import org.newdawn.slick.opengl.Texture;
 
 import java.util.HashMap;
 
+import static org.lwjgl.opengl.GL11.*;
+
 /**
  * @Author: WangYuyang
  * @Date: 2021/11/6-19:33
@@ -42,12 +44,12 @@ public class NPC extends SceneObject {
     static float brown[] = {0.5f, 0.25f, 0.0f, 1.0f, 1.0f};
     static float dkgreen[] = {0.0f, 0.5f, 0.0f, 1.0f, 1.0f};
     static float pink[] = {1.0f, 0.6f, 0.6f, 1.0f, 1.0f};
-    public int angle_target = 0;
+    public static int angle_target = 0;
     private float delta;
     private Boolean isWalking = false;
     private long walkStartTime;
     private int stopCount = 0;
-    private int angle = 0;
+    public static int angle = 0;
     private Boolean isJumping = false;
     private float jump_height = 0f;
     public void walk() {
@@ -91,7 +93,7 @@ public class NPC extends SceneObject {
     DisplayListCylinder c7 = new DisplayListCylinder(0.15f, 0.7f, 32);
     DisplayListCylinder c8 = new DisplayListCylinder(0.15f, 0.7f, 32);
     DisplayListCylinder c9 = new DisplayListCylinder(0.15f, 0.7f, 32);
-
+    DisplayListOval shadow = new DisplayListOval(3f, 32);
 
     public NPC(Point4f origin, Point4f position, Vector4f scale) {
         super(origin, position, scale);
@@ -99,27 +101,6 @@ public class NPC extends SceneObject {
 
     public NPC(Point4f origin, Point4f position, Vector4f scale, HashMap<String, Texture> textures) {
         super(origin, position, scale, textures);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    if (Math.abs(angle - angle_target) > 200) {
-                        angle = angle_target;
-                    }
-
-                    if (angle > angle_target) {
-                        angle -= 1f;
-                    } else if (angle < angle_target) {
-                        angle += 1f;
-                    }
-                    try {
-                        Thread.sleep(1);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
     }
 
     public void jump(int speed) {
@@ -509,6 +490,16 @@ public class NPC extends SceneObject {
 //                GL11.glRotatef((float) (LimbRotation * -0.2), 0.0f, 1.0f, 0.0f);
 
 
+//                GL11.glPushMatrix();
+//                GL11.glTranslatef(0,-1.8f,0);
+//                glDisable(GL_LIGHTING);
+//                glDisable(GL_TEXTURE_2D);
+//                Color.black.bind();
+//                shadow.DrawOval();
+//                Color.white.bind();
+//                glEnable(GL_TEXTURE_2D);
+//                glEnable(GL_LIGHTING);
+//                GL11.glPopMatrix();
                 // pelvis
                 // left hip
                 GL11.glColor3f(blue[0], blue[1], blue[2]);
@@ -704,4 +695,8 @@ public class NPC extends SceneObject {
 
         }
     }
+//    @Override
+//    public void drawShadow() {
+//
+//    }
 }

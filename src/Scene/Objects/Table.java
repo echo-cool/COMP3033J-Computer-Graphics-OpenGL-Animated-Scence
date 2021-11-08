@@ -3,12 +3,15 @@ package Scene.Objects;
 import Scene.base.SceneObject;
 import base.GraphicsObjects.Point4f;
 import base.GraphicsObjects.Vector4f;
+import base.objects3D.DisplayListOval;
 import base.objects3D.DisplayListTexCube;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
 
 import java.util.HashMap;
+
+import static org.lwjgl.opengl.GL11.*;
 
 /**
  * @Author: WangYuyang
@@ -19,6 +22,8 @@ import java.util.HashMap;
  **/
 public class Table extends SceneObject {
     DisplayListTexCube cube = new DisplayListTexCube();
+    DisplayListOval displayListOval = new DisplayListOval(2f, 32);
+
     public Table(Point4f origin, Point4f position, Vector4f scale) {
         super(origin, position, scale);
     }
@@ -48,5 +53,27 @@ public class Table extends SceneObject {
             cube.DrawTexCube();
         }
         GL11.glPopMatrix();
+        GL11.glPushMatrix();
+        {
+            glScalef(1 / getScale().x, 1 / getScale().y, 1 / getScale().z);
+            glTranslatef(-240, -getOrigin().y + 2f, -240);
+            glScalef(getScale().x, getScale().y, getScale().z);
+            GL11.glRotatef(-45, 0,1,0);
+            GL11.glScalef(2f, 0f, 1f);
+            glDisable(GL_LIGHTING);
+            glDisable(GL_TEXTURE_2D);
+            Color.black.bind();
+            displayListOval.DrawOval();
+            Color.white.bind();
+            glEnable(GL_TEXTURE_2D);
+            glEnable(GL_LIGHTING);
+        }
+        GL11.glPopMatrix();
+    }
+
+    @Override
+    public void drawShadow() {
+
+
     }
 }

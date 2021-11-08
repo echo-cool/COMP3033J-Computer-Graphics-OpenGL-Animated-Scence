@@ -44,4 +44,8 @@ public class CarportObject extends SceneObject {
         glCallList(base.objects3D.CarportObject.getHouseDisplayList());
         Color.white.bind();
     }
+    @Override
+    public void drawShadow() {
+
+    }
 }

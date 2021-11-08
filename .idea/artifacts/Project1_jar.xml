@@ -1,0 +1,38 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Project1:jar">
+    <output-path>$PROJECT_DIR$/classes/artifacts/Project1_jar</output-path>
+    <root id="archive" name="Project1.jar">
+      <element id="module-output" name="Project1" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/LWJGL/laf-plugin-7.2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/LWJGL/lzma.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/LWJGL/trident-7.2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/LWJGL/jinput.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/LWJGL/lwjgl_util.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/LWJGL/lwjgl_util_applet.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/LWJGL/asm-debug-all.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/LWJGL/lwjgl-debug.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/LWJGL/lwjgl_test.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/LWJGL/log4j-api-2.0-beta9.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/LWJGL/lwjgl.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/LWJGL/substance-7.2.1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/LWJGL/AppleJavaExtensions.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/LWJGL/slick-util.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/LWJGL/laf-widget-7.2.1.jar" path-in-jar="/" />
+      <element id="library" level="module" name="AppleJavaExtensions.jar" module-name="Project1" />
+      <element id="library" level="module" name="asm-debug-all.jar" module-name="Project1" />
+      <element id="library" level="module" name="jinput.jar" module-name="Project1" />
+      <element id="library" level="module" name="laf-plugin-7.2.1.jar" module-name="Project1" />
+      <element id="library" level="module" name="laf-widget-7.2.1.jar" module-name="Project1" />
+      <element id="library" level="module" name="log4j-api-2.0-beta9.jar" module-name="Project1" />
+      <element id="library" level="module" name="lwjgl_test.jar" module-name="Project1" />
+      <element id="library" level="module" name="lwjgl_util_applet.jar" module-name="Project1" />
+      <element id="library" level="module" name="lwjgl_util.jar" module-name="Project1" />
+      <element id="library" level="module" name="lwjgl-debug.jar" module-name="Project1" />
+      <element id="library" level="module" name="lwjgl.jar" module-name="Project1" />
+      <element id="library" level="module" name="lzma.jar" module-name="Project1" />
+      <element id="library" level="module" name="substance-7.2.1.jar" module-name="Project1" />
+      <element id="library" level="module" name="trident-7.2.1.jar" module-name="Project1" />
+      <element id="library" level="module" name="slick-util.jar" module-name="Project1" />
+    </root>
+  </artifact>
+</component>

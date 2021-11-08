@@ -50,6 +50,8 @@ public class Player extends SceneObject {
     private Boolean isJumping = false;
     private float jump_height = 0f;
     public static Integer frame_delta = 0;
+    public static Point4f world_position;
+    public static Vector4f scale_vec;
 
 
     DisplayListTexSphere s1 = new DisplayListTexSphere(0.5f, 32, 32, getTextures().get("wool_pink"));
@@ -180,6 +182,8 @@ public class Player extends SceneObject {
     @Override
     public void draw(Integer frame_delta) {
         Player.frame_delta = frame_delta;
+        Player.world_position = getWorldPosition();
+        Player.scale_vec = getScale();
         GL11.glTranslatef(0, jump_height, 0);
         Boolean GoodAnimation = true;
         float theta_face = (float) (delta * 2 * Math.PI);
@@ -776,6 +780,12 @@ public class Player extends SceneObject {
 
         return move;
     }
+
+
+//    @Override
+//    public void drawShadow() {
+//
+//    }
 
 
 }

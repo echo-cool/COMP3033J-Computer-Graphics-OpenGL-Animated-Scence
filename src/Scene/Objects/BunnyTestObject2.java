@@ -27,7 +27,7 @@ public class BunnyTestObject2 extends SceneObject {
     private Boolean isWalking = false;
     private long walkStartTime;
     private int stopCount = 0;
-    private float angle = 0;
+    public static float angle = 0;
     private Boolean isJumping = false;
     private float jump_height = 0f;
     private float timePassed = Engine.getTimePassed();
@@ -50,19 +50,7 @@ public class BunnyTestObject2 extends SceneObject {
         super(origin, position, scale, textures);
         Random random = new Random();
         float a = 0.1f;
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    angle += a;
-                    try {
-                        Thread.sleep(1);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
+
     }
 
     public BunnyTestObject2(Point4f origin, Point4f position, Vector4f scale, Vector4f rotation, HashMap<String, Texture> textures) {
@@ -80,5 +68,9 @@ public class BunnyTestObject2 extends SceneObject {
         Color.white.bind();
         glCallList(BunnyObjTest.getBunnyDisplayList());
         GL11.glEnable(GL_TEXTURE_2D);
+    }
+    @Override
+    public void drawShadow() {
+
     }
 }

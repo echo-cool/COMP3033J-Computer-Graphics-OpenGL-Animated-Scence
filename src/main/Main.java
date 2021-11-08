@@ -70,6 +70,7 @@ public class Main {
                         e.printStackTrace();
                     }
                 }
+                Camera.loading_finished = true;
             }
         };
         Runnable light_anmi = new Runnable() {
@@ -106,7 +107,7 @@ public class Main {
 
             }
         };
-        new Thread(cameraRunnable).start();
+//        new Thread(cameraRunnable).start();
 //        new Thread(light_anmi).start();
 
         while (!Display.isCloseRequested()) {

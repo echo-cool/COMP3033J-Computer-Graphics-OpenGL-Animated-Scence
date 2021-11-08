@@ -29,6 +29,7 @@ public class Camera {
     private float rotationZ = 0;
     private boolean MouseOnepressed = true;
     private boolean dragMode = false;
+    public static Boolean loading_finished = false;
 
 
     public Camera() {

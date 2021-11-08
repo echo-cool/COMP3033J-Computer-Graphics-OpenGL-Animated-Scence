@@ -101,4 +101,8 @@ public class BunnyTestObject extends SceneObject {
         Color.white.bind();
         glCallList(BunnyObjTest.getBunnyDisplayList());
     }
+    @Override
+    public void drawShadow() {
+
+    }
 }

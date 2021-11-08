@@ -28,7 +28,7 @@ public class Scene {
             .setInitialVelocity(new Vector3f(0, 0, 0))
             .setGravity(new Vector3f(0, -0.4f, 0))
             .setSpawningRate(20)
-            .setParticleLifeTime(300)
+            .setParticleLifeTime(270)
             .createParticleEmitter();
 
     private static ParticleEmitter bookParticleEmitter = new ParticleEmitterBuilder()
@@ -41,6 +41,7 @@ public class Scene {
             .createParticleEmitter();
 
     private static Random random = new Random();
+    public static float bookRotate_Speed = 0.1f;
 
 
 //    private static ParticleEmitter rightParticleEmitter = new ParticleEmitterBuilder()
@@ -61,14 +62,14 @@ public class Scene {
 //            .setParticleLifeTime(300)
 //            .createParticleEmitter();
 //
-    private static ParticleEmitter backParticleEmitter = new ParticleEmitterBuilder()
-            .setLocation(new Vector3f(0,12900,-2.5f))
-            .setEnable3D(true)
-            .setInitialVelocity(new Vector3f(0, 0, 0))
-            .setGravity(new Vector3f(0, -0.4f, 0))
-            .setSpawningRate(10)
-            .setParticleLifeTime(200)
-            .createParticleEmitter();
+//    private static ParticleEmitter backParticleEmitter = new ParticleEmitterBuilder()
+//            .setLocation(new Vector3f(0,12900,-2.5f))
+//            .setEnable3D(true)
+//            .setInitialVelocity(new Vector3f(0, 0, 0))
+//            .setGravity(new Vector3f(0, -0.4f, 0))
+//            .setSpawningRate(10)
+//            .setParticleLifeTime(200)
+//            .createParticleEmitter();
 
 
     public static void initScene(SceneManager sceneManager, HashMap textures) {
@@ -331,7 +332,7 @@ public class Scene {
                 textures
         ));
 
-        for (int i = -10; i < 10; i++) {
+        for (int i = -9; i < 10; i++) {
             sceneManager.addSceneObject(new Table(
                     new Point4f(500 * i, 90f, 4500, 0),
                     new Point4f(0, 0, 0, 0),
@@ -408,6 +409,71 @@ public class Scene {
                 textures
         ));
 
+        sceneManager.addSceneObject(new TheMostImportantImage(
+                new Point4f(0, 5500, -10000, 0),
+                new Point4f(0, 0, 0, 0),
+                new Vector4f(10, 4000, 6000, 0),
+                new Vector4f(0, 1, 0, 90),
+                textures
+        ));
+//        sceneManager.addSceneObject(new Cube(
+//                new Point4f(0, 300, 0, 0),
+//                new Point4f(0, 0, 0, 0),
+//                new Vector4f(1, 1, 1, 0),
+////                new Vector4f(0, 1, 0, 90),
+//                textures
+//        ));
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+
+                    Book.yRotation += bookRotate_Speed;
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    BunnyTestObject2.angle += 0.1f;
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    if (Math.abs(NPC.angle - NPC.angle_target) > 200) {
+                        NPC.angle = NPC.angle_target;
+                    }
+
+                    if (NPC.angle > NPC.angle_target) {
+                        NPC.angle -= 1f;
+                    } else if (NPC.angle < NPC.angle_target) {
+                        NPC.angle += 1f;
+                    }
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }).start();
+
     }
 
     public static void initBackground(SceneManager backgroundManager, HashMap textures) {
@@ -439,7 +505,7 @@ public class Scene {
                 bookParticleEmitter.draw();
 //                rightParticleEmitter.draw();
 //                leftParticleEmitter.draw();
-                backParticleEmitter.draw();
+//                backParticleEmitter.draw();
                 GL11.glPopMatrix();
             }
         }, delta);
@@ -450,7 +516,7 @@ public class Scene {
         bookParticleEmitter.colorVec = new Vector3f(random.nextFloat() + 0.5f, random.nextFloat() + 0.5f, random.nextFloat() + 0.5f);
 //        rightParticleEmitter.update();
 //        leftParticleEmitter.update();
-        backParticleEmitter.update();
+//        backParticleEmitter.update();
     }
 
     public static void drawScene(SceneManager sceneManager, Integer delta) {

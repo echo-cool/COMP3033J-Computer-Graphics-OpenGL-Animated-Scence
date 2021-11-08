@@ -51,4 +51,8 @@ public class Copyleft extends SceneObject {
         ;
 
     }
+    @Override
+    public void drawShadow() {
+
+    }
 }

@@ -50,6 +50,9 @@ public class Wall extends SceneObject {
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
         MyGrid.DrawTexCube();
         ;
+    }
+    @Override
+    public void drawShadow() {
 
     }
 }

@@ -36,6 +36,7 @@ public class TextureLoader {
             loadTexture("enchanting_table_side.png");
             loadTexture("enchanting_table_top.png");
             loadTexture("copyleft.png");
+            loadTexture("2021.png");
 
             //sky box
             loadTexture("skybox/back.png");
@@ -44,6 +45,11 @@ public class TextureLoader {
             loadTexture("skybox/left.png");
             loadTexture("skybox/right.png");
             loadTexture("skybox/up.png");
+
+            //video
+            for (int i = 1; i <= 803; i++) {
+                loadTexture("video/video" + i + ".png");
+            }
 
 
         } catch (IOException e) {
@@ -56,6 +62,14 @@ public class TextureLoader {
         textures_map.put(
                 key_name,
                 org.newdawn.slick.opengl.TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/" + filename))
+        );
+    }
+
+    private static void loadTexture(String filename, String fileType) throws IOException {
+        String key_name = filename.split("\\.")[0];
+        textures_map.put(
+                key_name,
+                org.newdawn.slick.opengl.TextureLoader.getTexture(fileType, ResourceLoader.getResourceAsStream("res/" + filename))
         );
     }
 }
