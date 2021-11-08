@@ -1,5 +1,6 @@
 package main;
 
+import org.lwjgl.opengl.Display;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.util.ResourceLoader;
 
@@ -38,6 +39,10 @@ public class TextureLoader {
             loadTexture("copyleft.png");
             loadTexture("2021.png");
 
+            loadTexture("end_portal_frame_top.png");
+            loadTexture("wood.png");
+            loadTexture("debug.png");
+
             //sky box
             loadTexture("skybox/back.png");
             loadTexture("skybox/down.png");
@@ -47,7 +52,7 @@ public class TextureLoader {
             loadTexture("skybox/up.png");
 
             //video
-            for (int i = 1; i <= 803; i++) {
+            for (int i = 1; i <= 715; i++) {
                 loadTexture("video/video" + i + ".png");
             }
 
@@ -59,6 +64,7 @@ public class TextureLoader {
 
     private static void loadTexture(String filename) throws IOException {
         String key_name = filename.split("\\.")[0];
+        Display.setTitle("CG Project 1 Loading....... Texture:" + filename);
         textures_map.put(
                 key_name,
                 org.newdawn.slick.opengl.TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/" + filename))

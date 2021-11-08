@@ -48,7 +48,7 @@ public class Camera {
         glRotatef(rotation.x, 1, 0, 0);
         glRotatef(rotation.y, 0, 1, 0);
         glRotatef(-rotation.z, 0, 0, 1);
-        glTranslatef(position.x, position.y, position.z);
+        glTranslatef(position.x, -position.y, position.z);
 
         Main.engine.setOrtho(Camera.OrthoNumber);
     }

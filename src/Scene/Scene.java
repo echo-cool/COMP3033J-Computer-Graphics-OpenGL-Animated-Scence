@@ -22,6 +22,7 @@ public class Scene {
     public static Player player;
     public static BunnyTestObject bunnyTestObject;
     public static NPC center;
+    public static float bookRotate_Speed = 0.1f;
     private static ParticleEmitter frontParticleEmitter = new ParticleEmitterBuilder()
             .setLocation(new Vector3f(0, 12900, 2.5f))
             .setEnable3D(true)
@@ -30,7 +31,6 @@ public class Scene {
             .setSpawningRate(20)
             .setParticleLifeTime(270)
             .createParticleEmitter();
-
     private static ParticleEmitter bookParticleEmitter = new ParticleEmitterBuilder()
             .setLocation(new Vector3f(0, 250, 0.1f))
             .setEnable3D(true)
@@ -39,9 +39,7 @@ public class Scene {
             .setSpawningRate(10)
             .setParticleLifeTime(20)
             .createParticleEmitter();
-
     private static Random random = new Random();
-    public static float bookRotate_Speed = 0.1f;
 
 
 //    private static ParticleEmitter rightParticleEmitter = new ParticleEmitterBuilder()
@@ -70,7 +68,6 @@ public class Scene {
 //            .setSpawningRate(10)
 //            .setParticleLifeTime(200)
 //            .createParticleEmitter();
-
 
     public static void initScene(SceneManager sceneManager, HashMap textures) {
 
@@ -312,7 +309,7 @@ public class Scene {
         ));
 
 
-        sceneManager.addSceneObject(new Table(
+        sceneManager.addSceneObject(new BookTable(
                 new Point4f(0, 90f, 500, 0),
                 new Point4f(0, 0, 0, 0),
                 new Vector4f(90f, 90f, 90f, 0),
@@ -333,7 +330,7 @@ public class Scene {
         ));
 
         for (int i = -9; i < 10; i++) {
-            sceneManager.addSceneObject(new Table(
+            sceneManager.addSceneObject(new BookTable(
                     new Point4f(500 * i, 90f, 4500, 0),
                     new Point4f(0, 0, 0, 0),
                     new Vector4f(90f, 90f, 90f, 0),
@@ -346,7 +343,7 @@ public class Scene {
                     textures
             ));
 
-            sceneManager.addSceneObject(new Table(
+            sceneManager.addSceneObject(new BookTable(
                     new Point4f(500 * i, 90f, -4500, 0),
                     new Point4f(0, 0, 0, 0),
                     new Vector4f(90f, 90f, 90f, 0),
@@ -359,7 +356,7 @@ public class Scene {
                     textures
             ));
 
-            sceneManager.addSceneObject(new Table(
+            sceneManager.addSceneObject(new BookTable(
                     new Point4f(4500, 90f, 500 * i, 0),
                     new Point4f(0, 0, 0, 0),
                     new Vector4f(90f, 90f, 90f, 0),
@@ -372,7 +369,7 @@ public class Scene {
                     textures
             ));
 
-            sceneManager.addSceneObject(new Table(
+            sceneManager.addSceneObject(new BookTable(
                     new Point4f(-4500, 90f, 500 * i, 0),
                     new Point4f(0, 0, 0, 0),
                     new Vector4f(90f, 90f, 90f, 0),
@@ -386,13 +383,13 @@ public class Scene {
             ));
         }
 
-        sceneManager.addSceneObject(new CarportObject(
-                new Point4f(0, 0, 200, 0),
-                new Point4f(0, 0, 0, 0),
-                new Vector4f(500, 500, 500, 0),
-                new Vector4f(1, 0, 0, -90),
-                textures
-        ));
+//        sceneManager.addSceneObject(new CarportObject(
+//                new Point4f(0, 0, 200, 0),
+//                new Point4f(0, 0, 0, 0),
+//                new Vector4f(500, 500, 500, 0),
+//                new Vector4f(1, 0, 0, -90),
+//                textures
+//        ));
 
         sceneManager.addSceneObject(new Copyleft(
                 new Point4f(-5000, 3500, 0, 0),
@@ -416,13 +413,13 @@ public class Scene {
                 new Vector4f(0, 1, 0, 90),
                 textures
         ));
-//        sceneManager.addSceneObject(new Cube(
-//                new Point4f(0, 300, 0, 0),
-//                new Point4f(0, 0, 0, 0),
-//                new Vector4f(1, 1, 1, 0),
-////                new Vector4f(0, 1, 0, 90),
-//                textures
-//        ));
+        sceneManager.addSceneObject(new VideoTriggerBox(
+                new Point4f(0, 100, -2000, 0),
+                new Point4f(0, 0, 0, 0),
+                new Vector4f(100, 100, 100, 0),
+//                new Vector4f(0, 1, 0, 90),
+                textures
+        ));
 
         new Thread(new Runnable() {
             @Override
@@ -502,7 +499,8 @@ public class Scene {
             @Override
             public void afterEachDraw(SceneObject object) {
                 frontParticleEmitter.draw();
-                bookParticleEmitter.draw();
+                if (Book.hasSomeJumpping)
+                    bookParticleEmitter.draw();
 //                rightParticleEmitter.draw();
 //                leftParticleEmitter.draw();
 //                backParticleEmitter.draw();
@@ -511,7 +509,8 @@ public class Scene {
         }, delta);
 
         frontParticleEmitter.update();
-        bookParticleEmitter.update();
+        if (Book.hasSomeJumpping)
+            bookParticleEmitter.update();
 
         bookParticleEmitter.colorVec = new Vector3f(random.nextFloat() + 0.5f, random.nextFloat() + 0.5f, random.nextFloat() + 0.5f);
 //        rightParticleEmitter.update();

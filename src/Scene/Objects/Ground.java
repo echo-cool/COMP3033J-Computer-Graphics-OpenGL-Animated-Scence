@@ -48,7 +48,7 @@ public class Ground extends SceneObject {
                 GL11.GL_REPEAT);
         //bind texture
 //        Color.blue.bind();
-        getTextures().get("default_dirt").bind();
+        getTextures().get("wood").bind();
 //
 //        glBindTexture(GL11.GL_TEXTURE_2D, Engine.shadowTexture);
         cube.DrawTexCube();

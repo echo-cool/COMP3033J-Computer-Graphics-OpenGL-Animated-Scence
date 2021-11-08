@@ -49,9 +49,9 @@ public class Cube extends SceneObject {
                 GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S,
                 GL11.GL_REPEAT);
         Color.white.bind();
-        Color.black.bind();
+//        Color.black.bind();
         //bind texture
-        getTextures().get("default_dirt").bind();
+        getTextures().get("debug").bind();
         ;
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 //        oval.DrawOval();

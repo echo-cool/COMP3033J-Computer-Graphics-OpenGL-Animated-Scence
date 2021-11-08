@@ -91,7 +91,7 @@ public class Book extends SceneObject {
             Scene.bookRotate_Speed -= 0.0001f;
         }
         if (Scene.bookRotate_Speed < 0.2f * jump_count && Scene.bookRotate_Speed < 2f) {
-            Scene.bookRotate_Speed = 0.2f * jump_count;
+            Scene.bookRotate_Speed += 0.2f * jump_count;
         }
 //        System.out.println(Scene.bookRotate_Speed);
 //        if(jump_count > 3){

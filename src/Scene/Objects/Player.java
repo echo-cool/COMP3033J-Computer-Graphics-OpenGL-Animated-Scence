@@ -760,14 +760,15 @@ public class Player extends SceneObject {
             player.setAngle(angle);
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_RETURN)) {
-            move = move.PlusVector(new Vector4f(0, speedY, 0, 0));
+            move = move.PlusVector(new Vector4f(0, -speedY, 0, 0));
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {
             player.jump(500);
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
-            move = move.PlusVector(new Vector4f(0, -speedY, 0, 0));
+            move = move.PlusVector(new Vector4f(0, speedY, 0, 0));
         }
+//        System.out.println(move);
         player.move(move);
 //                    human.setPosition(new Point4f(posn_x * 3.0f, 0.0f, posn_y * 3.0f, 0));
         if (hasKeyDown) {

@@ -5,7 +5,6 @@ import base.GraphicsObjects.Point4f;
 import base.GraphicsObjects.Vector4f;
 import base.objects3D.DisplayListTexCube;
 import main.Camera;
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
@@ -20,9 +19,9 @@ import java.util.HashMap;
  * @Description:
  **/
 public class TheMostImportantImage extends SceneObject {
+    public static Boolean isPlayVideo = false;
     private DisplayListTexCube cube = new DisplayListTexCube();
     private float counter = 1;
-    private Boolean isPlayVideo = false;
 
     public TheMostImportantImage(Point4f origin, Point4f position, Vector4f scale) {
         super(origin, position, scale);
@@ -47,17 +46,20 @@ public class TheMostImportantImage extends SceneObject {
         Color.white.bind();
         //bind texture
 
-        if(Camera.position.z > 1700 && Camera.loading_finished){
+        if (Camera.position.z > 1700
+                        && Camera.loading_finished
+                        && Camera.position.x < 100
+                        && Camera.position.x > -100
+                && Camera.position.z < 2000
+        ) {
             isPlayVideo = true;
-       }
-        else {
+        } else {
             isPlayVideo = false;
         }
 
         if (isPlayVideo) {
             getTextures().get("video/video" + (int) counter).bind();
-        }
-        else {
+        } else {
             getTextures().get("2021").bind();
             counter = 1;
         }
@@ -70,10 +72,11 @@ public class TheMostImportantImage extends SceneObject {
 //        GL11.glEnable(GL11.GL_LIGHTING); // switch lighting off
         ;
         counter += 0.5f;
-        if (counter >= 803)
+        if (counter >= 715)
             counter = 1.0f;
 
     }
+
     @Override
     public void drawShadow() {
 

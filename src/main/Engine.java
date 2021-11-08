@@ -1,6 +1,7 @@
 package main;
 
 import Scene.Objects.Player;
+import Scene.Objects.TheMostImportantImage;
 import Scene.Scene;
 import Scene.base.SceneObject;
 import base.GraphicsObjects.Utils;
@@ -9,26 +10,22 @@ import base.RenderProgramStatement;
 import org.lwjgl.BufferUtils;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.DisplayMode;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.PixelFormat;
+import org.lwjgl.opengl.*;
 import org.lwjgl.util.vector.Matrix4f;
-import org.lwjgl.util.vector.Vector3f;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
+import org.w3c.dom.stylesheets.DocumentStyle;
 
 import java.nio.FloatBuffer;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 import static main.Main.camera;
-import static org.lwjgl.opengl.ARBFramebufferObject.*;
 import static org.lwjgl.opengl.ARBShadowAmbient.GL_TEXTURE_COMPARE_FAIL_VALUE_ARB;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL12.GL_CLAMP_TO_EDGE;
-import static org.lwjgl.opengl.GL14.*;
-import static org.lwjgl.util.glu.GLU.*;
+import static org.lwjgl.opengl.GL14.GL_DEPTH_TEXTURE_MODE;
+import static org.lwjgl.util.glu.GLU.gluPerspective;
 
 /**
  * @Author: WangYuyang
@@ -95,6 +92,10 @@ public class Engine {
      * The distance where the fog stops appearing (fully black here)
      */
     private static final float fogFar = zFar;
+    FloatBuffer noAmbient = BufferUtils.createFloatBuffer(4);
+    FloatBuffer diffuse = BufferUtils.createFloatBuffer(4);
+    FloatBuffer spec = BufferUtils.createFloatBuffer(4);
+    FloatBuffer direction = BufferUtils.createFloatBuffer(4);
     /**
      * frames per second
      */
@@ -111,6 +112,7 @@ public class Engine {
             Display.setDisplayMode(new DisplayMode(WIDTH, HEIGHT));
             Display.create(
                     new PixelFormat()
+//                    new ContextAttribs(3, 3).withProfileCore(true)
             );
             System.out.println("Your OpenGL version is " + GL11.glGetString(GL11.GL_VERSION));
             Display.setTitle("CG Project 1 Loading.......");
@@ -143,7 +145,8 @@ public class Engine {
     }
 
     public void init() {
-//        Display.setVSyncEnabled(true);
+        Display.setVSyncEnabled(true);
+        glEnable(GL13.GL_MULTISAMPLE);
 //        Display.setResizable(true);
         glClear(GL_COLOR_BUFFER_BIT);
         shadowTexture = glGenTextures();
@@ -192,11 +195,20 @@ public class Engine {
         lightPos2.put(0f).put(10000f).put(0).put(0).flip();
 
         lightPos3 = BufferUtils.createFloatBuffer(4);
-        lightPos3.put(0).put(10000f).put(-5000).put(0).flip();
+        lightPos3.put(0).put(3000f).put(0).put(1).flip();
 
         lightPos4 = BufferUtils.createFloatBuffer(4);
         lightPos4.put(-10000f).put(10000f).put(-5000).put(0).flip();
 
+        noAmbient.put(new float[]{0.2f, 0.2f, 0.2f, 1.0f});
+        noAmbient.rewind();
+
+        diffuse.put(new float[]{1.0f, 1.0f, 1.0f, 1.0f});
+        diffuse.rewind();
+        spec.put(new float[]{1.0f, 1.0f, 1.0f, 1.0f});
+        spec.rewind();
+        direction.put(new float[]{0f, 0f, -1f, 0});
+        direction.rewind();
     }
 
     public void enterModelView() {
@@ -212,22 +224,38 @@ public class Engine {
     public void setLight() {
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
 
-        GL11.glLight(GL11.GL_LIGHT0, GL11.GL_POSITION, lightPosition); // specify the
-        GL11.glEnable(GL11.GL_LIGHT0); // SUN_light
 
+        GL11.glLight(GL11.GL_LIGHT0, GL11.GL_POSITION, lightPosition); // specify the
+
+        GL11.glLightf(GL11.GL_LIGHT0, GL11.GL_QUADRATIC_ATTENUATION, 0.5f); // specify the
+        if (!TheMostImportantImage.isPlayVideo)
+            GL11.glEnable(GL11.GL_LIGHT0); // SUN_light
+        else
+            GL11.glDisable(GL11.GL_LIGHT0); // SUN_light
+//        GL11.glDisable(GL11.GL_LIGHT0); // SUN_light
 
         GL11.glLight(GL11.GL_LIGHT1, GL_POSITION, lightPos2);
         float amb[] = {0.2f, 0.2f, 0.2f, 1.0f};
         GL11.glLight(GL11.GL_LIGHT1, GL11.GL_DIFFUSE, Utils.ConvertForGL(spot));
         GL11.glLight(GL11.GL_LIGHT1, GL_AMBIENT, Utils.ConvertForGL(amb));
-        GL11.glEnable(GL11.GL_LIGHT1);
+//        GL11.glEnable(GL11.GL_LIGHT1);
+//        float light3_DIFFUSE[] = {1f, 1f, 1f, 1.0f};
+//        float light3_SPECULAR[] = {1f, 1, 1f, 1.0f};
+        GL11.glLight(GL11.GL_LIGHT2, GL_POSITION, lightPos3);
+        GL11.glLight(GL11.GL_LIGHT2, GL_DIFFUSE, diffuse);
+        GL11.glLight(GL11.GL_LIGHT2, GL_SPECULAR, spec);
+        GL11.glLight(GL11.GL_LIGHT2, GL_SPOT_DIRECTION, direction);
+        GL11.glLightf(GL11.GL_LIGHT2, GL_SPOT_CUTOFF, 40);
 
+        if (TheMostImportantImage.isPlayVideo)
+            GL11.glEnable(GL11.GL_LIGHT2); //Spotlight
+        else
+            GL11.glDisable(GL11.GL_LIGHT2); // Spotlight
+
+//
+//
+//
         float[] fLightSpecular = {1f, 1f, 1f, 1f};
-//        GL11.glLight(GL11.GL_LIGHT2, GL_POSITION, lightPos3);
-//        GL11.glEnable(GL11.GL_LIGHT2);
-//
-//
-//
         GL11.glLight(GL11.GL_LIGHT3, GL_POSITION, lightPos4);
         GL11.glLight(GL11.GL_LIGHT3, GL_SPECULAR, Utils.ConvertForGL(fLightSpecular));
         GL11.glEnable(GL11.GL_LIGHT3);
@@ -302,6 +330,7 @@ public class Engine {
 
     private void loadTexture() {
         TextureLoader.loadTexture(textures);
+        Display.setTitle("CG Project 1 Loading....... Texture loaded okay");
         System.out.println("Texture loaded okay ");
     }
 
