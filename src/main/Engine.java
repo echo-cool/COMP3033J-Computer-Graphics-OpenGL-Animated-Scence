@@ -296,6 +296,7 @@ public class Engine {
         Display.sync(FPS);
     }
 
+
     private void checkInput() {
         Vector4f v = Scene.player.checkInput();
         Boolean ishit = false;

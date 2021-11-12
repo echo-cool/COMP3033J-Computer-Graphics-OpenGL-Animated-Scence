@@ -39,6 +39,7 @@ public class Main {
     private static ArrayList<Vector4f> key_positions = new ArrayList<>();
     private static ArrayList<Vector4f> key_rotations = new ArrayList<>();
 
+
     public static void main(String[] args) {
         engine = new Engine(WIDTH, HEIGHT);
         glPointSize(8);
@@ -48,9 +49,9 @@ public class Main {
         engine.initTimer();
 
 
-//        camera.setCamera(new Vector4f(
-//                0, 2800, 0, 0
-//        ));
+        camera.setCamera(new Vector4f(
+                0, 2800, 0, 0
+        ));
         Display.setTitle("CG Project 1 Loading....... Scene: Init");
         Scene.initScene(sceneManager, Engine.getTextures());
         Scene.initBackground(backgroundManager, Engine.getTextures());
@@ -92,8 +93,14 @@ public class Main {
         key_positions.add(new Vector4f(0, 500, -1000, 4000));
         key_rotations.add(new Vector4f(20, 0, 0, 4000));
 
-        key_positions.add(new Vector4f(0, 0, 0, 3000));
-        key_rotations.add(new Vector4f(10, 180, 0, 3000));
+        key_positions.add(new Vector4f(0, 0, 0, 5000));
+        key_rotations.add(new Vector4f(10, 180, 0, 5000));
+//
+//        key_positions.add(new Vector4f(0, 10000, 0, 3000));
+//        key_rotations.add(new Vector4f(90, 180, 0, 3000));
+//
+//        key_positions.add(new Vector4f(0, 0, 0, 3000));
+//        key_rotations.add(new Vector4f(10, 180, 0, 3000));
 
         Runnable cameraRunnable = new Runnable() {
             @Override
@@ -101,7 +108,7 @@ public class Main {
                 Camera.position = new Vector4f(
                         0, 12000, 0, 0
                 );
-                Camera.rotation = new Vector3f(10,0,0);
+                Camera.rotation = new Vector3f(10, 0, 0);
                 for (int i = 0; i < key_positions.size(); i++) {
                     Vector4f key_position = key_positions.get(i);
                     Vector4f key_rotation = key_rotations.get(i);
@@ -134,13 +141,13 @@ public class Main {
                     float count = 0f;
                     while (count < key_position.a) {
 
-                        Current_position.x = (float) (origin_position.x + position_x_distance_step * count * Math.sin(count/key_position.a * Math.PI/2));
-                        Current_position.y = (float) (origin_position.y + position_y_distance_step * count * Math.sin(count/key_position.a * Math.PI/2));
-                        Current_position.z = (float) (origin_position.z + position_z_distance_step * count * Math.sin(count/key_position.a * Math.PI/2));
+                        Current_position.x = (float) (origin_position.x + position_x_distance_step * count * Math.sin(count / key_position.a * Math.PI / 2));
+                        Current_position.y = (float) (origin_position.y + position_y_distance_step * count * Math.sin(count / key_position.a * Math.PI / 2));
+                        Current_position.z = (float) (origin_position.z + position_z_distance_step * count * Math.sin(count / key_position.a * Math.PI / 2));
 
-                        Current_rotation.x = (float) (origin_rotation.x + rotation_x_distance_step * count * Math.sin(count/key_position.a * Math.PI/2));
-                        Current_rotation.y = (float) (origin_rotation.y + rotation_y_distance_step * count * Math.sin(count/key_position.a * Math.PI/2));
-                        Current_rotation.z = (float) (origin_rotation.z + rotation_z_distance_step * count * Math.sin(count/key_position.a * Math.PI/2));
+                        Current_rotation.x = (float) (origin_rotation.x + rotation_x_distance_step * count * Math.sin(count / key_position.a * Math.PI / 2));
+                        Current_rotation.y = (float) (origin_rotation.y + rotation_y_distance_step * count * Math.sin(count / key_position.a * Math.PI / 2));
+                        Current_rotation.z = (float) (origin_rotation.z + rotation_z_distance_step * count * Math.sin(count / key_position.a * Math.PI / 2));
 //                        Current_rotation.x = (float) (rotation_x_distance_step * count * Math.sin(count/key_position.a * Math.PI/2));
 //                        Current_rotation.y = (float) (rotation_y_distance_step * count * Math.sin(count/key_position.a * Math.PI/2));
 //                        Current_rotation.z = (float) (rotation_z_distance_step * count * Math.sin(count/key_position.a * Math.PI/2));
@@ -276,7 +283,7 @@ public class Main {
                 Camera.maxLookUp = 360;
 
             }
-            if(Keyboard.isKeyDown(Keyboard.KEY_0)){
+            if (Keyboard.isKeyDown(Keyboard.KEY_0)) {
                 new Thread(cameraRunnable).start();
             }
             if (isBigScreen) {

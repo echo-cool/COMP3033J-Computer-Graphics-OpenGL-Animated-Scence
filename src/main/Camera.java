@@ -2,12 +2,15 @@ package main;
 
 import Scene.Objects.Player;
 import base.GraphicsObjects.Vector4f;
+import org.lwjgl.BufferUtils;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector3f;
 
-import static org.lwjgl.opengl.GL11.glRotatef;
-import static org.lwjgl.opengl.GL11.glTranslatef;
+import java.nio.FloatBuffer;
+
+import static org.lwjgl.opengl.GL11.*;
 
 /**
  * @Author: WangYuyang
@@ -22,39 +25,80 @@ public class Camera {
     public static int OrthoNumber = 0; // using this for screen size, making a window of 1200 x 800 so aspect ratio 3:2
     public static Vector3f rotation = new Vector3f(10, 180, 0);
     public static Vector4f position = new Vector4f(0, 0, 0, 0);
+    public static float rotationX = -20;
+    public static Boolean loading_finished = false;
+    public static FloatBuffer lightPos;
     private static int mouseSpeed = 1;
     private static Vector4f inital_camera_position = new Vector4f();
-    public static float rotationX = -20;
+    private static FloatBuffer noAmbient = BufferUtils.createFloatBuffer(4);
+    private static FloatBuffer diffuse = BufferUtils.createFloatBuffer(4);
+    private static FloatBuffer spec = BufferUtils.createFloatBuffer(4);
+    private static FloatBuffer direction = BufferUtils.createFloatBuffer(4);
     private float rotationY = 0;
     private float rotationZ = 0;
     private boolean MouseOnepressed = true;
     private boolean dragMode = false;
-    public static Boolean loading_finished = false;
 
 
     public Camera() {
     }
 
+    public static void setPosition(Vector4f position) {
+        Camera.position = position;
+    }
+
     public void setCamera(Vector4f v) {
         inital_camera_position = v;
-
+        noAmbient.put(new float[]{0.2f, 0.2f, 0.2f, 1.0f});
+        noAmbient.rewind();
+        diffuse.put(new float[]{1.0f, 1.0f, 1.0f, 1.0f});
+        diffuse.rewind();
+        spec.put(new float[]{1.0f, 1.0f, 1.0f, 1.0f});
+        spec.rewind();
+        direction.put(new float[]{0f, 0f, -1f, 0});
+        direction.rewind();
+        lightPos = BufferUtils.createFloatBuffer(4);
+        lightPos.put(0).put(3000f).put(0).put(1).flip();
+        GL11.glLight(GL11.GL_LIGHT7, GL_POSITION, lightPos);
+        GL11.glLight(GL11.GL_LIGHT7, GL_DIFFUSE, diffuse);
+        GL11.glLight(GL11.GL_LIGHT7, GL_SPECULAR, spec);
+        GL11.glLight(GL11.GL_LIGHT7, GL_SPOT_DIRECTION, direction);
+        GL11.glLightf(GL11.GL_LIGHT7, GL_SPOT_CUTOFF, 45);
 //        glRotatef(rotationX, 1, 0, 0);
 //        glRotatef(rotationY, 0, 1, 0);
 //        glRotatef(rotationZ, 0, 0, 1);
+
     }
 
-    public void updatePosition(){
+
+    public void updatePosition() {
         glTranslatef(inital_camera_position.x, inital_camera_position.y, inital_camera_position.z);
         glRotatef(rotation.x, 1, 0, 0);
         glRotatef(rotation.y, 0, 1, 0);
         glRotatef(-rotation.z, 0, 0, 1);
         glTranslatef(position.x, -position.y, position.z);
 
+//        if (!loading_finished) {
+//            Vector4f directionv = new Vector4f(0, 0, -1, 0);
+//            float new_x = directionv.length() * (float) Math.cos(Math.toRadians(rotation.y - 90));
+//            float new_z = directionv.length() * (float) Math.sin(Math.toRadians(rotation.y - 90));
+////        float new_y = directionv.length() * (float)Math.sin(Math.toRadians(rotation.x));
+//            directionv = new Vector4f(new_x, 0, new_z, 0);
+//            lightPos.put(position.x).put(position.y).put(position.z).put(1).flip();
+//            direction.put(new float[]{directionv.x, directionv.y, directionv.z, 0});
+//            direction.rewind();
+//            GL11.glLight(GL11.GL_LIGHT7, GL_POSITION, lightPos);
+//            GL11.glLight(GL11.GL_LIGHT7, GL_SPOT_DIRECTION, direction);
+//            glEnable(GL_LIGHT7);
+//        } else {
+//            glDisable(GL_LIGHT7);
+//        }
+
         Main.engine.setOrtho(Camera.OrthoNumber);
     }
 
     public void update() {
-        float speed = Player.frame_delta/1.6f;
+        float speed = Player.frame_delta / 1.6f;
         if (Keyboard.isKeyDown(Keyboard.KEY_W)) {
             Vector4f move = new Vector4f();
             move = move.PlusVector(new Vector4f(0, 0, -speed, 0));
@@ -112,18 +156,12 @@ public class Camera {
         }
 
 
-
-
 //        GL11.glMatrixMode(GL11.GL_MODELVIEW);
 //        FloatBuffer CurrentMatrix = BufferUtils.createFloatBuffer(16);
 //        GL11.glGetFloat(GL11.GL_MODELVIEW_MATRIX, CurrentMatrix);
 //        MyArcball.getMatrix(CurrentMatrix);
 //        GL11.glMultMatrix(CurrentMatrix);
 
-    }
-
-    public static void setPosition(Vector4f position) {
-        Camera.position = position;
     }
 
     public void update_mouse() {
@@ -135,7 +173,6 @@ public class Camera {
         int MouseDY = Mouse.getDY();
         boolean MouseButtonPressed = Mouse.isButtonDown(0);
         boolean isGrabbed = Mouse.isGrabbed();
-
 
 
         if (WheelPosition > 0) {
