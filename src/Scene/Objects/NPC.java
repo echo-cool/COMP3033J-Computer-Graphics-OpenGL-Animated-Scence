@@ -217,7 +217,8 @@ public class NPC extends SceneObject {
             //Enable TEXTURE
 
             //set texture Parameters
-            GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+            GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+            GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
             s1.DrawTexSphere();
             //Draw finish Disable TEXTURE
@@ -239,7 +240,8 @@ public class NPC extends SceneObject {
                 getTextures().get("tnt_side").bind(); //set texture
                 //Enable TEXTURE
                 ;
-                GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+                GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+                GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
                 s2.DrawTexSphere();
                 ; //disable texture

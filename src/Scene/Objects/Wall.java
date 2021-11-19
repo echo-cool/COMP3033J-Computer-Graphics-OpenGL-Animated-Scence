@@ -11,6 +11,9 @@ import org.newdawn.slick.opengl.Texture;
 
 import java.util.HashMap;
 
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_NEAREST;
+
 /**
  * @Author: WangYuyang
  * @Date: 2021/11/2-16:01
@@ -46,8 +49,8 @@ public class Wall extends SceneObject {
         Color.white.bind();
         //bind texture
 //        getTextures().get("default_dirt").bind();
-        ;
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         MyGrid.DrawTexCube();
         ;
     }

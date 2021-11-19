@@ -11,6 +11,9 @@ import org.newdawn.slick.opengl.Texture;
 
 import java.util.HashMap;
 
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_NEAREST;
+
 /**
  * @Author: WangYuyang
  * @Date: 2021/11/2-15:06
@@ -33,7 +36,8 @@ public class TNT_Door extends SceneObject {
     @Override
     public void draw(Integer frame_delta) {
         ;
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         Color.white.bind();
         getTextures().get("tnt_side").bind();
         cube1.DrawTexCube();

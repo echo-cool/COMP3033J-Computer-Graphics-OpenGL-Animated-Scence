@@ -78,4 +78,9 @@ public class TextureLoader {
                 org.newdawn.slick.opengl.TextureLoader.getTexture(fileType, ResourceLoader.getResourceAsStream("res/" + filename))
         );
     }
+
+    public static Texture getTexture(String filename, String fileType) throws IOException {
+        String key_name = filename.split("\\.")[0];
+        return org.newdawn.slick.opengl.TextureLoader.getTexture(fileType, ResourceLoader.getResourceAsStream("res/" + filename));
+    }
 }

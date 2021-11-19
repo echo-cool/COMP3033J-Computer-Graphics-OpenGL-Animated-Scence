@@ -12,7 +12,8 @@ import org.newdawn.slick.opengl.Texture;
 
 import java.util.HashMap;
 
-import static org.lwjgl.opengl.GL11.glBindTexture;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_LINEAR;
 
 /**
  * @Author: WangYuyang
@@ -48,12 +49,16 @@ public class Ground extends SceneObject {
                 GL11.GL_REPEAT);
         //bind texture
 //        Color.blue.bind();
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         getTextures().get("wood").bind();
 //
 //        glBindTexture(GL11.GL_TEXTURE_2D, Engine.shadowTexture);
+        glDisable(GL_LIGHTING);
         cube.DrawTexCube();
 //        glBindTexture(GL11.GL_TEXTURE_2D, 0);
         ;
+        glEnable(GL_LIGHTING);
 
     }
     @Override

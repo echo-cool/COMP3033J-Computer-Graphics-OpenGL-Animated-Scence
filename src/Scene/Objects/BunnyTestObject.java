@@ -5,6 +5,7 @@ import base.GraphicsObjects.Point4f;
 import base.GraphicsObjects.Vector4f;
 import base.objects3D.BunnyObjTest;
 import main.Engine;
+import main.ShaderLoader;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
@@ -13,6 +14,7 @@ import java.util.HashMap;
 
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.glCallList;
+import static org.lwjgl.opengl.GL20.glUseProgram;
 
 /**
  * @Author: WangYuyang
@@ -99,7 +101,9 @@ public class BunnyTestObject extends SceneObject {
 //        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
         GL11.glRotatef(angle + 180, 0, 1, 0);
         Color.white.bind();
+//        glUseProgram(ShaderLoader.shaders.get(0));
         glCallList(BunnyObjTest.getBunnyDisplayList());
+//        glUseProgram(0);
     }
     @Override
     public void drawShadow() {

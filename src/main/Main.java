@@ -47,6 +47,8 @@ public class Main {
         engine.setOrtho(Camera.OrthoNumber);
         engine.enterModelView();
         engine.initTimer();
+//        String s;
+//        s.equalsIgnoreCase()
 
 
         camera.setCamera(new Vector4f(
@@ -90,6 +92,19 @@ public class Main {
         key_rotations.add(new Vector4f(0, -180, 0, 2000));
 
 
+        key_positions.add(new Vector4f(0, 7000, 0, 2000));
+        key_rotations.add(new Vector4f(90, 0, 0, 2000));
+
+        key_positions.add(new Vector4f(0, 7000, 0, 2000));
+        key_rotations.add(new Vector4f(90, 180, 0, 2000));
+
+        key_positions.add(new Vector4f(0, 7000, 0, 1000));
+        key_rotations.add(new Vector4f(90, 180, 45, 1000));
+
+        key_positions.add(new Vector4f(0, 7000, 0, 1000));
+        key_rotations.add(new Vector4f(90, 180, -45, 1000));
+
+
         key_positions.add(new Vector4f(0, 500, -1000, 4000));
         key_rotations.add(new Vector4f(20, 0, 0, 4000));
 
@@ -116,10 +131,10 @@ public class Main {
                     Vector3f origin_rotation = new Vector3f(Camera.rotation.x, Camera.rotation.y, Camera.rotation.z);
                     Vector4f Current_position = Camera.position;
                     Vector3f Current_rotation = Camera.rotation;
-                    System.out.println("Current_position: " + Current_position);
-                    System.out.println("Current_rotation: " + Current_rotation);
-                    System.out.println("key_position: " + key_position);
-                    System.out.println("key_rotation: " + key_rotation);
+//                    System.out.println("Current_position: " + Current_position);
+//                    System.out.println("Current_rotation: " + Current_rotation);
+//                    System.out.println("key_position: " + key_position);
+//                    System.out.println("key_rotation: " + key_rotation);
                     float position_x_distance = key_position.x - Current_position.x;
                     float position_y_distance = key_position.y - Current_position.y;
                     float position_z_distance = key_position.z - Current_position.z;
@@ -132,12 +147,12 @@ public class Main {
                     float rotation_x_distance_step = rotation_x_distance / key_position.a;
                     float rotation_y_distance_step = rotation_y_distance / key_position.a;
                     float rotation_z_distance_step = rotation_z_distance / key_position.a;
-                    System.out.println("position_x_distance_step: " + position_x_distance_step);
-                    System.out.println("position_y_distance_step: " + position_y_distance_step);
-                    System.out.println("position_z_distance_step: " + position_z_distance_step);
-                    System.out.println("rotation_x_distance_step: " + rotation_x_distance_step);
-                    System.out.println("rotation_y_distance_step: " + rotation_y_distance_step);
-                    System.out.println("rotation_z_distance_step: " + rotation_z_distance_step);
+//                    System.out.println("position_x_distance_step: " + position_x_distance_step);
+//                    System.out.println("position_y_distance_step: " + position_y_distance_step);
+//                    System.out.println("position_z_distance_step: " + position_z_distance_step);
+//                    System.out.println("rotation_x_distance_step: " + rotation_x_distance_step);
+//                    System.out.println("rotation_y_distance_step: " + rotation_y_distance_step);
+//                    System.out.println("rotation_z_distance_step: " + rotation_z_distance_step);
                     float count = 0f;
                     while (count < key_position.a) {
 
@@ -158,13 +173,13 @@ public class Main {
                             e.printStackTrace();
                         }
                     }
-                    System.out.println(Current_position);
-                    System.out.println(Current_rotation);
+//                    System.out.println(Current_position);
+//                    System.out.println(Current_rotation);
                     Current_position = key_position;
                     Current_rotation = new Vector3f(key_rotation.x, key_rotation.y, key_rotation.z);
-                    System.out.println(Current_position);
-                    System.out.println(Current_rotation);
-                    System.out.println("-------------------------------------------------");
+//                    System.out.println(Current_position);
+//                    System.out.println(Current_rotation);
+//                    System.out.println("-------------------------------------------------");
                 }
                 Camera.loading_finished = true;
             }

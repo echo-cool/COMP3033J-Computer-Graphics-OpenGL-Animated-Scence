@@ -68,7 +68,8 @@ public class BookTable extends SceneObject {
         GL11.glTexParameteri(
                 GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S,
                 GL11.GL_CLAMP);
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         GL11.glPushMatrix();
         {
             GL11.glTranslatef(0, scale_number, 0);

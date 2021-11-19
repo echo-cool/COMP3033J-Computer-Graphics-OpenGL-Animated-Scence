@@ -101,7 +101,8 @@ public class Book extends SceneObject {
         Color.white.bind();
         glRotatef(yRotation, 0, 1, 0);
         getTextures().get("warped_door_bottom").bind();
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         GL11.glPushMatrix();
         {
             glRotatef(-45, 1, 0, 0);

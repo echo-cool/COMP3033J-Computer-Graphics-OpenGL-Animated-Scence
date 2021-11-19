@@ -11,6 +11,9 @@ import org.newdawn.slick.opengl.Texture;
 
 import java.util.HashMap;
 
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_NEAREST;
+
 /**
  * @Author: WangYuyang
  * @Date: 2021/11/2-16:34
@@ -34,7 +37,8 @@ public class LAVA_Door extends SceneObject {
         Color.white.bind();
         getTextures().get("default_lava").bind();
         ;
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         GL11.glTranslatef(-2f, 0f, 0);
         cube.DrawTexCube();
         //LAVA

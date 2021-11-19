@@ -10,6 +10,9 @@ import org.newdawn.slick.opengl.Texture;
 
 import java.util.HashMap;
 
+import static org.lwjgl.opengl.GL11.GL_NEAREST;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_MIN_FILTER;
+
 /**
  * @Author: WangYuyang
  * @Date: 2021/11/5-23:09
@@ -45,7 +48,8 @@ public class Copyleft extends SceneObject {
         getTextures().get("copyleft").bind();
         ;
 //        GL11.glDisable(GL11.GL_LIGHTING); // switch lighting off
-        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         cube.DrawTexCube();
 //        GL11.glEnable(GL11.GL_LIGHTING); // switch lighting off
         ;

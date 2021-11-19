@@ -14,13 +14,14 @@ import org.lwjgl.opengl.*;
 import org.lwjgl.util.vector.Matrix4f;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
-import org.w3c.dom.stylesheets.DocumentStyle;
 
+import java.io.IOException;
 import java.nio.FloatBuffer;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 import static main.Main.camera;
+import static main.ShaderLoader.loadShaders;
 import static org.lwjgl.opengl.ARBShadowAmbient.GL_TEXTURE_COMPARE_FAIL_VALUE_ARB;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL12.GL_CLAMP_TO_EDGE;
@@ -151,6 +152,41 @@ public class Engine {
         glClear(GL_COLOR_BUFFER_BIT);
         shadowTexture = glGenTextures();
 
+        GL11.glMatrixMode(GL_PROJECTION);
+        GL11.glLoadIdentity();
+        GL11.glOrtho(0, 1600, 800, 0, 1, -1);
+        GL11.glMatrixMode(GL_MODELVIEW);
+        Texture loading = null;
+        try {
+            loading = TextureLoader.getTexture("2021.png", "PNG");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Color.white.bind();
+        loading.bind();
+        glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
+        GL11.glTexParameteri(
+                GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T,
+                GL11.GL_CLAMP);
+        GL11.glTexParameteri(
+                GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S,
+                GL11.GL_CLAMP);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glEnable(GL_TEXTURE_2D);
+        glBegin(GL_QUADS);
+        glTexCoord2f(0, 0);
+        glVertex2i(0, 0);
+        glTexCoord2f(1, 0);
+        glVertex2i(1600, 0);
+        glTexCoord2f(1, 1);
+        glVertex2i(1600, 800);
+        glTexCoord2f(0, 1);
+        glVertex2i(0, 800);
+        glEnd();
+
+        Display.update();
+
 
 //        glEnable(GL_FOG);
 //        {
@@ -165,6 +201,7 @@ public class Engine {
 //            glFogf(GL_FOG_END, fogFar);
 //            glFogf(GL_FOG_DENSITY, 0.005f);
 //        }
+        loadShaders();
         loadTexture();
 //        setUpFrameBufferObject();
 
