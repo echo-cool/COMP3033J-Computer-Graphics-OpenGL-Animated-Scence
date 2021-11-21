@@ -145,6 +145,12 @@ public class Player extends SceneObject {
                         t = (current_time - start_time) / 10;
                         h = (speed * t - 0.5 * g * t * t) / 10000;
                         jump_height = (float) h;
+                        setShadowOffset(new Vector4f(
+                                -jump_height * 90,
+                                0,
+                                -jump_height * 90,
+                                0
+                        ));
                         long end = System.currentTimeMillis();
                         while (end - start < 16) {
                             try {

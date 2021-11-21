@@ -24,6 +24,7 @@ public class ShaderLoader {
 
     public static void loadShaders() {
         loadShader(0, "shader.vs", "shader.fs");
+//        loadShader(1, "invert.vsh", "invert.fsh");
 
 
         System.out.println("Shaders load ok.");

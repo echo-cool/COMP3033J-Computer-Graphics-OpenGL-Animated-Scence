@@ -42,15 +42,6 @@ import static org.lwjgl.opengl.GL15.*;
 
 public class OBJLoader {
 
-
-    private static FloatBuffer reserveData(int size) {
-        return BufferUtils.createFloatBuffer(size);
-    }
-
-    private static float[] asFloats(Vector3f v) {
-        return new float[]{v.x, v.y, v.z};
-    }
-
     private static Vector3f parseVertex(String line) {
         String[] xyz = line.split(" ");
         float x = Float.valueOf(xyz[1]);

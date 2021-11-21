@@ -4,14 +4,15 @@ import Scene.base.SceneObject;
 import base.GraphicsObjects.Point4f;
 import base.GraphicsObjects.Vector4f;
 import base.objects3D.DisplayListTexCube;
+import main.Engine;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
 
 import java.util.HashMap;
 
-import static org.lwjgl.opengl.GL11.GL_NEAREST;
-import static org.lwjgl.opengl.GL11.GL_TEXTURE_MIN_FILTER;
+import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_2D;
 
 /**
  * @Author: WangYuyang
@@ -46,11 +47,13 @@ public class Copyleft extends SceneObject {
         Color.white.bind();
         //bind texture
         getTextures().get("copyleft").bind();
+//        glBindTexture(GL_TEXTURE_2D, Engine.shadowTexture);
         ;
 //        GL11.glDisable(GL11.GL_LIGHTING); // switch lighting off
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         cube.DrawTexCube();
+//        glBindTexture(GL_TEXTURE_2D, 0);
 //        GL11.glEnable(GL11.GL_LIGHTING); // switch lighting off
         ;
 

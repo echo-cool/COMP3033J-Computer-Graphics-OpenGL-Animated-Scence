@@ -28,6 +28,7 @@ public abstract class SceneObject implements IDrawable, IMovable, IScalable, IHi
     private Vector4f rotation = new Vector4f();
     private HashMap<String, Texture> textures = new LinkedHashMap<>();
     private DisplayListOval shadow;
+    private Vector4f shadowOffset = new Vector4f();
 
     public SceneObject(Point4f origin, Point4f position, Vector4f scale) {
         this.origin = new Point4f(origin.x, origin.y, origin.z, 0);
@@ -130,7 +131,7 @@ public abstract class SceneObject implements IDrawable, IMovable, IScalable, IHi
         GL11.glTranslatef(position.x, position.y, position.z);
         GL11.glScalef(1 / scale.x, 1 / scale.y, 1 / scale.z);
         GL11.glTranslatef(0, -origin.y, 0);
-        GL11.glTranslatef(-140f, 2f, -140f);
+        GL11.glTranslatef(-140f + shadowOffset.x, 2f + shadowOffset.y, -140f + shadowOffset.z);
         GL11.glRotatef(-45, 0,1,0);
         GL11.glScalef(2f, 0f, 1f);
 
@@ -202,5 +203,13 @@ public abstract class SceneObject implements IDrawable, IMovable, IScalable, IHi
 
     public Vector4f getRotation() {
         return rotation;
+    }
+
+    public Vector4f getShadowOffset() {
+        return shadowOffset;
+    }
+
+    public void setShadowOffset(Vector4f shadowOffset) {
+        this.shadowOffset = shadowOffset;
     }
 }

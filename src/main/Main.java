@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 import static org.lwjgl.opengl.GL11.glLoadIdentity;
 import static org.lwjgl.opengl.GL11.glPointSize;
+import static org.lwjgl.opengl.GL20.glUseProgram;
 
 /**
  * @Author: WangYuyang
@@ -91,18 +92,18 @@ public class Main {
         key_positions.add(new Vector4f(-3000, 100, 5000, 2000));
         key_rotations.add(new Vector4f(0, -180, 0, 2000));
 
-
-        key_positions.add(new Vector4f(0, 7000, 0, 2000));
-        key_rotations.add(new Vector4f(90, 0, 0, 2000));
-
-        key_positions.add(new Vector4f(0, 7000, 0, 2000));
-        key_rotations.add(new Vector4f(90, 180, 0, 2000));
-
-        key_positions.add(new Vector4f(0, 7000, 0, 1000));
-        key_rotations.add(new Vector4f(90, 180, 45, 1000));
-
-        key_positions.add(new Vector4f(0, 7000, 0, 1000));
-        key_rotations.add(new Vector4f(90, 180, -45, 1000));
+//
+//        key_positions.add(new Vector4f(0, 7000, 0, 2000));
+//        key_rotations.add(new Vector4f(90, 0, 0, 2000));
+//
+//        key_positions.add(new Vector4f(0, 7000, 0, 2000));
+//        key_rotations.add(new Vector4f(90, 180, 0, 2000));
+//
+//        key_positions.add(new Vector4f(0, 7000, 0, 1000));
+//        key_rotations.add(new Vector4f(90, 180, 45, 1000));
+//
+//        key_positions.add(new Vector4f(0, 7000, 0, 1000));
+//        key_rotations.add(new Vector4f(90, 180, -45, 1000));
 
 
         key_positions.add(new Vector4f(0, 500, -1000, 4000));
