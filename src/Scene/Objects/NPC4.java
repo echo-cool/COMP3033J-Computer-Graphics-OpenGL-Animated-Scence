@@ -4,15 +4,19 @@ import Scene.base.SceneObject;
 import base.GraphicsObjects.Point4f;
 import base.GraphicsObjects.Utils;
 import base.GraphicsObjects.Vector4f;
-import base.objects3D.*;
+import base.objects3D.DisplayListCylinder;
+import base.objects3D.DisplayListOval;
+import base.objects3D.DisplayListTexSphere;
 import main.Engine;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
 
 import java.util.HashMap;
+import java.util.Random;
 
-import static org.lwjgl.opengl.GL11.*;
+import static org.lwjgl.opengl.GL11.GL_NEAREST;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_MIN_FILTER;
 
 /**
  * @Author: WangYuyang
@@ -21,56 +25,29 @@ import static org.lwjgl.opengl.GL11.*;
  * @Package: Scene.Objects
  * @Description:
  **/
-public class NPC extends SceneObject {
+public class NPC4 extends SceneObject {
+    public static int angle_target = 0;
+    public static int angle = 0;
     // basic colours
     static float black[] = {0.0f, 0.0f, 0.0f, 1.0f};
     static float white[] = {1.0f, 1.0f, 1.0f, 1.0f};
-
     static float grey[] = {0.5f, 0.5f, 0.5f, 1.0f};
     static float spot[] = {0.1f, 0.1f, 0.1f, 0.5f};
-
     // primary colours
     static float red[] = {1.0f, 0.0f, 0.0f, 1.0f};
     static float green[] = {0.0f, 1.0f, 0.0f, 1.0f};
     static float blue[] = {0.0f, 0.0f, 1.0f, 1.0f};
-
     // secondary colours
     static float yellow[] = {1.0f, 1.0f, 0.0f, 1.0f};
     static float magenta[] = {1.0f, 0.0f, 1.0f, 1.0f};
     static float cyan[] = {0.0f, 1.0f, 1.0f, 1.0f};
-
     // other colours
     static float orange[] = {1.0f, 0.5f, 0.0f, 1.0f, 1.0f};
     static float brown[] = {0.5f, 0.25f, 0.0f, 1.0f, 1.0f};
     static float dkgreen[] = {0.0f, 0.5f, 0.0f, 1.0f, 1.0f};
     static float pink[] = {1.0f, 0.6f, 0.6f, 1.0f, 1.0f};
-    public static int angle_target = 0;
-    private float delta;
-    private Boolean isWalking = false;
-    private long walkStartTime;
-    private int stopCount = 0;
-    public static int angle = 0;
-    private Boolean isJumping = false;
-    private float jump_height = 0f;
-    public void walk() {
-        stopCount = 0;
-        if (isWalking == false) {
-            isWalking = true;
-            walkStartTime = Engine.getTimePassed();
-//            System.out.println(walkStartTime);
-        }
-        if (isWalking) {
-            this.delta = (Engine.getTimePassed() - walkStartTime) / 10000f;
-        }
-    }
-
-    private float timePassed = Engine.getTimePassed();
-
-
-
-
-    DisplayListTexSphere s1 = new DisplayListTexSphere(0.5f, 32, 32, getTextures().get("wool_pink"));
-    DisplayListTexSphere s2 = new DisplayListTexSphere(0.5f, 32, 32, getTextures().get("tnt_side"));
+    DisplayListTexSphere s1 = new DisplayListTexSphere(0.5f, 32, 32, getTextures().get("warped_door_bottom"));
+    DisplayListTexSphere s2 = new DisplayListTexSphere(0.5f, 32, 32, getTextures().get("warped_door_bottom"));
     DisplayListTexSphere s3 = new DisplayListTexSphere(0.25f, 32, 32, getTextures().get("default_stone"));
     DisplayListTexSphere s4 = new DisplayListTexSphere(0.2f, 32, 32, getTextures().get("default_stone"));
     DisplayListTexSphere s5 = new DisplayListTexSphere(0.2f, 32, 32, getTextures().get("default_stone"));
@@ -94,13 +71,37 @@ public class NPC extends SceneObject {
     DisplayListCylinder c8 = new DisplayListCylinder(0.15f, 0.7f, 32);
     DisplayListCylinder c9 = new DisplayListCylinder(0.15f, 0.7f, 32);
     DisplayListOval shadow = new DisplayListOval(3f, 32);
+    Random random = new Random();
+    private float delta;
+    private Boolean isWalking = false;
+    private long walkStartTime;
+    private int stopCount = 0;
+    private Boolean isJumping = false;
+    private float jump_height = 0f;
+    private float timePassed = Engine.getTimePassed();
 
-    public NPC(Point4f origin, Point4f position, Vector4f scale) {
+    public NPC4(Point4f origin, Point4f position, Vector4f scale) {
         super(origin, position, scale);
     }
 
-    public NPC(Point4f origin, Point4f position, Vector4f scale, HashMap<String, Texture> textures) {
+    public NPC4(Point4f origin, Point4f position, Vector4f scale, HashMap<String, Texture> textures) {
         super(origin, position, scale, textures);
+    }
+
+    public NPC4(Point4f origin, Point4f position, Vector4f scale, Vector4f rotation, HashMap<String, Texture> textures) {
+        super(origin, position, scale, rotation, textures);
+    }
+
+    public void walk() {
+        stopCount = 0;
+        if (isWalking == false) {
+            isWalking = true;
+            walkStartTime = Engine.getTimePassed();
+//            System.out.println(walkStartTime);
+        }
+        if (isWalking) {
+            this.delta = (Engine.getTimePassed() - walkStartTime) / 10000f;
+        }
     }
 
     public void jump(int speed) {
@@ -119,6 +120,12 @@ public class NPC extends SceneObject {
                         t = (current_time - start_time) / 10;
                         h = (speed * t - 0.5 * g * t * t) / 10000;
                         jump_height = (float) h;
+                        setShadowOffset(new Vector4f(
+                                -jump_height * 90,
+                                0,
+                                -jump_height * 90,
+                                0
+                        ));
                         long end = System.currentTimeMillis();
                         while (end - start < 16) {
                             try {
@@ -154,27 +161,27 @@ public class NPC extends SceneObject {
 
     @Override
     public void draw(Integer frame_delta) {
-        timePassed = Engine.getTimePassed()/10000.0f;
-        float speed = frame_delta/160f;
+        timePassed = Engine.getTimePassed() / 10000.0f;
+        float speed = frame_delta / 160f;
 //        System.out.println(speed);
-        walk();
-        if((int) (timePassed % 4) == 0){
-            move(new Vector4f(speed,0,0,0));
-            angle_target = 90;
-
-        }
-        if((int) (timePassed % 4) == 1){
-            move(new Vector4f(0,0,-speed,0));
-            angle_target = 90 + 90;
-        }
-        if((int) (timePassed % 4) == 2){
-            move(new Vector4f(-speed,0,0,0));
-            angle_target = 90 + 90 + 90;
-        }
-        if((int) (timePassed % 4) == 3){
-            move(new Vector4f(0,0,speed,0));
-            angle_target = 90 + 90 + 90 + 90;
-        }
+//        walk();
+//        if((int) (timePassed % 4) == 0){
+//            move(new Vector4f(speed,0,0,0));
+//            angle_target = 90;
+//
+//        }
+//        if((int) (timePassed % 4) == 1){
+//            move(new Vector4f(0,0,-speed,0));
+//            angle_target = 90 + 90;
+//        }
+//        if((int) (timePassed % 4) == 2){
+//            move(new Vector4f(-speed,0,0,0));
+//            angle_target = 90 + 90 + 90;
+//        }
+//        if((int) (timePassed % 4) == 3){
+//            move(new Vector4f(0,0,speed,0));
+//            angle_target = 90 + 90 + 90 + 90;
+//        }
         GL11.glTranslatef(0, jump_height, 0);
         Boolean GoodAnimation = true;
 
@@ -187,12 +194,13 @@ public class NPC extends SceneObject {
         float theta = (float) (delta * 2 * Math.PI) * 8;
         //a variable for anim sync
         float LimbRotation;
-        //two animation
-        if (GoodAnimation) {
-            LimbRotation = (float) Math.sin(theta) * 60;
-        } else {
-            LimbRotation = 0;
-        }
+        LimbRotation = (float) Math.sin(theta) * 60;
+
+        float Rotation = (float) Math.toDegrees(Math.sin(Engine.getTimePassed() / 200f) * Math.PI);
+//        if (random.nextDouble() > 0.8) {
+//            jump((int) (random.nextDouble() * 800));
+//        }
+
 
 //        //a sphere for drawing
 //        Sphere sphere = new Sphere();
@@ -213,7 +221,7 @@ public class NPC extends SceneObject {
             //bind a color texture
             Color.white.bind();
 
-            getTextures().get("wool_pink").bind();
+            getTextures().get("warped_door_bottom").bind();
             //Enable TEXTURE
 
             //set texture Parameters
@@ -221,6 +229,7 @@ public class NPC extends SceneObject {
             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
             s1.DrawTexSphere();
+
             //Draw finish Disable TEXTURE
 
 
@@ -237,7 +246,7 @@ public class NPC extends SceneObject {
                         GL11.GL_REPEAT);
                 Color.white.bind(); //bind color
                 //bind texture
-                getTextures().get("tnt_side").bind(); //set texture
+                getTextures().get("warped_door_bottom").bind(); //set texture
                 //Enable TEXTURE
                 ;
                 GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL_NEAREST);
@@ -248,7 +257,8 @@ public class NPC extends SceneObject {
 
 
 //                sphere.DrawSphere(0.5f, 32, 32);// chest sphere
-                GL11.glRotatef((float) (LimbRotation * 0.2), 0.0f, 0.0f, 1.0f);
+                GL11.glRotatef((float) (Rotation * 0.1), 0.0f, 0.0f, 1.0f);
+//                System.out.println((Rotation));
 //                GL11.glRotatef((float) (LimbRotation * 3), 1f, 1f, 0f);
 
                 // neck
@@ -262,7 +272,6 @@ public class NPC extends SceneObject {
 
                     c1.DrawCylinder();
 
-
                     // head
                     GL11.glColor3f(red[0], red[1], red[2]);
                     GL11.glMaterial(GL11.GL_FRONT, GL11.GL_AMBIENT_AND_DIFFUSE, Utils.ConvertForGL(red));
@@ -274,10 +283,11 @@ public class NPC extends SceneObject {
                                 GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T,
                                 GL11.GL_REPEAT);
                         Color.white.bind();
-                        getTextures().get("new_face2").bind(); //set texture
+                        getTextures().get("new_face3").bind(); //set texture
                         ;
                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
-
+//                        GL11.glRotatef((float) 90, 0.0f, 0f, 1f);
+//                        GL11.glRotatef((float) (Rotation * 0.1), 0.0f, 0.0f, 0.0f);
                         s15.DrawTexSphere();
                         ;
 
@@ -315,11 +325,10 @@ public class NPC extends SceneObject {
                         GL11.glPushMatrix();
                         {
                             GL11.glTranslatef(0.0f, 0.0f, 0.0f);
-                            GL11.glRotatef(20, 0f, 0f, 1f);
-                            GL11.glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
+                            GL11.glRotatef(-20, 0f, 0f, 1f);
+                            GL11.glRotatef(-90, 1.0f, 0.0f, 0.0f);
 
-
-                            GL11.glRotatef(LimbRotation, 1.0f, 0.0f, 0.0f);
+//                            GL11.glRotatef((float) (-Rotation * 0.2), 1.0f, 0.0f, 0.0f);
                             //   GL11.glRotatef(27.5f,0.0f,1.0f,0.0f);
 
                             c2.DrawCylinder();
@@ -350,9 +359,9 @@ public class NPC extends SceneObject {
                                 GL11.glPushMatrix();
                                 {
                                     GL11.glTranslatef(0.0f, 0.0f, 0.0f);
-                                    GL11.glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
+                                    GL11.glRotatef(0f, 1.0f, 0.0f, 0.0f);
                                     //   GL11.glRotatef(90.0f,0.0f,1.0f,0.0f);
-
+//                                    GL11.glRotatef((float) (Rotation * 0.2), 0.0f, 1.0f, 0.0f);
                                     c3.DrawCylinder();
 
                                     // left hand
@@ -391,7 +400,7 @@ public class NPC extends SceneObject {
                     GL11.glMaterial(GL11.GL_FRONT, GL11.GL_AMBIENT_AND_DIFFUSE, Utils.ConvertForGL(blue));
                     GL11.glPushMatrix();
                     {
-                        GL11.glRotatef((float) (LimbRotation * 0.5), 0f, 1f, 0f);
+//                        GL11.glRotatef((float) (Rotation * 0.5), 0f, 0f, 1f);
 
                         GL11.glTranslatef(-0.5f, 0.4f, 0.0f); // move to right arm
                         GL11.glTexParameteri(
@@ -412,14 +421,14 @@ public class NPC extends SceneObject {
                         GL11.glMaterial(GL11.GL_FRONT, GL11.GL_AMBIENT_AND_DIFFUSE, Utils.ConvertForGL(orange));
                         GL11.glPushMatrix();
                         {
-                            GL11.glRotatef(-20, 0f, 0f, 1f);
+                            GL11.glRotatef(20, 0f, 0f, 1f);
                             GL11.glTranslatef(0.0f, 0.0f, 0.0f);
-                            GL11.glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
+                            GL11.glRotatef(-90.0f, 1.0f, 0.0f, 0.0f);
 
 
                             GL11.glRotatef(-LimbRotation, 1.0f, 0.0f, 0.0f);
-                            //   GL11.glRotatef(27.5f,0.0f,1.0f,0.0f);
 
+                            //   GL11.glRotatef(27.5f,0.0f,1.0f,0.0f);
                             c4.DrawCylinder();
 
 
@@ -430,6 +439,7 @@ public class NPC extends SceneObject {
                             {
                                 GL11.glRotatef((float) (LimbRotation * -0.5), 0f, 0f, 1f);
                                 GL11.glTranslatef(0.0f, 0.0f, 0.75f);
+//                                GL11.glRotatef((float) (-Rotation * 0.2), 1.0f, 0.0f, 0.0f);
                                 GL11.glTexParameteri(
                                         GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T,
                                         GL11.GL_REPEAT);
@@ -448,9 +458,9 @@ public class NPC extends SceneObject {
                                 GL11.glPushMatrix();
                                 {
                                     GL11.glTranslatef(0.0f, 0.0f, 0.0f);
-                                    GL11.glRotatef(90.0f, 1.0f, 0.0f, 0.0f);
+                                    GL11.glRotatef(0f, 1.0f, 0.0f, 0.0f);
                                     //   GL11.glRotatef(90.0f,0.0f,1.0f,0.0f);
-
+//                                    GL11.glRotatef((float) (-Rotation * 0.2), 0.0f, 1.0f, 0.0f);
                                     c5.DrawCylinder();
 
                                     // right hand
@@ -697,8 +707,4 @@ public class NPC extends SceneObject {
 
         }
     }
-//    @Override
-//    public void drawShadow() {
-//
-//    }
 }

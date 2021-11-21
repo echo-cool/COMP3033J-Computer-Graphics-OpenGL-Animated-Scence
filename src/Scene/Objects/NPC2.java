@@ -279,9 +279,10 @@ public class NPC2 extends SceneObject {
                                 GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T,
                                 GL11.GL_REPEAT);
                         Color.white.bind();
-                        getTextures().get("awesomeface").bind(); //set texture
+                        getTextures().get("new_face1").bind(); //set texture
                         ;
                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
+//                        GL11.glRotatef((float) 90, 0.0f, 0f, 1f);
                         GL11.glRotatef((float) (Rotation * 0.1), 0.0f, 0.0f, 0.0f);
                         s15.DrawTexSphere();
                         ;

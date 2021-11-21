@@ -42,6 +42,9 @@ public class TextureLoader {
             loadTexture("end_portal_frame_top.png");
             loadTexture("wood.png");
             loadTexture("debug.png");
+            loadTexture("new_face1.png");
+            loadTexture("new_face2.png");
+            loadTexture("new_face3.png");
 
             //sky box
             loadTexture("skybox/back.png");
