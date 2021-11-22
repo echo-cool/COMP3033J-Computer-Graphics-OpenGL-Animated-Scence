@@ -1,7 +1,6 @@
 package main;
 
 import org.lwjgl.opengl.Display;
-import org.newdawn.slick.util.ResourceLoader;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

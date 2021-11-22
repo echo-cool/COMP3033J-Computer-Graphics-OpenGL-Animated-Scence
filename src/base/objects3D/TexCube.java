@@ -7,7 +7,7 @@ import org.lwjgl.opengl.GL11;
 public class TexCube {
 
     //a cube have 8 vertices so this is the coordinates of the vertices
-    Point4f vertices[] = {new Point4f(-1.0f, -1.0f, -1.0f, 0.0f),
+    Point4f[] vertices = {new Point4f(-1.0f, -1.0f, -1.0f, 0.0f),
             new Point4f(-1.0f, -1.0f, 1.0f, 0.0f),
             new Point4f(-1.0f, 1.0f, -1.0f, 0.0f),
             new Point4f(-1.0f, 1.0f, 1.0f, 0.0f),
@@ -18,12 +18,13 @@ public class TexCube {
 
     //each face of the cube consists four edges, there are 6 faces in total
     //so, this array has 6 element, each element contains the related edges
-    int faces[][] = {{1, 5, 4, 0},
+    int[][] faces = {{1, 5, 4, 0},
             {2, 6, 4, 0},
             {3, 2, 0, 1},
             {6, 7, 5, 4},
             {7, 3, 1, 5},
             {7, 6, 2, 3}};
+
     public TexCube() {
 
     }

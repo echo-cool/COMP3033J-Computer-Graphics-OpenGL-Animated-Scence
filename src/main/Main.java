@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 import static org.lwjgl.opengl.GL11.glLoadIdentity;
 import static org.lwjgl.opengl.GL11.glPointSize;
-import static org.lwjgl.opengl.GL20.glUseProgram;
 
 /**
  * @Author: WangYuyang
@@ -28,6 +27,8 @@ public class Main {
     public static final int WIDTH = 1600;
     public static final int HEIGHT = 800;
     private static final boolean DEBUG = false;
+    private static final ArrayList<Vector4f> key_positions = new ArrayList<>();
+    private static final ArrayList<Vector4f> key_rotations = new ArrayList<>();
     public static Engine engine;
     public static SceneManager sceneManager = new SceneManager();
     public static SceneManager backgroundManager = new SceneManager();
@@ -36,10 +37,6 @@ public class Main {
     private static Boolean setUpFinish = true;
     private static Boolean FPS_MODE = false;
     private static Boolean GOD_MODE = false;
-
-    private static ArrayList<Vector4f> key_positions = new ArrayList<>();
-    private static ArrayList<Vector4f> key_rotations = new ArrayList<>();
-
 
     public static void main(String[] args) {
         engine = new Engine(WIDTH, HEIGHT);
@@ -272,13 +269,13 @@ public class Main {
                 break;
             }
             if (Keyboard.isKeyDown(Keyboard.KEY_F)) {
-                FPS_MODE = FPS_MODE ? false : true;
+                FPS_MODE = !FPS_MODE;
             }
             if (Keyboard.isKeyDown(Keyboard.KEY_G)) {
-                GOD_MODE = GOD_MODE ? false : true;
+                GOD_MODE = !GOD_MODE;
             }
             if (Keyboard.isKeyDown(Keyboard.KEY_EQUALS)) {
-                isBigScreen = isBigScreen ? false : true;
+                isBigScreen = !isBigScreen;
                 setUpFinish = false;
 
             }

@@ -6,11 +6,12 @@ import org.newdawn.slick.opengl.Texture;
 import static org.lwjgl.opengl.GL11.glGenLists;
 
 public class DisplayListTexSphere {
-    static float red[] = {1.0f, 0.0f, 0.0f, 1.0f};
-    static float green[] = {0.0f, 1.0f, 0.0f, 1.0f};
-    static float blue[] = {0.0f, 0.0f, 1.0f, 1.0f};
-    static float white[] = {1.0f, 1.0f, 1.0f, 1.0f};
+    static float[] red = {1.0f, 0.0f, 0.0f, 1.0f};
+    static float[] green = {0.0f, 1.0f, 0.0f, 1.0f};
+    static float[] blue = {0.0f, 0.0f, 1.0f, 1.0f};
+    static float[] white = {1.0f, 1.0f, 1.0f, 1.0f};
     int displayListHandle = glGenLists(1);
+
     public DisplayListTexSphere(float radius, float nSlices, float nSegments, Texture myTexture) {
         GL11.glNewList(displayListHandle, GL11.GL_COMPILE);
 
@@ -37,7 +38,7 @@ public class DisplayListTexSphere {
                 z = (float) (Math.sin(phi) * radius);
 
                 //texture coordinate
-                t = (float) (phi / (float) Math.PI) + 0.5f;
+                t = (phi / (float) Math.PI) + 0.5f;
                 s = (float) (theta / Math.PI * 2.0f) + 0.5f;
 
                 //GL11.glTexCoord2f(s,t);  // should be here but seems to be a bug in LWJGL
@@ -48,8 +49,8 @@ public class DisplayListTexSphere {
                 x = (float) (Math.cos(phi) * Math.cos(theta + inctheta) * radius);
                 y = (float) (Math.cos(phi) * Math.sin(theta + inctheta) * radius);
                 z = (float) (Math.sin(phi) * radius);
-                t = (float) (((float) phi / (float) Math.PI) + 0.5f);
-                s = (float) ((((float) theta + inctheta) / ((float) Math.PI * 2.0f))) + 0.5f;
+                t = (phi / (float) Math.PI) + 0.5f;
+                s = ((theta + inctheta) / ((float) Math.PI * 2.0f)) + 0.5f;
 
                 //texture coordinate
                 GL11.glTexCoord2f(s, t);
@@ -61,8 +62,8 @@ public class DisplayListTexSphere {
                 x = (float) (Math.cos(phi + incphi) * Math.cos(theta + inctheta) * radius);
                 y = (float) (Math.cos(phi + incphi) * Math.sin(theta + inctheta) * radius);
                 z = (float) (Math.sin(phi + incphi) * radius);
-                t = (float) ((((float) phi + incphi) / (float) Math.PI) + 0.5f);
-                s = (float) ((((float) theta + inctheta) / ((float) Math.PI * 2.0f)) + 0.5f);
+                t = ((phi + incphi) / (float) Math.PI) + 0.5f;
+                s = ((theta + inctheta) / ((float) Math.PI * 2.0f)) + 0.5f;
 
                 GL11.glTexCoord2f(s, t);
                 GL11.glNormal3f(x, y, z);
@@ -72,8 +73,8 @@ public class DisplayListTexSphere {
                 x = (float) (Math.cos(phi + incphi) * Math.cos(theta) * radius);
                 y = (float) (Math.cos(phi + incphi) * Math.sin(theta) * radius);
                 z = (float) (Math.sin(phi + incphi) * radius);
-                t = (float) ((((float) phi + incphi) / (float) Math.PI) + 0.5f);
-                s = (float) (((float) theta / ((float) Math.PI * 2.0f)) + 0.5f);
+                t = ((phi + incphi) / (float) Math.PI) + 0.5f;
+                s = (theta / ((float) Math.PI * 2.0f)) + 0.5f;
 
                 //set texture coordinate
                 GL11.glTexCoord2f(s, t);

@@ -3,8 +3,6 @@ package base.objects3D;
 import base.GraphicsObjects.Vector4f;
 import org.lwjgl.opengl.GL11;
 
-import static org.lwjgl.opengl.GL11.glGenLists;
-
 public class Cylinder {
     public Cylinder() {
     }

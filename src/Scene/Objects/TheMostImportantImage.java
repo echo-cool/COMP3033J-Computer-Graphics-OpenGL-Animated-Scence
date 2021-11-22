@@ -20,7 +20,7 @@ import java.util.HashMap;
  **/
 public class TheMostImportantImage extends SceneObject {
     public static Boolean isPlayVideo = false;
-    private DisplayListTexCube cube = new DisplayListTexCube();
+    private final DisplayListTexCube cube = new DisplayListTexCube();
     private float counter = 1;
 
     public TheMostImportantImage(Point4f origin, Point4f position, Vector4f scale) {
@@ -46,16 +46,11 @@ public class TheMostImportantImage extends SceneObject {
         Color.white.bind();
         //bind texture
 
-        if (Camera.position.z > 1700
-                        && Camera.loading_finished
-                        && Camera.position.x < 100
-                        && Camera.position.x > -100
-                && Camera.position.z < 2000
-        ) {
-            isPlayVideo = true;
-        } else {
-            isPlayVideo = false;
-        }
+        isPlayVideo = Camera.position.z > 1700
+                && Camera.loading_finished
+                && Camera.position.x < 100
+                && Camera.position.x > -100
+                && Camera.position.z < 2000;
 
         if (isPlayVideo) {
             getTextures().get("video/video" + (int) counter).bind();
@@ -64,13 +59,11 @@ public class TheMostImportantImage extends SceneObject {
             counter = 1;
         }
 //        GL11.glRotatef(90, 0,1,0);
-        ;
-//        GL11.glDisable(GL11.GL_LIGHTING); // switch lighting off
+        //        GL11.glDisable(GL11.GL_LIGHTING); // switch lighting off
         GL11.glRotatef(180, 0, 0, 1);
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
         cube.DrawTexCube();
 //        GL11.glEnable(GL11.GL_LIGHTING); // switch lighting off
-        ;
         counter += 0.5f;
         if (counter >= 715)
             counter = 1.0f;

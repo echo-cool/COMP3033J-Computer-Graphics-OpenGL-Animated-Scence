@@ -1,19 +1,16 @@
 package Scene.Objects;
 
-import Scene.base.IDrawListener;
 import Scene.base.SceneObject;
 import base.GraphicsObjects.Point4f;
 import base.GraphicsObjects.Vector4f;
 import base.objects3D.DisplayListTexCube;
-import main.Engine;
 import org.lwjgl.opengl.GL11;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
 
 import java.util.HashMap;
 
-import static org.lwjgl.opengl.GL11.*;
-import static org.lwjgl.opengl.GL11.GL_LINEAR;
+import static org.lwjgl.opengl.GL11.GL_NEAREST;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_MIN_FILTER;
 
 /**
  * @Author: WangYuyang
@@ -40,7 +37,6 @@ public class Ground extends SceneObject {
 
     @Override
     public void draw(Integer frame_delta) {
-        ;
         GL11.glTexParameteri(
                 GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T,
                 GL11.GL_REPEAT);
@@ -54,13 +50,13 @@ public class Ground extends SceneObject {
         getTextures().get("wood").bind();
 //
 //        glBindTexture(GL11.GL_TEXTURE_2D, Engine.shadowTexture);
-        glDisable(GL_LIGHTING);
+//        glDisable(GL_LIGHTING);
         cube.DrawTexCube();
 //        glBindTexture(GL11.GL_TEXTURE_2D, 0);
-        ;
-        glEnable(GL_LIGHTING);
+        //        glEnable(GL_LIGHTING);
 
     }
+
     @Override
     public void drawShadow() {
 

@@ -5,16 +5,13 @@ import base.GraphicsObjects.Point4f;
 import base.GraphicsObjects.Vector4f;
 import base.objects3D.BunnyObjTest;
 import main.Engine;
-import main.ShaderLoader;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
 
 import java.util.HashMap;
 
-import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.opengl.GL11.glCallList;
-import static org.lwjgl.opengl.GL20.glUseProgram;
 
 /**
  * @Author: WangYuyang
@@ -24,26 +21,16 @@ import static org.lwjgl.opengl.GL20.glUseProgram;
  * @Description:
  **/
 public class BunnyTestObject extends SceneObject {
+    private final Boolean isJumping = false;
+    private final float jump_height = 0f;
     public int angle_target = 0;
     private float delta;
     private Boolean isWalking = false;
     private long walkStartTime;
     private int stopCount = 0;
     private int angle = 0;
-    private Boolean isJumping = false;
-    private float jump_height = 0f;
     private float timePassed = Engine.getTimePassed();
-    public void walk() {
-        stopCount = 0;
-        if (isWalking == false) {
-            isWalking = true;
-            walkStartTime = Engine.getTimePassed();
-//            System.out.println(walkStartTime);
-        }
-        if (isWalking) {
-            this.delta = (Engine.getTimePassed() - walkStartTime) / 10000f;
-        }
-    }
+
     public BunnyTestObject(Point4f origin, Point4f position, Vector4f scale) {
         super(origin, position, scale);
     }
@@ -77,25 +64,37 @@ public class BunnyTestObject extends SceneObject {
         super(origin, position, scale, rotation, textures);
     }
 
+    public void walk() {
+        stopCount = 0;
+        if (isWalking == false) {
+            isWalking = true;
+            walkStartTime = Engine.getTimePassed();
+//            System.out.println(walkStartTime);
+        }
+        if (isWalking) {
+            this.delta = (Engine.getTimePassed() - walkStartTime) / 10000f;
+        }
+    }
+
     @Override
     public void draw(Integer frame_delta) {
-        timePassed = Engine.getTimePassed()/10000.0f;
-        float speed = frame_delta/160f;
-        if((int) (timePassed % 4) == 0){
-            move(new Vector4f(speed,0,0,0));
+        timePassed = Engine.getTimePassed() / 10000.0f;
+        float speed = frame_delta / 160f;
+        if ((int) (timePassed % 4) == 0) {
+            move(new Vector4f(speed, 0, 0, 0));
             angle_target = 90;
 
         }
-        if((int) (timePassed % 4) == 1){
-            move(new Vector4f(0,0,-speed,0));
+        if ((int) (timePassed % 4) == 1) {
+            move(new Vector4f(0, 0, -speed, 0));
             angle_target = 90 + 90;
         }
-        if((int) (timePassed % 4) == 2){
-            move(new Vector4f(-speed,0,0,0));
+        if ((int) (timePassed % 4) == 2) {
+            move(new Vector4f(-speed, 0, 0, 0));
             angle_target = 90 + 90 + 90;
         }
-        if((int) (timePassed % 4) == 3){
-            move(new Vector4f(0,0,speed,0));
+        if ((int) (timePassed % 4) == 3) {
+            move(new Vector4f(0, 0, speed, 0));
             angle_target = 90 + 90 + 90 + 90;
         }
 //        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -105,6 +104,7 @@ public class BunnyTestObject extends SceneObject {
         glCallList(BunnyObjTest.getBunnyDisplayList());
 //        glUseProgram(0);
     }
+
     @Override
     public void drawShadow() {
 

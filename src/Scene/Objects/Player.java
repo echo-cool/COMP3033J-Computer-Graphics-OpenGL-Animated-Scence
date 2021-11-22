@@ -4,7 +4,8 @@ import Scene.base.SceneObject;
 import base.GraphicsObjects.Point4f;
 import base.GraphicsObjects.Utils;
 import base.GraphicsObjects.Vector4f;
-import base.objects3D.*;
+import base.objects3D.DisplayListCylinder;
+import base.objects3D.DisplayListTexSphere;
 import main.Camera;
 import main.Engine;
 import org.lwjgl.input.Keyboard;
@@ -17,43 +18,28 @@ import java.util.HashMap;
 public class Player extends SceneObject {
 
 
-    // basic colours
-    static float black[] = {0.0f, 0.0f, 0.0f, 1.0f};
-    static float white[] = {1.0f, 1.0f, 1.0f, 1.0f};
-
-    static float grey[] = {0.5f, 0.5f, 0.5f, 1.0f};
-    static float spot[] = {0.1f, 0.1f, 0.1f, 0.5f};
-
-    // primary colours
-    static float red[] = {1.0f, 0.0f, 0.0f, 1.0f};
-    static float green[] = {0.0f, 1.0f, 0.0f, 1.0f};
-    static float blue[] = {0.0f, 0.0f, 1.0f, 1.0f};
-
-    // secondary colours
-    static float yellow[] = {1.0f, 1.0f, 0.0f, 1.0f};
-    static float magenta[] = {1.0f, 0.0f, 1.0f, 1.0f};
-    static float cyan[] = {0.0f, 1.0f, 1.0f, 1.0f};
-
-    // other colours
-    static float orange[] = {1.0f, 0.5f, 0.0f, 1.0f, 1.0f};
-    static float brown[] = {0.5f, 0.25f, 0.0f, 1.0f, 1.0f};
-    static float dkgreen[] = {0.0f, 0.5f, 0.0f, 1.0f, 1.0f};
-    static float pink[] = {1.0f, 0.6f, 0.6f, 1.0f, 1.0f};
-
-    private float delta;
-    private Boolean isWalking = false;
-    private long walkStartTime;
-    private int stopCount = 0;
-    private int angle = 0;
     public static volatile int angle_target = 0;
-
-    private Boolean isJumping = false;
-    private float jump_height = 0f;
     public static Integer frame_delta = 0;
     public static Point4f world_position;
     public static Vector4f scale_vec;
-
-
+    // basic colours
+    static float[] black = {0.0f, 0.0f, 0.0f, 1.0f};
+    static float[] white = {1.0f, 1.0f, 1.0f, 1.0f};
+    static float[] grey = {0.5f, 0.5f, 0.5f, 1.0f};
+    static float[] spot = {0.1f, 0.1f, 0.1f, 0.5f};
+    // primary colours
+    static float[] red = {1.0f, 0.0f, 0.0f, 1.0f};
+    static float[] green = {0.0f, 1.0f, 0.0f, 1.0f};
+    static float[] blue = {0.0f, 0.0f, 1.0f, 1.0f};
+    // secondary colours
+    static float[] yellow = {1.0f, 1.0f, 0.0f, 1.0f};
+    static float[] magenta = {1.0f, 0.0f, 1.0f, 1.0f};
+    static float[] cyan = {0.0f, 1.0f, 1.0f, 1.0f};
+    // other colours
+    static float[] orange = {1.0f, 0.5f, 0.0f, 1.0f, 1.0f};
+    static float[] brown = {0.5f, 0.25f, 0.0f, 1.0f, 1.0f};
+    static float[] dkgreen = {0.0f, 0.5f, 0.0f, 1.0f, 1.0f};
+    static float[] pink = {1.0f, 0.6f, 0.6f, 1.0f, 1.0f};
     DisplayListTexSphere s1 = new DisplayListTexSphere(0.5f, 32, 32, getTextures().get("wool_pink"));
     DisplayListTexSphere s2 = new DisplayListTexSphere(0.5f, 32, 32, getTextures().get("tnt_side"));
     DisplayListTexSphere s3 = new DisplayListTexSphere(0.25f, 32, 32, getTextures().get("default_stone"));
@@ -78,6 +64,13 @@ public class Player extends SceneObject {
     DisplayListCylinder c7 = new DisplayListCylinder(0.15f, 0.7f, 32);
     DisplayListCylinder c8 = new DisplayListCylinder(0.15f, 0.7f, 32);
     DisplayListCylinder c9 = new DisplayListCylinder(0.15f, 0.7f, 32);
+    private float delta;
+    private Boolean isWalking = false;
+    private long walkStartTime;
+    private int stopCount = 0;
+    private int angle = 0;
+    private Boolean isJumping = false;
+    private float jump_height = 0f;
 
 
     public Player(Point4f origin, Point4f position, Vector4f scale) {
@@ -90,7 +83,7 @@ public class Player extends SceneObject {
             @Override
             public void run() {
                 while (true) {
-                    if(Math.abs(angle - angle_target) > 200){
+                    if (Math.abs(angle - angle_target) > 200) {
                         angle = angle_target;
                     }
                     if (angle > angle_target) {
@@ -182,7 +175,7 @@ public class Player extends SceneObject {
 
     public void setAngle(float angle) {
 
-        this.angle = (int)angle;
+        this.angle = (int) angle;
     }
 
     @Override
@@ -252,11 +245,10 @@ public class Player extends SceneObject {
                 //bind texture
                 getTextures().get("tnt_side").bind(); //set texture
                 //Enable TEXTURE
-                ;
                 GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                 s2.DrawTexSphere();
-                ; //disable texture
+                //disable texture
 
 
 //                sphere.DrawSphere(0.5f, 32, 32);// chest sphere
@@ -287,11 +279,9 @@ public class Player extends SceneObject {
                                 GL11.GL_REPEAT);
                         Color.white.bind();
                         getTextures().get("awesomeface").bind(); //set texture
-                        ;
                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                         s15.DrawTexSphere();
-                        ;
 
 
 //                        sphere.DrawSphere(0.5f, 32, 32);
@@ -314,7 +304,6 @@ public class Player extends SceneObject {
                                 GL11.GL_REPEAT);
                         Color.white.bind();
                         getTextures().get("default_stone").bind();  //set texture
-                        ;
                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                         s3.DrawTexSphere();
@@ -349,12 +338,10 @@ public class Player extends SceneObject {
                                         GL11.GL_REPEAT);
                                 Color.white.bind();
                                 getTextures().get("default_stone").bind();
-                                ;
                                 GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                                 s4.DrawTexSphere();
-                                ;
-//                                sphere.DrawSphere(0.2f, 32, 32);
+                                //                                sphere.DrawSphere(0.2f, 32, 32);
 
                                 //left forearm
                                 GL11.glColor3f(orange[0], orange[1], orange[2]);
@@ -378,12 +365,10 @@ public class Player extends SceneObject {
                                                 GL11.GL_REPEAT);
                                         Color.white.bind();
                                         getTextures().get("default_stone").bind();
-                                        ;
                                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                                         s5.DrawTexSphere();
-                                        ;
-//                                        sphere.DrawSphere(0.2f, 32, 32);
+                                        //                                        sphere.DrawSphere(0.2f, 32, 32);
 
 
                                     }
@@ -411,12 +396,10 @@ public class Player extends SceneObject {
                                 GL11.GL_REPEAT);
                         Color.white.bind();
                         getTextures().get("default_stone").bind();
-                        ;
                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                         s6.DrawTexSphere();
-                        ;
-//                        sphere.DrawSphere(0.25f, 32, 32);
+                        //                        sphere.DrawSphere(0.25f, 32, 32);
 
 
                         // right arm
@@ -447,12 +430,10 @@ public class Player extends SceneObject {
                                         GL11.GL_REPEAT);
                                 Color.white.bind();
                                 getTextures().get("default_stone").bind();
-                                ;
                                 GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                                 s7.DrawTexSphere();
-                                ;
-//                                sphere.DrawSphere(0.2f, 32, 32);
+                                //                                sphere.DrawSphere(0.2f, 32, 32);
 
                                 //right forearm
                                 GL11.glColor3f(orange[0], orange[1], orange[2]);
@@ -476,12 +457,10 @@ public class Player extends SceneObject {
                                                 GL11.GL_REPEAT);
                                         Color.white.bind();
                                         getTextures().get("default_stone").bind();
-                                        ;
                                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                                         s8.DrawTexSphere();
-                                        ;
-//                                        sphere.DrawSphere(0.2f, 32, 32);
+                                        //                                        sphere.DrawSphere(0.2f, 32, 32);
 
 
                                     }
@@ -516,12 +495,10 @@ public class Player extends SceneObject {
                             GL11.GL_REPEAT);
                     Color.white.bind();
                     getTextures().get("default_cobble").bind();
-                    ;
                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                     s9.DrawTexSphere();
-                    ;
-//                    sphere.DrawSphere(0.25f, 32, 32);
+                    //                    sphere.DrawSphere(0.25f, 32, 32);
 
 
                     // left high leg
@@ -551,12 +528,10 @@ public class Player extends SceneObject {
                                     GL11.GL_REPEAT);
                             Color.white.bind();
                             getTextures().get("default_cobble").bind();
-                            ;
                             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                             s10.DrawTexSphere();
-                            ;
-//                            sphere.DrawSphere(0.25f, 32, 32);
+                            //                            sphere.DrawSphere(0.25f, 32, 32);
 
                             //left low leg
                             GL11.glColor3f(orange[0], orange[1], orange[2]);
@@ -580,11 +555,9 @@ public class Player extends SceneObject {
                                             GL11.GL_REPEAT);
                                     Color.white.bind();
                                     getTextures().get("default_cobble").bind();
-                                    ;
                                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                                     s11.DrawTexSphere();
-                                    ;
 
 //                                    sphere.DrawSphere(0.3f, 32, 32);
 
@@ -611,11 +584,9 @@ public class Player extends SceneObject {
                             GL11.GL_REPEAT);
                     Color.white.bind();
                     getTextures().get("default_cobble").bind();
-                    ;
                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                     s12.DrawTexSphere();
-                    ;
 
 //                    sphere.DrawSphere(0.25f, 32, 32);
 
@@ -647,12 +618,10 @@ public class Player extends SceneObject {
                                     GL11.GL_REPEAT);
                             Color.white.bind();
                             getTextures().get("default_cobble").bind();
-                            ;
                             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                             s13.DrawTexSphere();
-                            ;
-//                            sphere.DrawSphere(0.25f, 32, 32);
+                            //                            sphere.DrawSphere(0.25f, 32, 32);
 
                             //right low leg
                             GL11.glColor3f(orange[0], orange[1], orange[2]);
@@ -676,12 +645,10 @@ public class Player extends SceneObject {
                                             GL11.GL_REPEAT);
                                     Color.white.bind();
                                     getTextures().get("default_cobble").bind();
-                                    ;
                                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                                     s14.DrawTexSphere();
-                                    ;
-//                                    sphere.DrawSphere(0.3f, 32, 32);
+                                    //                                    sphere.DrawSphere(0.3f, 32, 32);
 
                                 }
                                 GL11.glPopMatrix();
@@ -706,8 +673,8 @@ public class Player extends SceneObject {
         Boolean KEY_S = Keyboard.isKeyDown(Keyboard.KEY_S);
         Boolean KEY_D = Keyboard.isKeyDown(Keyboard.KEY_D);
 
-        Player player = (Player) this;
-        float speed = Player.frame_delta/1.6f;
+        Player player = this;
+        float speed = Player.frame_delta / 1.6f;
         float speedX = speed / player.getScale().x;
         float speedY = speed / player.getScale().y;
         float speedZ = speed / player.getScale().z;

@@ -8,6 +8,7 @@ import static org.lwjgl.opengl.GL11.glGenLists;
 public class DisplayListSphere {
 
     int displayListHandle = glGenLists(1);
+
     public DisplayListSphere(float radius, float nSlices, float nSegments) {
         GL11.glNewList(displayListHandle, GL11.GL_COMPILE);
         //Constant PI to use when drawing

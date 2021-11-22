@@ -57,7 +57,7 @@ public class BookTable extends SceneObject {
                 scale_number -= 0.5f;
             }
         }
-        if(!Camera.loading_finished){
+        if (!Camera.loading_finished) {
             scale_number = 0;
         }
 

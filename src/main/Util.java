@@ -18,6 +18,6 @@ public class Util {
             dls = 1.0F;
         }
 
-        return (float)Math.acos((double)dls);
+        return (float) Math.acos(dls);
     }
 }

@@ -1,5 +1,6 @@
 package base.objects3D;
 
+import base.obj.Face;
 import base.obj.Model;
 import base.obj.OBJLoader;
 import org.lwjgl.opengl.Display;
@@ -19,15 +20,18 @@ import static org.lwjgl.opengl.GL11.*;
  * @Description:
  **/
 public class CarportObject {
-    private static int houseDisplayList;
-
     private static final String MODEL_LOCATION = "res/models/carport.obj";
+    private static int houseDisplayList;
 
     public CarportObject() {
         drawObj();
     }
 
-    public void drawObj(){
+    public static int getHouseDisplayList() {
+        return houseDisplayList;
+    }
+
+    public void drawObj() {
         houseDisplayList = glGenLists(1);
         glNewList(houseDisplayList, GL_COMPILE);
         Model m = null;
@@ -43,7 +47,7 @@ public class CarportObject {
             System.exit(1);
         }
         glBegin(GL_TRIANGLES);
-        for (Model.Face face : m.getFaces()) {
+        for (Face face : m.getFaces()) {
             Vector3f n1 = m.getNormals().get(face.getNormalIndices()[0] - 1);
             glNormal3f(n1.x, n1.y, n1.z);
             Vector3f v1 = m.getVertices().get(face.getVertexIndices()[0] - 1);
@@ -59,9 +63,5 @@ public class CarportObject {
         }
         glEnd();
         glEndList();
-    }
-
-    public static int getHouseDisplayList() {
-        return houseDisplayList;
     }
 }

@@ -19,11 +19,7 @@ import java.util.Random;
  * @Description:
  **/
 public class Scene {
-    public static Player player;
-    public static BunnyTestObject bunnyTestObject;
-    public static NPC center;
-    public static float bookRotate_Speed = 0.1f;
-    private static ParticleEmitter frontParticleEmitter = new ParticleEmitterBuilder()
+    private static final ParticleEmitter frontParticleEmitter = new ParticleEmitterBuilder()
             .setLocation(new Vector3f(0, 12900, 2.5f))
             .setEnable3D(true)
             .setInitialVelocity(new Vector3f(0, 0, 0))
@@ -31,7 +27,7 @@ public class Scene {
             .setSpawningRate(20)
             .setParticleLifeTime(270)
             .createParticleEmitter();
-    private static ParticleEmitter bookParticleEmitter = new ParticleEmitterBuilder()
+    private static final ParticleEmitter bookParticleEmitter = new ParticleEmitterBuilder()
             .setLocation(new Vector3f(0, 250, 0.1f))
             .setEnable3D(true)
             .setInitialVelocity(new Vector3f(0, 0f, 0))
@@ -39,7 +35,11 @@ public class Scene {
             .setSpawningRate(10)
             .setParticleLifeTime(20)
             .createParticleEmitter();
-    private static Random random = new Random();
+    private static final Random random = new Random();
+    public static Player player;
+    public static BunnyTestObject bunnyTestObject;
+    public static NPC center;
+    public static float bookRotate_Speed = 0.1f;
 
 
 //    private static ParticleEmitter rightParticleEmitter = new ParticleEmitterBuilder()
@@ -333,14 +333,14 @@ public class Scene {
                 new Point4f(1000, 90f, -500, 0),
                 new Point4f(0, 0, 0, 0),
                 new Vector4f(90f, 90f, 90f, 0),
-                new Vector4f(0,0,0, 0),
+                new Vector4f(0, 0, 0, 0),
                 textures
         ));
         sceneManager.addSceneObject(new Book(
                 new Point4f(1000, 250f, -500, 0),
                 new Point4f(0, 0, 0, 0),
                 new Vector4f(90f, 90f, 90f, 0),
-                new Vector4f(0,1,0, 90),
+                new Vector4f(0, 1, 0, 90),
                 textures
         ));
 
@@ -348,7 +348,7 @@ public class Scene {
                 new Point4f(1000, 90f, -500, 0),
                 new Point4f(0, 0, 0, 0),
                 new Vector4f(90f, 90f, 90f, 0),
-                new Vector4f(0,1,0, 90),
+                new Vector4f(0, 1, 0, 90),
                 textures
         ));
 
@@ -357,14 +357,14 @@ public class Scene {
                 new Point4f(-1000, 90f, -500, 0),
                 new Point4f(0, 0, 0, 0),
                 new Vector4f(90f, 90f, 90f, 0),
-                new Vector4f(0,0,0, 0),
+                new Vector4f(0, 0, 0, 0),
                 textures
         ));
         sceneManager.addSceneObject(new Book(
                 new Point4f(-1000, 250f, -500, 0),
                 new Point4f(0, 0, 0, 0),
                 new Vector4f(90f, 90f, 90f, 0),
-                new Vector4f(0,1,0, -90),
+                new Vector4f(0, 1, 0, -90),
                 textures
         ));
 
@@ -372,10 +372,9 @@ public class Scene {
                 new Point4f(-1000, 90f, -500, 0),
                 new Point4f(0, 0, 0, 0),
                 new Vector4f(90f, 90f, 90f, 0),
-                new Vector4f(0,1,0, -90),
+                new Vector4f(0, 1, 0, -90),
                 textures
         ));
-
 
 
         for (int i = -9; i < 10; i++) {
@@ -470,12 +469,12 @@ public class Scene {
                 textures
         ));
 
-//        sceneManager.addSceneObject(new NPC(
-//                new Point4f(-2700, 130, 2500, 0),
-//                new Point4f(0, 0, 0, 0),
-//                new Vector4f(90, 90, 90, 0),
-//                textures
-//        ));
+        sceneManager.addSceneObject(new NPC(
+                new Point4f(-2700, 130, 2500, 0),
+                new Point4f(0, 0, 0, 0),
+                new Vector4f(90, 90, 90, 0),
+                textures
+        ));
         sceneManager.addSceneObject(new NPC2(
                 new Point4f(400, 130, -2000, 0),
                 new Point4f(0, 0, 0, 0),
@@ -529,14 +528,14 @@ public class Scene {
                 new Point4f(1200, 130, 600, 0),
                 new Point4f(0, 0, 0, 0),
                 new Vector4f(90, 90, 90, 0),
-                new Vector4f(0,1,0,180),
+                new Vector4f(0, 1, 0, 180),
                 textures
         ));
         sceneManager.addSceneObject(new NPC4(
                 new Point4f(1600, 130, 600, 0),
                 new Point4f(0, 0, 0, 0),
                 new Vector4f(90, 90, 90, 0),
-                new Vector4f(0,1,0,180),
+                new Vector4f(0, 1, 0, 180),
                 textures
         ));
         sceneManager.addSceneObject(new NPC4(
@@ -555,18 +554,50 @@ public class Scene {
                 new Point4f(-1200, 130, 600, 0),
                 new Point4f(0, 0, 0, 0),
                 new Vector4f(90, 90, 90, 0),
-                new Vector4f(0,1,0,180),
+                new Vector4f(0, 1, 0, 180),
                 textures
         ));
         sceneManager.addSceneObject(new NPC4(
                 new Point4f(-1600, 130, 600, 0),
                 new Point4f(0, 0, 0, 0),
                 new Vector4f(90, 90, 90, 0),
-                new Vector4f(0,1,0,180),
+                new Vector4f(0, 1, 0, 180),
                 textures
         ));
 
+        sceneManager.addSceneObject(new NPC5(
+                new Point4f(-4000, 130, 4000, 0),
+                new Point4f(0, 0, 0, 0),
+                new Vector4f(90, 90, 90, 0),
+                new Vector4f(0, 1, 0, 180),
+                textures
+        ));
 
+        sceneManager.addSceneObject(new NPC5(
+                new Point4f(4000, 130, 4000, 0),
+                new Point4f(0, 0, 0, 0),
+                new Vector4f(90, 90, 90, 0),
+                new Vector4f(0, 1, 0, -90),
+                textures
+        ));
+
+        sceneManager.addSceneObject(new NPC5(
+                new Point4f(4000, 130, -4000, 0),
+                new Point4f(0, 0, 0, 0),
+                new Vector4f(90, 90, 90, 0),
+                new Vector4f(0, 1, 0, 0),
+                textures
+        ));
+
+        sceneManager.addSceneObject(new NPC5(
+                new Point4f(-4000, 130, -4000, 0),
+                new Point4f(0, 0, 0, 0),
+                new Vector4f(90, 90, 90, 0),
+                new Vector4f(0, 1, 0, 90),
+                textures
+        ));
+//
+//
 
         new Thread(new Runnable() {
             @Override

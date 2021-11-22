@@ -21,8 +21,9 @@ import static org.lwjgl.opengl.GL11.GL_TEXTURE_MIN_FILTER;
  * @Description:
  **/
 public class AInterestingVideo extends SceneObject {
-    private DisplayListTexCube cube = new DisplayListTexCube();
+    private final DisplayListTexCube cube = new DisplayListTexCube();
     private Integer counter = 1;
+
     public AInterestingVideo(Point4f origin, Point4f position, Vector4f scale) {
         super(origin, position, scale);
     }
@@ -53,7 +54,6 @@ public class AInterestingVideo extends SceneObject {
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
         cube.DrawTexCube();
         GL11.glEnable(GL11.GL_LIGHTING); // switch lighting off
-        ;
         counter += 1;
         if (counter >= 300)
             counter = 1;

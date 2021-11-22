@@ -4,7 +4,6 @@ import Scene.Objects.Player;
 import base.GraphicsObjects.Point4f;
 import base.GraphicsObjects.Vector4f;
 import base.objects3D.DisplayListOval;
-import main.Engine;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
@@ -22,12 +21,12 @@ import static org.lwjgl.opengl.GL11.*;
  * @Description:
  **/
 public abstract class SceneObject implements IDrawable, IMovable, IScalable, IHittable {
+    private final DisplayListOval shadow;
     private Point4f origin = new Point4f();
     private Point4f position = new Point4f();
     private Vector4f scale = new Vector4f();
     private Vector4f rotation = new Vector4f();
     private HashMap<String, Texture> textures = new LinkedHashMap<>();
-    private DisplayListOval shadow;
     private Vector4f shadowOffset = new Vector4f();
 
     public SceneObject(Point4f origin, Point4f position, Vector4f scale) {
@@ -59,13 +58,10 @@ public abstract class SceneObject implements IDrawable, IMovable, IScalable, IHi
     public Boolean isHit(SceneObject other) {
         Point4f o1 = getWorldPosition();
         Point4f o2 = other.getWorldPosition();
-        if (o1.MinusPoint(o2).length() - this.scale.x - other.scale.x < 0)
-            return true;
-        else
-            return false;
+        return o1.MinusPoint(o2).length() - this.scale.x - other.scale.x < 0;
     }
 
-    public float getPlayerDistance(){
+    public float getPlayerDistance() {
         Point4f o1 = getWorldPosition();
         Point4f o2 = Player.world_position;
         return o1.MinusPoint(o2).length() - this.scale.x - Player.scale_vec.x;
@@ -132,7 +128,7 @@ public abstract class SceneObject implements IDrawable, IMovable, IScalable, IHi
         GL11.glScalef(1 / scale.x, 1 / scale.y, 1 / scale.z);
         GL11.glTranslatef(0, -origin.y, 0);
         GL11.glTranslatef(-140f + shadowOffset.x, 2f + shadowOffset.y, -140f + shadowOffset.z);
-        GL11.glRotatef(-45, 0,1,0);
+        GL11.glRotatef(-45, 0, 1, 0);
         GL11.glScalef(2f, 0f, 1f);
 
         glDisable(GL_LIGHTING);

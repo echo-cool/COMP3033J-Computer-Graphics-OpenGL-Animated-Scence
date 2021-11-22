@@ -19,6 +19,7 @@ import static org.lwjgl.opengl.GL11.glCallList;
  **/
 public class CarportObject extends SceneObject {
     base.objects3D.CarportObject houseObjTest = new base.objects3D.CarportObject();
+
     public CarportObject(Point4f origin, Point4f position, Vector4f scale) {
         super(origin, position, scale);
     }
@@ -44,6 +45,7 @@ public class CarportObject extends SceneObject {
         glCallList(base.objects3D.CarportObject.getHouseDisplayList());
         Color.white.bind();
     }
+
     @Override
     public void drawShadow() {
 

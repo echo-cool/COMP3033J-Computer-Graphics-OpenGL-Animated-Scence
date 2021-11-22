@@ -14,6 +14,7 @@ import static org.lwjgl.opengl.GL11.*;
  **/
 public class DisplayListOval {
     int displayListHandle = glGenLists(1);
+
     public DisplayListOval(float radius, int nSegments) {
         glNewList(displayListHandle, GL_COMPILE);
         //INIT GL
@@ -42,7 +43,6 @@ public class DisplayListOval {
             GL11.glVertex3f(x1, 0, y1);
             GL11.glVertex3f(x2, 0, y2);
             GL11.glVertex3f(0, 0, 0);
-
 
 
         }

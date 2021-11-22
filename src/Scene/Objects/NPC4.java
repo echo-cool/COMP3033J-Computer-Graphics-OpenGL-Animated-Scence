@@ -29,47 +29,47 @@ public class NPC4 extends SceneObject {
     public static int angle_target = 0;
     public static int angle = 0;
     // basic colours
-    static float black[] = {0.0f, 0.0f, 0.0f, 1.0f};
-    static float white[] = {1.0f, 1.0f, 1.0f, 1.0f};
-    static float grey[] = {0.5f, 0.5f, 0.5f, 1.0f};
-    static float spot[] = {0.1f, 0.1f, 0.1f, 0.5f};
+    static float[] black = {0.0f, 0.0f, 0.0f, 1.0f};
+    static float[] white = {1.0f, 1.0f, 1.0f, 1.0f};
+    static float[] grey = {0.5f, 0.5f, 0.5f, 1.0f};
+    static float[] spot = {0.1f, 0.1f, 0.1f, 0.5f};
     // primary colours
-    static float red[] = {1.0f, 0.0f, 0.0f, 1.0f};
-    static float green[] = {0.0f, 1.0f, 0.0f, 1.0f};
-    static float blue[] = {0.0f, 0.0f, 1.0f, 1.0f};
+    static float[] red = {1.0f, 0.0f, 0.0f, 1.0f};
+    static float[] green = {0.0f, 1.0f, 0.0f, 1.0f};
+    static float[] blue = {0.0f, 0.0f, 1.0f, 1.0f};
     // secondary colours
-    static float yellow[] = {1.0f, 1.0f, 0.0f, 1.0f};
-    static float magenta[] = {1.0f, 0.0f, 1.0f, 1.0f};
-    static float cyan[] = {0.0f, 1.0f, 1.0f, 1.0f};
+    static float[] yellow = {1.0f, 1.0f, 0.0f, 1.0f};
+    static float[] magenta = {1.0f, 0.0f, 1.0f, 1.0f};
+    static float[] cyan = {0.0f, 1.0f, 1.0f, 1.0f};
     // other colours
-    static float orange[] = {1.0f, 0.5f, 0.0f, 1.0f, 1.0f};
-    static float brown[] = {0.5f, 0.25f, 0.0f, 1.0f, 1.0f};
-    static float dkgreen[] = {0.0f, 0.5f, 0.0f, 1.0f, 1.0f};
-    static float pink[] = {1.0f, 0.6f, 0.6f, 1.0f, 1.0f};
-    DisplayListTexSphere s1 = new DisplayListTexSphere(0.5f, 32, 32, getTextures().get("warped_door_bottom"));
-    DisplayListTexSphere s2 = new DisplayListTexSphere(0.5f, 32, 32, getTextures().get("warped_door_bottom"));
-    DisplayListTexSphere s3 = new DisplayListTexSphere(0.25f, 32, 32, getTextures().get("default_stone"));
-    DisplayListTexSphere s4 = new DisplayListTexSphere(0.2f, 32, 32, getTextures().get("default_stone"));
-    DisplayListTexSphere s5 = new DisplayListTexSphere(0.2f, 32, 32, getTextures().get("default_stone"));
-    DisplayListTexSphere s6 = new DisplayListTexSphere(0.25f, 32, 32, getTextures().get("default_stone"));
-    DisplayListTexSphere s7 = new DisplayListTexSphere(0.2f, 32, 32, getTextures().get("default_stone"));
-    DisplayListTexSphere s8 = new DisplayListTexSphere(0.2f, 32, 32, getTextures().get("default_stone"));
-    DisplayListTexSphere s9 = new DisplayListTexSphere(0.25f, 32, 32, getTextures().get("default_cobble"));
-    DisplayListTexSphere s10 = new DisplayListTexSphere(0.25f, 32, 32, getTextures().get("default_cobble"));
-    DisplayListTexSphere s11 = new DisplayListTexSphere(0.3f, 32, 32, getTextures().get("default_cobble"));
-    DisplayListTexSphere s12 = new DisplayListTexSphere(0.25f, 32, 32, getTextures().get("default_cobble"));
-    DisplayListTexSphere s13 = new DisplayListTexSphere(0.25f, 32, 32, getTextures().get("default_cobble"));
-    DisplayListTexSphere s14 = new DisplayListTexSphere(0.3f, 32, 32, getTextures().get("default_cobble"));
-    DisplayListTexSphere s15 = new DisplayListTexSphere(0.5f, 32, 32, getTextures().get("awesomeface"));
-    DisplayListCylinder c1 = new DisplayListCylinder(0.15f, 0.7f, 32);
-    DisplayListCylinder c2 = new DisplayListCylinder(0.15f, 0.7f, 32);
-    DisplayListCylinder c3 = new DisplayListCylinder(0.1f, 0.7f, 32);
-    DisplayListCylinder c4 = new DisplayListCylinder(0.15f, 0.7f, 32);
-    DisplayListCylinder c5 = new DisplayListCylinder(0.1f, 0.7f, 32);
-    DisplayListCylinder c6 = new DisplayListCylinder(0.15f, 0.7f, 32);
-    DisplayListCylinder c7 = new DisplayListCylinder(0.15f, 0.7f, 32);
-    DisplayListCylinder c8 = new DisplayListCylinder(0.15f, 0.7f, 32);
-    DisplayListCylinder c9 = new DisplayListCylinder(0.15f, 0.7f, 32);
+    static float[] orange = {1.0f, 0.5f, 0.0f, 1.0f, 1.0f};
+    static float[] brown = {0.5f, 0.25f, 0.0f, 1.0f, 1.0f};
+    static float[] dkgreen = {0.0f, 0.5f, 0.0f, 1.0f, 1.0f};
+    static float[] pink = {1.0f, 0.6f, 0.6f, 1.0f, 1.0f};
+    DisplayListTexSphere s1 = new DisplayListTexSphere(0.5f, 16, 16, getTextures().get("warped_door_bottom"));
+    DisplayListTexSphere s2 = new DisplayListTexSphere(0.5f, 16, 16, getTextures().get("warped_door_bottom"));
+    DisplayListTexSphere s3 = new DisplayListTexSphere(0.25f, 16, 16, getTextures().get("default_stone"));
+    DisplayListTexSphere s4 = new DisplayListTexSphere(0.2f, 16, 16, getTextures().get("default_stone"));
+    DisplayListTexSphere s5 = new DisplayListTexSphere(0.2f, 16, 16, getTextures().get("default_stone"));
+    DisplayListTexSphere s6 = new DisplayListTexSphere(0.25f, 16, 16, getTextures().get("default_stone"));
+    DisplayListTexSphere s7 = new DisplayListTexSphere(0.2f, 16, 16, getTextures().get("default_stone"));
+    DisplayListTexSphere s8 = new DisplayListTexSphere(0.2f, 16, 16, getTextures().get("default_stone"));
+    DisplayListTexSphere s9 = new DisplayListTexSphere(0.25f, 16, 16, getTextures().get("default_cobble"));
+    DisplayListTexSphere s10 = new DisplayListTexSphere(0.25f, 16, 16, getTextures().get("default_cobble"));
+    DisplayListTexSphere s11 = new DisplayListTexSphere(0.3f, 16, 16, getTextures().get("default_cobble"));
+    DisplayListTexSphere s12 = new DisplayListTexSphere(0.25f, 16, 16, getTextures().get("default_cobble"));
+    DisplayListTexSphere s13 = new DisplayListTexSphere(0.25f, 16, 16, getTextures().get("default_cobble"));
+    DisplayListTexSphere s14 = new DisplayListTexSphere(0.3f, 16, 16, getTextures().get("default_cobble"));
+    DisplayListTexSphere s15 = new DisplayListTexSphere(0.5f, 16, 16, getTextures().get("awesomeface"));
+    DisplayListCylinder c1 = new DisplayListCylinder(0.15f, 0.7f, 16);
+    DisplayListCylinder c2 = new DisplayListCylinder(0.15f, 0.7f, 16);
+    DisplayListCylinder c3 = new DisplayListCylinder(0.1f, 0.7f, 16);
+    DisplayListCylinder c4 = new DisplayListCylinder(0.15f, 0.7f, 16);
+    DisplayListCylinder c5 = new DisplayListCylinder(0.1f, 0.7f, 16);
+    DisplayListCylinder c6 = new DisplayListCylinder(0.15f, 0.7f, 16);
+    DisplayListCylinder c7 = new DisplayListCylinder(0.15f, 0.7f, 16);
+    DisplayListCylinder c8 = new DisplayListCylinder(0.15f, 0.7f, 16);
+    DisplayListCylinder c9 = new DisplayListCylinder(0.15f, 0.7f, 16);
     DisplayListOval shadow = new DisplayListOval(3f, 32);
     Random random = new Random();
     private float delta;
@@ -156,7 +156,7 @@ public class NPC4 extends SceneObject {
     }
 
     public void setAngle(float angle) {
-        this.angle_target = (int) angle;
+        angle_target = (int) angle;
     }
 
     @Override
@@ -197,6 +197,7 @@ public class NPC4 extends SceneObject {
         LimbRotation = (float) Math.sin(theta) * 60;
 
         float Rotation = (float) Math.toDegrees(Math.sin(Engine.getTimePassed() / 200f) * Math.PI);
+
 //        if (random.nextDouble() > 0.8) {
 //            jump((int) (random.nextDouble() * 800));
 //        }
@@ -233,7 +234,7 @@ public class NPC4 extends SceneObject {
             //Draw finish Disable TEXTURE
 
 
-//            sphere.DrawSphere(0.5f, 32, 32); // pelvis sphere
+//            sphere.DrawSphere(0.5f, 16, 16); // pelvis sphere
 
             //  chest
             GL11.glColor3f(green[0], green[1], green[2]);
@@ -248,15 +249,14 @@ public class NPC4 extends SceneObject {
                 //bind texture
                 getTextures().get("warped_door_bottom").bind(); //set texture
                 //Enable TEXTURE
-                ;
                 GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL_NEAREST);
                 GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
                 s2.DrawTexSphere();
-                ; //disable texture
+                //disable texture
 
 
-//                sphere.DrawSphere(0.5f, 32, 32);// chest sphere
+//                sphere.DrawSphere(0.5f, 16, 16);// chest sphere
                 GL11.glRotatef((float) (Rotation * 0.1), 0.0f, 0.0f, 1.0f);
 //                System.out.println((Rotation));
 //                GL11.glRotatef((float) (LimbRotation * 3), 1f, 1f, 0f);
@@ -284,15 +284,13 @@ public class NPC4 extends SceneObject {
                                 GL11.GL_REPEAT);
                         Color.white.bind();
                         getTextures().get("new_face3").bind(); //set texture
-                        ;
                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 //                        GL11.glRotatef((float) 90, 0.0f, 0f, 1f);
 //                        GL11.glRotatef((float) (Rotation * 0.1), 0.0f, 0.0f, 0.0f);
                         s15.DrawTexSphere();
-                        ;
 
 
-//                        sphere.DrawSphere(0.5f, 32, 32);
+//                        sphere.DrawSphere(0.5f, 16, 16);
                         GL11.glPopMatrix();
                     }
                     GL11.glPopMatrix();
@@ -312,11 +310,10 @@ public class NPC4 extends SceneObject {
                                 GL11.GL_REPEAT);
                         Color.white.bind();
                         getTextures().get("default_stone").bind();  //set texture
-                        ;
                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                         s3.DrawTexSphere();
-//                        sphere.DrawSphere(0.25f, 32, 32);
+//                        sphere.DrawSphere(0.25f, 16, 16);
 
 
                         // left arm
@@ -346,12 +343,10 @@ public class NPC4 extends SceneObject {
                                         GL11.GL_REPEAT);
                                 Color.white.bind();
                                 getTextures().get("default_stone").bind();
-                                ;
                                 GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                                 s4.DrawTexSphere();
-                                ;
-//                                sphere.DrawSphere(0.2f, 32, 32);
+                                //                                sphere.DrawSphere(0.2f, 16, 16);
 
                                 //left forearm
                                 GL11.glColor3f(orange[0], orange[1], orange[2]);
@@ -375,12 +370,10 @@ public class NPC4 extends SceneObject {
                                                 GL11.GL_REPEAT);
                                         Color.white.bind();
                                         getTextures().get("default_stone").bind();
-                                        ;
                                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                                         s5.DrawTexSphere();
-                                        ;
-//                                        sphere.DrawSphere(0.2f, 32, 32);
+                                        //                                        sphere.DrawSphere(0.2f, 16, 16);
 
 
                                     }
@@ -408,12 +401,10 @@ public class NPC4 extends SceneObject {
                                 GL11.GL_REPEAT);
                         Color.white.bind();
                         getTextures().get("default_stone").bind();
-                        ;
                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                         s6.DrawTexSphere();
-                        ;
-//                        sphere.DrawSphere(0.25f, 32, 32);
+                        //                        sphere.DrawSphere(0.25f, 16, 16);
 
 
                         // right arm
@@ -445,12 +436,10 @@ public class NPC4 extends SceneObject {
                                         GL11.GL_REPEAT);
                                 Color.white.bind();
                                 getTextures().get("default_stone").bind();
-                                ;
                                 GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                                 s7.DrawTexSphere();
-                                ;
-//                                sphere.DrawSphere(0.2f, 32, 32);
+                                //                                sphere.DrawSphere(0.2f, 16, 16);
 
                                 //right forearm
                                 GL11.glColor3f(orange[0], orange[1], orange[2]);
@@ -474,12 +463,10 @@ public class NPC4 extends SceneObject {
                                                 GL11.GL_REPEAT);
                                         Color.white.bind();
                                         getTextures().get("default_stone").bind();
-                                        ;
                                         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                                         s8.DrawTexSphere();
-                                        ;
-//                                        sphere.DrawSphere(0.2f, 32, 32);
+                                        //                                        sphere.DrawSphere(0.2f, 16, 16);
 
 
                                     }
@@ -524,12 +511,10 @@ public class NPC4 extends SceneObject {
                             GL11.GL_REPEAT);
                     Color.white.bind();
                     getTextures().get("default_cobble").bind();
-                    ;
                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                     s9.DrawTexSphere();
-                    ;
-//                    sphere.DrawSphere(0.25f, 32, 32);
+                    //                    sphere.DrawSphere(0.25f, 16, 16);
 
 
                     // left high leg
@@ -559,12 +544,10 @@ public class NPC4 extends SceneObject {
                                     GL11.GL_REPEAT);
                             Color.white.bind();
                             getTextures().get("default_cobble").bind();
-                            ;
                             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                             s10.DrawTexSphere();
-                            ;
-//                            sphere.DrawSphere(0.25f, 32, 32);
+                            //                            sphere.DrawSphere(0.25f, 16, 16);
 
                             //left low leg
                             GL11.glColor3f(orange[0], orange[1], orange[2]);
@@ -588,13 +571,11 @@ public class NPC4 extends SceneObject {
                                             GL11.GL_REPEAT);
                                     Color.white.bind();
                                     getTextures().get("default_cobble").bind();
-                                    ;
                                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                                     s11.DrawTexSphere();
-                                    ;
 
-//                                    sphere.DrawSphere(0.3f, 32, 32);
+//                                    sphere.DrawSphere(0.3f, 16, 16);
 
                                 }
                                 GL11.glPopMatrix();
@@ -619,13 +600,11 @@ public class NPC4 extends SceneObject {
                             GL11.GL_REPEAT);
                     Color.white.bind();
                     getTextures().get("default_cobble").bind();
-                    ;
                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                     s12.DrawTexSphere();
-                    ;
 
-//                    sphere.DrawSphere(0.25f, 32, 32);
+//                    sphere.DrawSphere(0.25f, 16, 16);
 
 
                     // right high leg
@@ -655,12 +634,10 @@ public class NPC4 extends SceneObject {
                                     GL11.GL_REPEAT);
                             Color.white.bind();
                             getTextures().get("default_cobble").bind();
-                            ;
                             GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                             s13.DrawTexSphere();
-                            ;
-//                            sphere.DrawSphere(0.25f, 32, 32);
+                            //                            sphere.DrawSphere(0.25f, 16, 16);
 
                             //right low leg
                             GL11.glColor3f(orange[0], orange[1], orange[2]);
@@ -684,12 +661,10 @@ public class NPC4 extends SceneObject {
                                             GL11.GL_REPEAT);
                                     Color.white.bind();
                                     getTextures().get("default_cobble").bind();
-                                    ;
                                     GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
 
                                     s14.DrawTexSphere();
-                                    ;
-//                                    sphere.DrawSphere(0.3f, 32, 32);
+                                    //                                    sphere.DrawSphere(0.3f, 16, 16);
 
                                 }
                                 GL11.glPopMatrix();

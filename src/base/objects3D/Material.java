@@ -1,4 +1,4 @@
-package base.obj;
+package base.objects3D;
 
 import org.newdawn.slick.opengl.Texture;
 

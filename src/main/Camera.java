@@ -20,6 +20,11 @@ import static org.lwjgl.opengl.GL11.*;
  * @Description:
  **/
 public class Camera {
+    private static final int mouseSpeed = 1;
+    private static final FloatBuffer noAmbient = BufferUtils.createFloatBuffer(4);
+    private static final FloatBuffer diffuse = BufferUtils.createFloatBuffer(4);
+    private static final FloatBuffer spec = BufferUtils.createFloatBuffer(4);
+    private static final FloatBuffer direction = BufferUtils.createFloatBuffer(4);
     public static int maxLookUp = 30;
     public static int maxLookDown = -20;
     public static int OrthoNumber = 0; // using this for screen size, making a window of 1200 x 800 so aspect ratio 3:2
@@ -28,16 +33,11 @@ public class Camera {
     public static float rotationX = -20;
     public static Boolean loading_finished = false;
     public static FloatBuffer lightPos;
-    private static int mouseSpeed = 1;
     private static Vector4f inital_camera_position = new Vector4f();
-    private static FloatBuffer noAmbient = BufferUtils.createFloatBuffer(4);
-    private static FloatBuffer diffuse = BufferUtils.createFloatBuffer(4);
-    private static FloatBuffer spec = BufferUtils.createFloatBuffer(4);
-    private static FloatBuffer direction = BufferUtils.createFloatBuffer(4);
-    private float rotationY = 0;
-    private float rotationZ = 0;
-    private boolean MouseOnepressed = true;
-    private boolean dragMode = false;
+    private final float rotationY = 0;
+    private final float rotationZ = 0;
+    private final boolean MouseOnepressed = true;
+    private final boolean dragMode = false;
 
 
     public Camera() {

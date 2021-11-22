@@ -1,5 +1,6 @@
 package base.objects3D;
 
+import base.obj.Face;
 import base.obj.Model;
 import base.obj.OBJLoader;
 import org.lwjgl.opengl.Display;
@@ -19,7 +20,7 @@ import static org.lwjgl.opengl.GL11.*;
  * @Description:
  **/
 public class BunnyObjTest {
-    private static int bunnyDisplayList;
+    private static final int bunnyDisplayList;
 
     private static final String MODEL_LOCATION = "res/models/bunny.obj";
 
@@ -39,7 +40,7 @@ public class BunnyObjTest {
             System.exit(1);
         }
         glBegin(GL_TRIANGLES);
-        for (Model.Face face : m.getFaces()) {
+        for (Face face : m.getFaces()) {
             Vector3f n1 = m.getNormals().get(face.getNormalIndices()[0] - 1);
             glNormal3f(n1.x, n1.y, n1.z);
             Vector3f v1 = m.getVertices().get(face.getVertexIndices()[0] - 1);
