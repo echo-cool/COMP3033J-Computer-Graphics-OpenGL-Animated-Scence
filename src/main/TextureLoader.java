@@ -45,6 +45,8 @@ public class TextureLoader {
             loadTexture("new_face1.png");
             loadTexture("new_face2.png");
             loadTexture("new_face3.png");
+            loadTexture("iron_trapdoor.png");
+            loadTexture("piston_top.png");
 
             //sky box
             loadTexture("skybox/back.png");
