@@ -33,7 +33,7 @@ import static org.lwjgl.util.glu.GLU.gluPerspective;
  * @Description:
  **/
 public class Engine {
-    private static final int FPS = 60;
+    private static final int FPS = 120;
     private static final FloatBuffer textureBuffer = BufferUtils.createFloatBuffer(16);
     private static final Matrix4f depthModelViewProjection = new Matrix4f();
     /**
@@ -147,6 +147,7 @@ public class Engine {
         glEnable(GL13.GL_MULTISAMPLE);
 //        Display.setResizable(true);
         glClear(GL_COLOR_BUFFER_BIT);
+//        glEnable(GL_DOUBLEBUFFER);
 
 
         GL11.glMatrixMode(GL_PROJECTION);
