@@ -138,7 +138,7 @@ public class Player extends SceneObject {
                         t = (current_time - start_time) / 10;
                         h = (speed * t - 0.5 * g * t * t) / 10000;
                         jump_height = (float) h;
-                        Camera.position.y = jump_height * 90;
+                        Camera.position.y = jump_height * 90 + getPosition().y * 90;
                         setShadowOffset(new Vector4f(
                                 -jump_height * 90,
                                 0,
@@ -742,7 +742,7 @@ public class Player extends SceneObject {
         if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
             move = move.PlusVector(new Vector4f(0, speedY, 0, 0));
         }
-        if(Keyboard.isKeyDown(Keyboard.KEY_8)){
+        if (Keyboard.isKeyDown(Keyboard.KEY_8)) {
             player.jump(5000);
         }
 //        System.out.println(move);
@@ -759,8 +759,10 @@ public class Player extends SceneObject {
         return move;
     }
 
-
-//    @Override
+    public Boolean getJumping() {
+        return isJumping;
+    }
+    //    @Override
 //    public void drawShadow() {
 //
 //    }

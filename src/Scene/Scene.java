@@ -596,6 +596,14 @@ public class Scene {
                 new Vector4f(0, 1, 0, 90),
                 textures
         ));
+
+        sceneManager.addSceneObject(new Balloon(
+                new Point4f(-1800, 2500, 1800, 0),
+                new Point4f(0, 0, 0, 0),
+                new Vector4f(900, 900, 900, 0),
+                new Vector4f(0, 0, 0, 0),
+                textures
+        ));
 //
 //
 
@@ -721,10 +729,9 @@ public class Scene {
             bookParticleEmitter.update();
 
         bookParticleEmitter.colorVec = new Vector3f(random.nextFloat() + 0.5f, random.nextFloat() + 0.5f, random.nextFloat() + 0.5f);
-        if (SuperJumpPaddle.height <= 10 ) {
+        if (SuperJumpPaddle.height <= 10) {
             SuperJumpPaddle.height += +1f;
-        }
-        else{
+        } else {
             SuperJumpPaddle.height = -10;
         }
 //        rightParticleEmitter.update();
