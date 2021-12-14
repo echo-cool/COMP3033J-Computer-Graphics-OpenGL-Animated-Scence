@@ -149,7 +149,11 @@ public class Camera {
 
 
         if (Keyboard.isKeyDown(Keyboard.KEY_RETURN)) {
-            position.y -= speed;
+            if (position.y < 0) {
+
+            } else {
+                position.y -= speed;
+            }
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)) {
             position.y += speed;
@@ -209,8 +213,8 @@ public class Camera {
                 rotation.x = maxLookUp;
             }
         }
-        if (!Mouse.isButtonDown(0))
-            Player.angle_target = 180 - (int) rotation.y;
+//        if (!Mouse.isButtonDown(0))
+        Player.angle_target = 180 - (int) rotation.y;
 
 
     }

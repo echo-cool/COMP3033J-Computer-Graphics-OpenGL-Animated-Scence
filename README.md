@@ -23,6 +23,8 @@ But in the video, I am using a Mac computer so the FPS might not very high...
 WASD to move.
 Space to jump.
 F to change the perspective.
+Shift to go up
+Enter to go down
 
 That's it.
 

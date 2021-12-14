@@ -1,0 +1,82 @@
+package Scene.Objects;
+
+import Scene.base.SceneObject;
+import base.GraphicsObjects.Point4f;
+import base.GraphicsObjects.Vector4f;
+import base.objects3D.DisplayListTexSphere;
+import org.lwjgl.opengl.GL11;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.opengl.Texture;
+
+import java.util.HashMap;
+
+import static org.lwjgl.opengl.GL11.GL_NEAREST;
+import static org.lwjgl.opengl.GL11.GL_TEXTURE_MIN_FILTER;
+
+/**
+ * @Author: WangYuyang
+ * @Date: 2021/12/14-15:52
+ * @Project: Assignment3
+ * @Package: Scene.Objects
+ * @Description:
+ **/
+public class Bullet extends SceneObject {
+    DisplayListTexSphere sphere = new DisplayListTexSphere(1f, 16, 16, getTextures().get("wool_pink"));
+    private Vector4f direction = new Vector4f();
+    private Integer drawCount = 0;
+
+    public Bullet(Point4f origin, Point4f position, Vector4f scale) {
+        super(origin, position, scale);
+    }
+
+    public Bullet(Point4f origin, Point4f position, Vector4f scale, HashMap<String, Texture> textures) {
+        super(origin, position, scale, textures);
+    }
+
+    public Bullet(Point4f origin, Point4f position, Vector4f scale, Vector4f rotation, HashMap<String, Texture> textures) {
+        super(origin, position, scale, rotation, textures);
+    }
+
+    @Override
+    public void draw(Integer delta) {
+        drawCount += 1;
+        move(direction.Normal());
+        GL11.glTexParameteri(
+                GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T,
+                GL11.GL_REPEAT);
+        GL11.glTexParameteri(
+                GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S,
+                GL11.GL_REPEAT);
+        Color.white.bind();
+//        Color.black.bind();
+        //bind texture
+        getTextures().get("debug").bind();
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+        GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+//        oval.DrawOval();
+        sphere.DrawTexSphere();
+
+        Color.white.bind();
+
+    }
+
+    public DisplayListTexSphere getSphere() {
+        return sphere;
+    }
+
+    public void setSphere(DisplayListTexSphere sphere) {
+        this.sphere = sphere;
+    }
+
+    public Vector4f getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Vector4f direction) {
+        this.direction = direction;
+    }
+
+    public Integer getDrawCount() {
+        return drawCount;
+    }
+}

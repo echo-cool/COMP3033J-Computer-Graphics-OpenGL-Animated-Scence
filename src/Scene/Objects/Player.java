@@ -734,6 +734,9 @@ public class Player extends SceneObject {
             player.setAngle(angle);
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_RETURN)) {
+            if (getPosition().y < 0) {
+                speedY = 0;
+            }
             move = move.PlusVector(new Vector4f(0, -speedY, 0, 0));
         }
         if (Keyboard.isKeyDown(Keyboard.KEY_SPACE)) {

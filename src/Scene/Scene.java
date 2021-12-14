@@ -5,6 +5,10 @@ import Scene.base.*;
 import Scene.skybox.Skybox;
 import base.GraphicsObjects.Point4f;
 import base.GraphicsObjects.Vector4f;
+import main.Camera;
+import main.Engine;
+import main.Main;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector3f;
 
@@ -40,6 +44,7 @@ public class Scene {
     public static BunnyTestObject bunnyTestObject;
     public static NPC center;
     public static float bookRotate_Speed = 0.1f;
+    private static Integer bullet_counter = 0;
 
 
 //    private static ParticleEmitter rightParticleEmitter = new ParticleEmitterBuilder()
@@ -740,6 +745,25 @@ public class Scene {
     }
 
     public static void drawScene(SceneManager sceneManager, Integer delta) {
+        if (Mouse.isButtonDown(0) & bullet_counter <= 0) {
+            bullet_counter = 30;
+            Bullet bullet = new Bullet(
+                    Scene.player.getOrigin(),
+                    Scene.player.getPosition(),
+                    new Vector4f(90, 90, 90, 0),
+                    Engine.getTextures()
+            );
+            bullet.setDirection(new Vector4f(
+                    (float) Math.sin(Math.toRadians(180 - Camera.rotation.y)),
+                    0,
+                    (float) Math.cos(Math.toRadians(180 - Camera.rotation.y)),
+                    0
+            ));
+            sceneManager.addSceneObject(bullet);
+        }
+        if (bullet_counter > 0) {
+            bullet_counter--;
+        }
         sceneManager.drawAll(new IDrawListener() {
             @Override
             public void beforeEachDraw(SceneObject object) {
@@ -749,6 +773,14 @@ public class Scene {
             @Override
             public void afterEachDraw(SceneObject object) {
                 GL11.glPopMatrix();
+                if (object instanceof Bullet) {
+                    Bullet bullet = (Bullet) object;
+                    if (!Main.harmless)
+                        sceneManager.BulletHit(bullet);
+                    if (bullet.getDrawCount() >= 300) {
+                        sceneManager.remove(bullet);
+                    }
+                }
             }
         }, delta);
     }

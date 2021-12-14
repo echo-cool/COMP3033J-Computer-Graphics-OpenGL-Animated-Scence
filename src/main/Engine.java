@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 import static main.Main.camera;
+import static main.Main.harmless;
 import static main.ShaderLoader.loadShaders;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.util.glu.GLU.gluPerspective;
@@ -375,7 +376,7 @@ public class Engine {
 
     public void updateFPS() {
         if (getTime() - lastFPS > 1000) {
-            Display.setTitle("FPS: " + fps);
+            Display.setTitle("FPS: " + fps + " | " + "Harmless: " + harmless);
             fps = 0;
             lastFPS += 1000;
         }

@@ -33,6 +33,7 @@ public class Main {
     public static SceneManager sceneManager = new SceneManager();
     public static SceneManager backgroundManager = new SceneManager();
     public static Camera camera = new Camera();
+    public static Boolean harmless = true;
     private static boolean isBigScreen = false;
     private static Boolean setUpFinish = true;
     private static Boolean FPS_MODE = false;
@@ -279,6 +280,13 @@ public class Main {
                 setUpFinish = false;
 
             }
+            if (Keyboard.isKeyDown(Keyboard.KEY_L)) {
+                harmless = true;
+            }
+            if (Keyboard.isKeyDown(Keyboard.KEY_H)) {
+                harmless = false;
+            }
+
             if (FPS_MODE) {
                 camera.setCamera(new Vector4f(
                         0, -300, 0, 0
