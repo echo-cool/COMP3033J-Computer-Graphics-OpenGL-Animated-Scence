@@ -247,7 +247,7 @@ public class Main {
 
             }
         };
-//        new Thread(cameraRunnable).start();
+        new Thread(cameraRunnable).start();
 //        new Thread(light_anmi).start();
 
         while (!Display.isCloseRequested()) {
