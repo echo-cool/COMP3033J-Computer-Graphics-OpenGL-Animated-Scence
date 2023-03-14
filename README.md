@@ -4,6 +4,8 @@
 
 This is a full 3D computer graphics project. Using lwjgl.
 
+![https://www.yuyangwang.org/assets/images/OpenGL%20Project%20-%20An%20Animated%20Scene%20(Java).png](https://www.yuyangwang.org/assets/images/OpenGL%20Project%20-%20An%20Animated%20Scene%20(Java).png)
+
 ## Run
 
 I have tested on my computer(macOS) with GL version "OpenGL version is 2.1 ATI-4.6.20" and Windows10 computer with GL version 4.6
