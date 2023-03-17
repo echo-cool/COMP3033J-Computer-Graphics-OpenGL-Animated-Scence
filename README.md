@@ -4,6 +4,11 @@
 
 This is a full 3D computer graphics project. Using lwjgl.
 
+* Project Overview: This project builds a OpenGL application based on Lightweight Java. Game Library. I builtan articulated human mode by simulating the movement of bones and ioints. The ca culation was done by using lococoordinate systems. The third person perspective was achieved by using homogeneous matriz transformationand lighting was achieved by using the phone liohting model. This project is also highly optimized by utilizingDisplayList and programmable shaders on GPU cores.
+* Projective Rendering: OpenGL uses a projective rendering pipeline to render the scene. In my proiect, I definerall the vertex and edges using Displaylist and then send them to VRAM for primitive assembly. A view frustumwas also defined in my application for clipping the geometries.
+* GLSL Shaders: OpenGL provides the abilities to run on programmable shaders on GPU cores. I achieve(gradient ramp in my scene by using GLSL.
+* Physics Simulation: In my scene, a collision detector was implemented, the mechanism is to view every objectsas a sphere and calculate the center distance to determine whether two objects colides
+
 ![https://www.yuyangwang.org/assets/images/OpenGL%20Project%20-%20An%20Animated%20Scene%20(Java).png](https://www.yuyangwang.org/assets/images/OpenGL%20Project%20-%20An%20Animated%20Scene%20(Java).png)
 
 ## Run
