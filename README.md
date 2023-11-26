@@ -9,7 +9,7 @@ This is a full 3D computer graphics project. Using lwjgl.
 * GLSL Shaders: OpenGL provides the abilities to run on programmable shaders on GPU cores. I achieve(gradient ramp in my scene by using GLSL.
 * Physics Simulation: In my scene, a collision detector was implemented, the mechanism is to view every objectsas a sphere and calculate the center distance to determine whether two objects colides
 
-![https://www.yuyangwang.org/assets/images/OpenGL%20Project%20-%20An%20Animated%20Scene%20(Java).png](https://www.yuyangwang.org/assets/images/OpenGL%20Project%20-%20An%20Animated%20Scene%20(Java).png)
+![https://v1.yuyangwang.org/assets/images/OpenGL%20Project%20-%20An%20Animated%20Scene%20(Java).png](https://v1.yuyangwang.org/assets/images/OpenGL%20Project%20-%20An%20Animated%20Scene%20(Java).png)
 
 ## Run
 
